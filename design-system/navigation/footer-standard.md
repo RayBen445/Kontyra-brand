@@ -34,7 +34,7 @@ The footer layout consists of three standard horizontal tiers:
 
 ### Column 1: Products
 - **DevOS Cloud Runtime:** `https://docs.kontyra.name.ng/devos` (or app link)
-- **Kontyra Identity & SSO:** `/identity`
+- **Kontyra Identity & SSO:** `https://accounts.kontyra.name.ng`
 - **KORA AI Transformer:** `https://docs.kontyra.name.ng/kora`
 - **VUX Events & Tickets:** `https://docs.kontyra.name.ng/vux`
 - **VyntaJobs Marketplace:** `https://jobs.kontyra.name.ng`
@@ -51,13 +51,11 @@ The footer layout consists of three standard horizontal tiers:
 - **About Kontyra:** `/about`
 - **Our Ecosystem:** `/products`
 - **Careers:** `/careers`
-- **Press & Media:** `/press`
 
-### Column 4: Legal & Governance
+### Column 4: Legal
 - **Privacy Policy:** `https://legal.kontyra.name.ng/privacy`
 - **Terms of Service:** `https://legal.kontyra.name.ng/terms`
 - **Cookie Policy:** `https://legal.kontyra.name.ng/cookies`
-- **Security Trust Center:** `https://legal.kontyra.name.ng/security`
 
 ---
 
