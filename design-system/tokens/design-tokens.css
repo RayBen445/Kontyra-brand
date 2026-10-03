@@ -1,0 +1,47 @@
+/**
+ * Kontyra Official CSS Design Tokens
+ * Version 2.0.0
+ */
+
+:root {
+  /* Surfaces & Backgrounds */
+  --kontyra-bg-base: #000000;
+  --kontyra-bg-surface: #09090b;
+  --kontyra-bg-overlay: #18181b;
+  --kontyra-bg-glass: rgba(255, 255, 255, 0.02);
+
+  /* Typography */
+  --kontyra-text-primary: #ffffff;
+  --kontyra-text-secondary: rgba(255, 255, 255, 0.65);
+  --kontyra-text-muted: rgba(255, 255, 255, 0.40);
+  --kontyra-text-inverse: #000000;
+
+  /* Borders & Dividers */
+  --kontyra-border-subtle: rgba(255, 255, 255, 0.08);
+  --kontyra-border-medium: rgba(255, 255, 255, 0.14);
+  --kontyra-border-hover: rgba(255, 255, 255, 0.25);
+
+  /* Brand Signature Colors */
+  --kontyra-brand-cyan: #13D9F2;
+  --kontyra-brand-blue: #079BFF;
+  --kontyra-brand-deep-blue: #0B45E8;
+  --kontyra-brand-indigo: #1747F2;
+  --kontyra-brand-purple: #4B00E8;
+  --kontyra-brand-magenta: #B000D5;
+  --kontyra-brand-pink: #E60082;
+
+  /* System Semantics */
+  --kontyra-status-success: #10B981;
+  --kontyra-status-warning: #F59E0B;
+  --kontyra-status-error: #EF4444;
+  --kontyra-status-info: #3B82F6;
+
+  /* Geometry & Layout */
+  --kontyra-radius-sm: 4px;
+  --kontyra-radius-md: 8px;
+  --kontyra-radius-lg: 12px;
+  --kontyra-radius-xl: 16px;
+  --kontyra-radius-full: 9999px;
+
+  --kontyra-navbar-height: 56px;
+}

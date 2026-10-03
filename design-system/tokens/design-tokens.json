@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Kontyra Design Tokens",
+  "version": "2.0.0",
+  "color": {
+    "background": {
+      "base": { "value": "#000000" },
+      "surface": { "value": "#09090b" },
+      "overlay": { "value": "#18181b" },
+      "glass": { "value": "rgba(255, 255, 255, 0.02)" }
+    },
+    "text": {
+      "primary": { "value": "#ffffff" },
+      "secondary": { "value": "rgba(255, 255, 255, 0.65)" },
+      "muted": { "value": "rgba(255, 255, 255, 0.40)" },
+      "inverse": { "value": "#000000" }
+    },
+    "border": {
+      "subtle": { "value": "rgba(255, 255, 255, 0.08)" },
+      "medium": { "value": "rgba(255, 255, 255, 0.14)" },
+      "hover": { "value": "rgba(255, 255, 255, 0.25)" }
+    },
+    "brand": {
+      "cyan": { "value": "#13D9F2" },
+      "blue": { "value": "#079BFF" },
+      "deepBlue": { "value": "#0B45E8" },
+      "indigo": { "value": "#1747F2" },
+      "purple": { "value": "#4B00E8" },
+      "magenta": { "value": "#B000D5" },
+      "pink": { "value": "#E60082" }
+    },
+    "status": {
+      "success": { "value": "#10B981" },
+      "warning": { "value": "#F59E0B" },
+      "error": { "value": "#EF4444" },
+      "info": { "value": "#3B82F6" }
+    }
+  },
+  "radii": {
+    "none": { "value": "0px" },
+    "sm": { "value": "4px" },
+    "md": { "value": "8px" },
+    "lg": { "value": "12px" },
+    "xl": { "value": "16px" },
+    "2xl": { "value": "24px" },
+    "full": { "value": "9999px" }
+  },
+  "spacing": {
+    "1": { "value": "4px" },
+    "2": { "value": "8px" },
+    "3": { "value": "12px" },
+    "4": { "value": "16px" },
+    "5": { "value": "20px" },
+    "6": { "value": "24px" },
+    "8": { "value": "32px" },
+    "10": { "value": "40px" },
+    "12": { "value": "48px" },
+    "16": { "value": "64px" },
+    "20": { "value": "80px" },
+    "24": { "value": "96px" },
+    "32": { "value": "128px" }
+  },
+  "height": {
+    "navbar": { "value": "56px" }
+  }
+}
