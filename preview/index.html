@@ -35,18 +35,19 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
     }
     .kontyra-input {
-      background-color: #050508;
-      border: 1px solid rgba(255, 255, 255, 0.10);
+      background-color: rgba(5, 5, 8, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: #ffffff;
+      backdrop-filter: blur(12px);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .kontyra-input:focus {
       outline: none;
-      border-color: rgba(255, 255, 255, 0.35);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.40);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.20), 0 0 16px -2px rgba(19, 217, 242, 0.25);
     }
 
     /* ========================================================================= */
@@ -64,7 +65,6 @@
       }
     }
 
-    /* Container for glowing box */
     .glowing-box-target {
       position: relative;
       cursor: pointer;
@@ -95,7 +95,15 @@
     }
 
     .glowing-box-target.is-active-glow {
-      box-shadow: 0 0 25px -4px rgba(19, 217, 242, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 30px -4px rgba(19, 217, 242, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Ultra-Glass Frosted Glass Aesthetic */
+    .ultra-glass {
+      background: rgba(14, 14, 19, 0.55);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
     }
   </style>
 </head>
@@ -111,12 +119,9 @@
       <div class="flex items-center gap-3">
         <a href="#" onclick="switchTab('overview')" class="flex items-center gap-2.5 group">
           
-          <!-- Custom-Designed Luxury Brand Icon -->
           <div class="relative w-8 h-8 rounded-lg bg-[#09090b] border border-white/[0.12] p-1.5 flex items-center justify-center transition-transform group-hover:scale-105 shadow-[0_2px_8px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.15)] overflow-hidden">
-            <!-- Subtle Radial Underglow -->
             <div class="absolute inset-0 bg-gradient-to-tr from-[#13D9F2]/20 via-[#7928CA]/20 to-[#FF0080]/20 opacity-40 group-hover:opacity-100 transition-opacity"></div>
             
-            <!-- Authentic Vector Path of Official Kontyra Gradient Logo -->
             <svg viewBox="240 280 550 350" class="w-full h-full relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="navLogoLeftGrad" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
@@ -150,14 +155,14 @@
         </button>
         <button id="btn-sso" onclick="openAuthModal()" class="px-3 py-1 rounded-md text-white/60 hover:text-white transition-all flex items-center gap-1.5">
           <span>SSO Modal</span>
-          <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300">Popup</span>
+          <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300">Ultra-Glass</span>
         </button>
         <button id="btn-console" onclick="switchTab('console')" class="px-3 py-1 rounded-md text-white/60 hover:text-white transition-all">
           API Keys Console
         </button>
       </nav>
 
-      <!-- Right: User Avatar + Modern Bento Ecosystem Launcher Icon -->
+      <!-- Right: User Avatar + Modern Bento Launcher -->
       <div class="flex items-center gap-2.5">
         <div class="hidden sm:flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -166,15 +171,15 @@
         
         <div class="h-4 w-px bg-white/[0.1] hidden sm:block"></div>
 
-        <!-- Direct Trigger for Auth Modal -->
-        <button onclick="openAuthModal()" class="flex items-center gap-2 pl-2 pr-3 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs text-white/80 hover:text-white transition-colors">
+        <!-- Launch Modal Button -->
+        <button onclick="openAuthModal()" class="flex items-center gap-2 pl-2 pr-3 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs text-white/80 hover:text-white transition-colors shadow-sm">
           <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">
             H
           </div>
           <span class="font-medium">Sign In</span>
         </button>
 
-        <!-- Modern Ecosystem Bento Launcher Icon with Ambient Hover Bloom -->
+        <!-- Bento Launcher Trigger -->
         <button onclick="toggleMobileMenu()" aria-label="Ecosystem Apps" class="relative p-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/[0.22] text-white/80 hover:text-white transition-all flex items-center justify-center group shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
           <div class="w-4 h-4 grid grid-cols-2 gap-[3px]">
             <span class="w-[6px] h-[6px] rounded-[1.5px] bg-white/70 group-hover:bg-[#13D9F2] transition-colors shadow-sm"></span>
@@ -182,7 +187,6 @@
             <span class="w-[6px] h-[6px] rounded-[1.5px] bg-white/70 group-hover:bg-[#4B00E8] transition-colors shadow-sm"></span>
             <span class="w-[6px] h-[6px] rounded-[1.5px] bg-white/70 group-hover:bg-[#E60082] transition-colors shadow-sm"></span>
           </div>
-          <!-- Micro Pulse Indicator on Launcher -->
           <span class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-cyan-400 border border-black"></span>
         </button>
       </div>
@@ -213,7 +217,7 @@
         <a href="#" onclick="openAuthModal(); toggleMobileMenu()" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
           <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold mb-2">ID</div>
           <div class="text-xs font-semibold text-white group-hover:text-blue-400">Kontyra Accounts</div>
-          <div class="text-[11px] text-white/40 mt-0.5">2-Step SSO modal</div>
+          <div class="text-[11px] text-white/40 mt-0.5">Transparent SSO modal</div>
         </a>
 
         <a href="#" onclick="switchTab('console'); toggleMobileMenu()" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
@@ -253,9 +257,7 @@
   <!-- ========================================================================= -->
   <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8">
 
-    <!-- ======================================================================= -->
-    <!-- TAB 1: DESIGN TOKENS & BOX SHOWCASE WITH ROTATING GLOWING BEAMS         -->
-    <!-- ======================================================================= -->
+    <!-- TAB 1: DESIGN TOKENS & BOX SHOWCASE WITH ROTATING GLOWING BEAMS -->
     <div id="view-overview" class="space-y-10">
       
       <!-- Top Hero Banner with Rotating Perimeter Glow -->
@@ -275,7 +277,7 @@
           </p>
           <div class="flex flex-wrap gap-3 mt-5">
             <button onclick="event.stopPropagation(); openAuthModal()" class="px-4 py-2 rounded-lg bg-white text-black text-xs font-semibold hover:bg-white/90 transition-colors shadow-sm">
-              Launch 2-Step SSO Modal →
+              Open Ultra-Glass SSO Modal →
             </button>
             <button onclick="event.stopPropagation(); switchTab('console')" class="px-4 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-xs font-medium text-white transition-colors">
               Manage API Keys
@@ -414,9 +416,7 @@
 
     </div>
 
-    <!-- ======================================================================= -->
-    <!-- TAB 2: DEVELOPER API KEYS & HEADLESS ROUTING CONSOLE                    -->
-    <!-- ======================================================================= -->
+    <!-- TAB 2: DEVELOPER API KEYS & HEADLESS ROUTING CONSOLE -->
     <div id="view-console" class="hidden space-y-8">
       
       <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-white/[0.02] border border-white/[0.08] rounded-xl p-4 flex items-start gap-3.5 text-xs text-white/75 relative overflow-hidden">
@@ -484,16 +484,19 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- 3. AUTHENTICATION SSO MODAL DIALOG (WITH TOP EXIT & CANCEL BUTTONS)       -->
+  <!-- 3. AUTHENTICATION SSO MODAL (FROSTED ULTRA-GLASS TRANSPARENCY + EXIT)     -->
   <!-- ========================================================================= -->
-  <div id="auth-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+  <div id="auth-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xl flex items-center justify-center p-4">
     
-    <!-- Modal Card Container (Elevation 4) with Rotating Glow on Active -->
-    <div onclick="event.stopPropagation()" class="glowing-box-target is-active-glow w-full max-w-md bg-[#09090b] border border-white/[0.12] rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-4);">
+    <!-- Background Ambient Colorful Bloom behind the Glass -->
+    <div class="absolute w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/20 via-indigo-600/15 to-pink-500/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <!-- Frosted Transparent Modal Container (Elevation 4) -->
+    <div onclick="event.stopPropagation()" class="glowing-box-target is-active-glow ultra-glass w-full max-w-md rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.2)]">
       <div class="specular-top"></div>
 
       <!-- Top Header Row with Clear EXIT BUTTONS -->
-      <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.10]">
         <div class="flex items-center gap-2">
           <span id="step-indicator-1" class="w-5 h-5 rounded-full bg-white text-black text-[11px] font-bold flex items-center justify-center">1</span>
           <div class="w-6 h-0.5 bg-white/20"></div>
@@ -502,7 +505,7 @@
         </div>
 
         <!-- Exit Button -->
-        <button onclick="closeAuthModal()" class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs text-white/60 hover:text-white transition-all group" aria-label="Exit Authentication">
+        <button onclick="closeAuthModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.06] hover:bg-white/[0.14] border border-white/[0.12] text-xs text-white/70 hover:text-white transition-all group backdrop-blur-md" aria-label="Exit Authentication">
           <span>Exit</span>
           <span class="text-[13px] leading-none group-hover:rotate-90 transition-transform">✕</span>
         </button>
@@ -510,21 +513,21 @@
 
       <!-- SSO Brand Header with Handcrafted Vector Logo -->
       <div class="text-center mb-5">
-        <div class="w-11 h-11 mx-auto rounded-xl bg-[#0e0e13] border border-white/10 p-2 flex items-center justify-center mb-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+        <div class="w-12 h-12 mx-auto rounded-xl bg-black/60 border border-white/15 p-2 flex items-center justify-center mb-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-md">
           <svg viewBox="240 280 550 350" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <path d="M 392 297 L 391 298 L 384 298 L 369 301 L 344 310 L 322 322 L 306 335 L 301 337 L 291 349 L 280 363 L 271 377 L 263 394 L 259 405 L 254 426 L 252 456 L 254 477 L 258 495 L 265 515 L 274 533 L 281 543 L 293 560 L 311 578 L 332 593 L 352 603 L 379 611 L 395 612 L 412 613 L 422 612 L 437 609 L 457 602 L 471 595 L 494 578 L 510 562 L 517 551 L 504 561 L 483 574 L 468 581 L 446 588 L 426 591 L 409 591 L 393 589 L 374 584 L 361 578 L 338 565 L 327 556 L 310 537 L 301 523 L 291 501 L 286 483 L 284 463 L 284 436 L 287 421 L 293 406 L 302 388 L 313 370 L 332 351 L 341 344 L 356 335 L 367 330 L 392 323 L 406 322 L 422 321 L 438 323 L 454 327 L 467 332 L 482 340 L 495 350 L 511 346 L 506 339 L 491 325 L 476 315 L 458 306 L 443 301 L 422 297 Z" fill="url(#navLogoLeftGrad)"/>
             <path d="M 440 447 L 461 468 L 555 559 L 580 582 L 596 593 L 609 600 L 624 605 L 641 610 L 659 611 L 679 610 L 705 602 L 722 593 L 732 585 L 744 575 L 760 554 L 767 540 L 772 526 L 775 512 L 776 483 L 772 462 L 766 448 L 761 437 L 750 422 L 742 414 L 730 403 L 719 396 L 698 387 L 679 383 L 656 383 L 631 389 L 607 401 L 591 413 L 560 443 L 542 463 L 558 457 L 594 426 L 605 419 L 617 413 L 639 406 L 675 406 L 691 411 L 704 417 L 713 423 L 720 429 L 733 444 L 739 454 L 746 472 L 747 482 L 747 512 L 740 533 L 730 549 L 716 563 L 698 574 L 684 579 L 648 580 L 631 575 L 614 566 L 605 559 L 572 526 L 488 446 L 503 430 L 581 351 L 617 314 L 568 314 L 502 382 L 458 428 Z" fill="url(#navLogoMainGrad)"/>
           </svg>
         </div>
         <h2 id="sso-title" class="text-base font-semibold text-white">Sign in to Kontyra</h2>
-        <p id="sso-desc" class="text-xs text-white/50 mt-0.5">One universal account across all Kontyra products</p>
+        <p id="sso-desc" class="text-xs text-white/60 mt-0.5">One universal account across all Kontyra products</p>
       </div>
 
       <!-- STEP 1: EMAIL IDENTIFIER -->
       <div id="sso-step-1" class="space-y-4">
         
         <div class="space-y-2.5">
-          <button class="w-full h-10 px-4 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold flex items-center justify-center gap-2.5 transition-all shadow-sm">
+          <button class="w-full h-10 px-4 rounded-lg bg-white/95 hover:bg-white text-black text-xs font-semibold flex items-center justify-center gap-2.5 transition-all shadow-md">
             <svg class="w-4 h-4" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -534,7 +537,7 @@
             Continue with Google
           </button>
 
-          <button class="w-full h-10 px-4 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.10] text-white text-xs font-medium flex items-center justify-center gap-2.5 transition-all">
+          <button class="w-full h-10 px-4 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.12] text-white text-xs font-medium flex items-center justify-center gap-2.5 transition-all backdrop-blur-md">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
@@ -543,8 +546,8 @@
         </div>
 
         <div class="relative flex items-center justify-center my-4">
-          <div class="w-full border-t border-white/[0.08]"></div>
-          <span class="bg-[#09090b] px-2 text-[11px] font-mono uppercase text-white/40 absolute">or email address</span>
+          <div class="w-full border-t border-white/[0.10]"></div>
+          <span class="bg-[#0e0e13]/80 px-2 text-[11px] font-mono uppercase text-white/50 absolute backdrop-blur-sm">or email address</span>
         </div>
 
         <form onsubmit="handleStep1Submit(event)" class="space-y-3.5">
@@ -555,17 +558,17 @@
           </div>
 
           <div class="flex gap-2">
-            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.05] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
+            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.06] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
               Exit
             </button>
-            <button type="submit" class="w-2/3 h-10 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-sm">
+            <button type="submit" class="w-2/3 h-10 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-md">
               <span>Continue</span>
               <span>→</span>
             </button>
           </div>
         </form>
 
-        <div class="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between">
+        <div class="mt-4 pt-4 border-t border-white/[0.10] flex items-center justify-between">
           <div class="flex items-center gap-2 text-xs text-white/60">
             <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/>
@@ -582,7 +585,7 @@
       <!-- STEP 2: PASSWORD OR MAGIC LINK -->
       <div id="sso-step-2" class="hidden space-y-4">
         
-        <div class="bg-[#050508] border border-white/[0.08] rounded-xl p-3 flex items-center justify-between">
+        <div class="bg-black/50 border border-white/[0.10] rounded-xl p-3 flex items-center justify-between backdrop-blur-md">
           <div class="flex items-center gap-2.5 truncate">
             <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[10px]">@</div>
             <span id="display-email" class="text-xs font-mono text-white/90 truncate">developer@kontyra.name.ng</span>
@@ -592,8 +595,8 @@
           </button>
         </div>
 
-        <div class="flex rounded-lg bg-white/[0.04] p-1 border border-white/[0.06] text-xs">
-          <button id="auth-tab-pw" onclick="switchAuthMode('password')" class="flex-1 py-1 rounded-md bg-white text-black font-medium transition-all">
+        <div class="flex rounded-lg bg-white/[0.05] p-1 border border-white/[0.08] text-xs">
+          <button id="auth-tab-pw" onclick="switchAuthMode('password')" class="flex-1 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm">
             Password
           </button>
           <button id="auth-tab-magic" onclick="switchAuthMode('magic')" class="flex-1 py-1 rounded-md text-white/60 hover:text-white transition-all">
@@ -612,30 +615,30 @@
           </div>
 
           <div class="flex gap-2">
-            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.05] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
+            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.06] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
               Exit
             </button>
-            <button type="submit" class="w-2/3 h-10 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold transition-all">
+            <button type="submit" class="w-2/3 h-10 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold transition-all shadow-md">
               Sign In
             </button>
           </div>
         </form>
 
         <div id="form-magic" class="hidden space-y-3.5">
-          <p class="text-xs text-white/60 leading-relaxed">
+          <p class="text-xs text-white/70 leading-relaxed">
             We'll dispatch a secure, single-use authentication link to your inbox. No password needed.
           </p>
           <div class="flex gap-2">
-            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.05] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
+            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.06] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
               Exit
             </button>
-            <button onclick="alert('Magic link dispatched to ' + document.getElementById('display-email').innerText + '! Check your inbox.');" class="w-2/3 h-10 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all">
+            <button onclick="alert('Magic link dispatched to ' + document.getElementById('display-email').innerText + '! Check your inbox.');" class="w-2/3 h-10 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all shadow-md">
               Send Magic Link
             </button>
           </div>
         </div>
 
-        <div class="pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs text-white/50">
+        <div class="pt-3 border-t border-white/[0.10] flex items-center justify-between text-xs text-white/50">
           <span>Have a hardware security key?</span>
           <button onclick="alert('Demo: Requesting hardware security key...');" class="text-emerald-400 hover:text-emerald-300 font-medium">Use Key</button>
         </div>
@@ -650,11 +653,11 @@
   </div>
 
   <!-- CREATE API KEY MODAL (ELEVATION 4) -->
-  <div id="demo-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="glowing-box-target is-active-glow w-full max-w-md bg-[#0e0e13] border border-white/[0.12] rounded-2xl p-6 sm:p-7 relative" style="box-shadow: var(--kontyra-shadow-elevation-4);">
+  <div id="demo-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glowing-box-target is-active-glow ultra-glass w-full max-w-md rounded-2xl p-6 sm:p-7 relative shadow-2xl">
       <div class="specular-top"></div>
 
-      <div class="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-5">
+      <div class="flex items-center justify-between border-b border-white/[0.10] pb-4 mb-5">
         <h3 class="text-sm font-semibold text-white">Generate New API Key</h3>
         <button onclick="document.getElementById('demo-modal').classList.add('hidden')" class="text-white/40 hover:text-white">✕</button>
       </div>
@@ -666,14 +669,14 @@
         </div>
         <div>
           <label class="block text-xs font-medium text-white/70 mb-1.5">Environment</label>
-          <select class="w-full h-9 px-3 rounded-lg text-xs kontyra-input bg-[#050508]">
+          <select class="w-full h-9 px-3 rounded-lg text-xs kontyra-input bg-[#050508]/80">
             <option>Live Production (kt_live_...)</option>
             <option>Sandbox / Test (kt_test_...)</option>
           </select>
         </div>
       </div>
 
-      <div class="flex justify-end gap-2.5 mt-6 pt-4 border-t border-white/[0.08]">
+      <div class="flex justify-end gap-2.5 mt-6 pt-4 border-t border-white/[0.10]">
         <button onclick="document.getElementById('demo-modal').classList.add('hidden')" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-white/60 hover:text-white">Cancel</button>
         <button onclick="alert('Demo: Generated kt_live_7b63f2...'); document.getElementById('demo-modal').classList.add('hidden')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-black hover:bg-white/90">Create Secret</button>
       </div>
@@ -806,11 +809,9 @@
 
     /* Rotating Glowing Beam on Clicked Boxes */
     function toggleBoxGlow(element) {
-      // Deactivate previous glowing boxes
       document.querySelectorAll('.glowing-box-target').forEach(el => {
         el.classList.remove('is-active-glow');
       });
-      // Activate clicked box
       element.classList.add('is-active-glow');
     }
 
@@ -872,12 +873,12 @@
       const formMagic = document.getElementById('form-magic');
 
       if (mode === 'password') {
-        tabPw.className = 'flex-1 py-1 rounded-md bg-white text-black font-medium transition-all';
+        tabPw.className = 'flex-1 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm';
         tabMagic.className = 'flex-1 py-1 rounded-md text-white/60 hover:text-white transition-all';
         formPw.classList.remove('hidden');
         formMagic.classList.add('hidden');
       } else {
-        tabMagic.className = 'flex-1 py-1 rounded-md bg-white text-black font-medium transition-all';
+        tabMagic.className = 'flex-1 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm';
         tabPw.className = 'flex-1 py-1 rounded-md text-white/60 hover:text-white transition-all';
         formMagic.classList.remove('hidden');
         formPw.classList.add('hidden');
