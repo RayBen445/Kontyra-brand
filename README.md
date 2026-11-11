@@ -22,6 +22,7 @@ The official central repository for Kontyra brand identity, logo assets, design 
 - **Shared Navigation Standards:** [`design-system/navigation/navbar.md`](./design-system/navigation/navbar.md)
   - Footer Standard: [`design-system/navigation/footer-standard.md`](./design-system/navigation/footer-standard.md)
 - **Apple Pure Black Minimalist UI Components:** [`design-system/components/apple-minimalism.md`](./design-system/components/apple-minimalism.md)
+- **Boxes, Containers & Surfaces Standard:** [`design-system/components/boxes-and-containers.md`](./design-system/components/boxes-and-containers.md)
 - **Product Design & Development Standards:** [`product-guidelines/product-design-standard.md`](./product-guidelines/product-design-standard.md)
   - DevOS Cloud IDE & Subdomain Standard: [`product-guidelines/devos.md`](./product-guidelines/devos.md)
   - Kontyra Identity & SSO: [`product-guidelines/identity.md`](./product-guidelines/identity.md)
