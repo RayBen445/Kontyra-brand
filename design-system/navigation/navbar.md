@@ -33,7 +33,9 @@ The shared navigation bar is the central unifying touchpoint across all Kontyra 
 ## 3. Mobile Navigation Drawer Standard
 
 When viewport width `< 768px` (or `< 1024px` where appropriate):
-- Hamburger trigger: `p-2 text-white/80 hover:bg-white/[0.08] rounded-lg`.
+- **Modern Ecosystem Launcher Trigger (App Grid / Bento or Asymmetric Dual-Dash):**
+  Never use a generic 3-line hamburger menu icon. Kontyra uses an Apple/Vercel-inspired 4-square Bento App Grid (`2x2` micro-squares with hairline borders: `w-4 h-4 grid grid-cols-2 gap-1`) or an Asymmetric Segmented Dash (`w-5 flex flex-col items-end gap-1.5` with offset widths `w-5` and `w-3.5`).
+  Trigger container: `p-2 text-white/80 hover:text-white hover:bg-white/[0.06] border border-white/[0.08] rounded-lg transition-all`.
 - Drawer modal: Fullscreen overlay `fixed inset-0 bg-black/98 overflow-y-auto z-50`.
 - Top row: Logo + close button (`X size={22}`).
 - **Section 1: Ecosystem Portals (2-column grid):**
