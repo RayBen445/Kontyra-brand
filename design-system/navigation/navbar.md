@@ -4,84 +4,64 @@ The shared navigation bar is the central unifying touchpoint across all Kontyra 
 
 ---
 
-## 1. Dimensional Standard
-- **Height:** Exactly `56px` (`h-14` in Tailwind).
+## 1. Unified Dimensional Standard
+- **Desktop Standard:** Exactly `48px` height (`h-12` in Tailwind) — **Archetype 2: Flush Edge-to-Edge Minimal Header**.
+- **Mobile Standard:** Exactly `44px` height (`h-11` in Tailwind) — **Archetype 3: Bento Grid Quick-Launcher**.
 - **Position:** `sticky top-0` or `fixed top-0` with `z-50`.
-- **Background:** `bg-black/80 backdrop-blur-xl`.
-- **Border:** `border-b border-white/[0.08]`.
-- **Max Width:** `max-w-7xl mx-auto px-4 sm:px-6`.
+- **Background:** `bg-black/85 backdrop-blur-xl`.
+- **Border:** Pure hairline boundary `border-b border-white/[0.08]`.
+- **Space Efficiency Rule:** **Zero heavy container boxes around links**. Navigation links are rendered as pure typography with negative space. Active items receive a micro live indicator dot (`w-1.5 h-1.5 rounded-full bg-[#10B981]`) or clean underline.
 
 ---
 
-## 2. Desktop Bar Anatomy
+## 2. Desktop Bar Anatomy (Option 2: Flush Minimal 48px)
 
-1. **Brand Mark (Left):**
-   - Official SVG icon: `w-7 h-auto object-contain` linking to root `/`.
-   - Text label: `font-medium text-white text-sm tracking-tight`.
-   - Domain Badge: Pill badge (e.g. `Systems`, `Docs`, `Editorial`, `Governance`) with `text-[10px] font-mono text-white/50 border border-white/[0.08] bg-white/[0.06] px-2 py-0.5 rounded-full`.
+1. **Brand Lockup & Breadcrumb Context (Left):**
+   - Official SVG vector icon: `w-6 h-6 object-contain` linking to `/`.
+   - Brand Wordmark: `font-bold text-white text-xs tracking-tight`.
+   - Delimiter: `text-white/20 select-none` (`/`).
+   - Active App / Module title: `text-xs font-semibold text-white/90` (e.g. `DevOS`, `Accounts`, `Docs`).
+   - App Signature Badge: `text-[10px] font-mono px-2 py-0.5 rounded-full` matching the app's signature accent color (e.g. Emerald `#10B981` for Accounts SAML, Cyan `#13D9F2` for DevOS).
 
-2. **Primary Navigation Links (Center / Right):**
-   - Font: `text-[13px] font-normal text-white/60 hover:text-white transition`.
-   - Spacing: `gap-6`.
+2. **Primary Navigation Links (Center):**
+   - Plain text typography: `text-xs font-medium text-white/60 hover:text-white transition-colors duration-150`.
+   - Spacing: `gap-6` or `gap-8`.
+   - Active link state: `text-white font-semibold flex items-center gap-1.5` accompanied by an emerald live indicator dot: `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>`.
+   - **Zero container boxes around links**.
 
-3. **Ecosystem Cross Links:**
-   - Separated by vertical subtle divider: `h-4 w-px bg-white/[0.1]`.
-   - Outbound ecosystem links feature `ArrowUpRight` (`size={12} opacity-60`).
+3. **Global Controls & Identity (Right):**
+   - Quick search / palette shortcut (optional): `⌘K`.
+   - Secondary action: `text-xs text-white/60 hover:text-white`.
+   - Ecosystem Bento Launcher trigger: `2x2` micro-squares (`16px x 16px`) for rapid app switching.
+   - User Avatar or Sign In CTA: High-contrast compact button (`h-8 px-3 rounded-lg text-xs font-semibold`).
 
 ---
 
-## 3. Mobile Navigation Drawer Standard
+## 3. Mobile Navigation Standard (Option 3: Bento Quick-Launcher 44px)
 
 When viewport width `< 768px` (or `< 1024px` where appropriate):
-- **Modern Ecosystem Launcher Trigger (App Grid / Bento or Asymmetric Dual-Dash):**
-  Never use a generic 3-line hamburger menu icon. Kontyra uses an Apple/Vercel-inspired 4-square Bento App Grid (`2x2` micro-squares with hairline borders: `w-4 h-4 grid grid-cols-2 gap-1`) or an Asymmetric Segmented Dash (`w-5 flex flex-col items-end gap-1.5` with offset widths `w-5` and `w-3.5`).
-  Trigger container: `p-2 text-white/80 hover:text-white hover:bg-white/[0.06] border border-white/[0.08] rounded-lg transition-all`.
-- Drawer modal: Fullscreen overlay `fixed inset-0 bg-black/98 overflow-y-auto z-50`.
-- Top row: Logo + close button (`X size={22}`).
-- **Section 1: Ecosystem Portals (2-column grid):**
-  - Instant links to `Docs`, `Blog`, `Legal`, `Console`, `DevOS`, `GitHub`.
-- **Section 2: Product / Topic Directory:**
-  - Full list of current portal destinations with badges and icons.
-- **Section 3: Footer Contact:**
-  - Official desk email and direct support line.
-
+- **Bar Height:** Locked to `44px` (`h-11`) to maximize vertical viewport on phones.
+- **Left:** Monogram/Brand mark + Active app title.
+- **Center:** Kept **completely empty** to avoid horizontal cramping.
+- **Right: 4-Square Bento Launcher Button (`㗊`):**
+  - Trigger: `w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] flex items-center justify-center`.
+  - Micro-grid: `w-3.5 h-3.5 grid grid-cols-2 gap-[3px]` with app brand colors (`#13D9F2`, `#10B981`, `#4B00E8`, `#E60082`).
+- **Bento Popover / Drawer:**
+  - Tapping opens a sleek frosted-glass popover card (`backdrop-blur-2xl bg-black/95 border border-white/10 rounded-2xl p-4`).
+  - Displays all 6+ ecosystem destinations in a compact 2-column tile grid:
+    1. **DevOS:** Cloud IDE & Execution
+    2. **Accounts:** Universal SAML 2.0 & Passkeys
+    3. **KORA AI:** Deep Intelligence & Reasoning
+    4. **VUX Events:** Experience Platform
+    5. **Novelora:** Literary Publishing Studio
+    6. **Developer API:** Terminal & Bearer Secrets
 
 ---
 
 ## 4. Modern Editorial & Studio Dual-Navigation (REASTUDIA & Novelora Standard)
 
-For media-rich, literary, and creator products (such as **REASTUDIA** and **Novelora**), the navigation evolves into the **Modern TopBar + Collapsible Desktop Sidebar** architecture to support deep catalog navigation and distraction-free viewing.
-
-### A. Dimensional Specifications
-- **TopBar Height:** `68px` to `76px` desktop (`min-h-[68px] sm:min-h-[76px]`), `60px` mobile.
-- **TopBar Background:** `#050505/95` with `backdrop-blur-md`.
-- **TopBar Border:** `border-b border-[#1F1F1F]` (editorial rule hairline).
-- **Container Width:** `max-w-[1920px] mx-auto w-full px-4 sm:px-6 lg:px-8`.
+For media-rich, literary, and creator products (such as **REASTUDIA** and **Novelora**), the navigation pairs the top minimal bar with a collapsible sidebar:
+- **TopBar Height:** Flush `48px` desktop, `44px` mobile.
 - **Sidebar Width:** Exactly `256px` (`w-64`).
-- **Sidebar Background:** `#070707` with `border-r border-[#222222]`.
-- **Sidebar Offset:** Top offset locked to TopBar height (`top-[68px] sm:top-[76px]`).
-
-### B. TopBar Anatomy (Three Strategic Zones)
-
-1. **Zone 1: Sidebar Toggle & Brand Lockup (Left)**
-   - **Collapsible Toggle:** Keyboard & click toggle button (`36px x 36px` / `w-9 h-9`) with `PanelLeftClose` / `PanelLeftOpen` icon (`stroke-[1.75]`), border `#222222`, hover border `#333333`.
-   - **Brand Monogram:** `32px` square logo image or typographic monogram (`w-8 h-8 rounded-sm`).
-   - **Product Wordmark:** Uppercase serif display font (`Cinzel` or serif), tracking `0.16em`, with uppercase subtitle (`tracking-[0.25em] text-[8px] text-[#888888]`).
-
-2. **Zone 2: Contextual Breadcrumb & Ecosystem Bridge (Center)**
-   - **Active Section Pill:** Rounded-full pill (`bg-[#111111] border border-[#222222]`) displaying `/ Section / [Current Route]` with uppercase mono category prefix.
-   - **Pill Navigation Tabs:** Compact segmented control (`bg-[#0D0D0D] border border-[#222222] p-1 rounded-full`). Active tab uses solid high-contrast pill (`bg-white text-black font-semibold shadow-sm`).
-   - **Cross-Ecosystem Bridge Button:** Direct pill linking the reader and author platforms (e.g. *"Read on REASTUDIA"* or *"Author on Novelora"*) with gold book icon and `ExternalLink`.
-
-3. **Zone 3: Role-Aware Account Controls (Right)**
-   - **Admin Studio Badge:** Highlighted in gold (`bg-[#D4AF37] text-black` when active, or dark gold border `border-[#5E4D17]` with gold shield icon) for verified ecosystem administrators.
-   - **User Menu / SSO Pill:** Rounded-lg pill displaying user avatar monogram + truncated pen name/email, with dropdown menu for account settings, codex hub, and sign out.
-   - **Sign In CTA:** High-contrast editorial button (`bg-white text-black font-semibold text-xs rounded-lg uppercase tracking-wider`).
-
-### C. Collapsible Desktop Sidebar Anatomy (Right of Viewport Shift)
-- **Smooth Page Layout Shift:** The `<main>` and `<footer>` containers shift smoothly via `transition-[padding-left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]` (`lg:pl-64` when open, `pl-0` when closed).
-- **Navigation Sections:**
-  - Header with section title (`text-[10px] font-sans font-bold uppercase tracking-[0.22em] text-[#666666]`) and count badge.
-  - Active items highlight in solid white with black text and drop shadow (`bg-white text-black font-semibold shadow-md`).
-  - Account & Studio settings direct navigation links.
-  - Sidebar bottom bar with active user indicator and version tag.
+- **Sidebar Offset:** Top offset locked to TopBar height (`top-12`).
+- **Sidebar Content:** Table of Contents, Character Graph, Active drafts, and Chapter metadata.

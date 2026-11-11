@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontyra — Navbar Archetype Showcase & Picker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #09090b;
+      --border: rgba(255, 255, 255, 0.1);
+      --emerald: #10B981;
+      --cyan: #13D9F2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000000;
+      color: #EDEDED;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Reliable Glass Capsule */
+    .capsule-box {
+      background: rgba(18, 18, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Live Preview Stage Card */
+    .stage-card {
+      background: #070709;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .tab-btn {
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-6 flex flex-col items-center">
+
+  <!-- HEADER TITLE -->
+  <div class="text-center max-w-2xl my-6 space-y-2">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium">
+      <span>●</span>
+      <span>KONTYRA DESIGN SYSTEM • NAVBAR REFACTOR</span>
+    </div>
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Compare & Select Navbar Archetype</h1>
+    <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto">
+      You noticed that boxed items eat too much screen space. Test all 4 space-saving navbar archetypes below to choose the final ecosystem standard.
+    </p>
+  </div>
+
+  <!-- CONTROL PANEL -->
+  <div class="w-full max-w-4xl mb-8">
+    <div class="capsule-box rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="text-xs font-mono text-zinc-400 px-2 font-medium">
+        SELECT ARCHETYPE:
+      </div>
+      
+      <div class="flex flex-wrap gap-1.5 bg-black/60 p-1.5 rounded-xl border border-white/10">
+        <button id="btn-1" onclick="showOption(1)" class="tab-btn px-3 py-1.5 rounded-lg bg-white text-black font-bold text-xs shadow-sm transition-all">
+          1. Ultra-Slim Island (44px)
+        </button>
+        <button id="btn-2" onclick="showOption(2)" class="tab-btn px-3 py-1.5 rounded-lg text-zinc-400 hover:text-white font-medium text-xs transition-all">
+          2. Flush Minimal (48px)
+        </button>
+        <button id="btn-3" onclick="showOption(3)" class="tab-btn px-3 py-1.5 rounded-lg text-zinc-400 hover:text-white font-medium text-xs transition-all">
+          3. Bento App Launcher (44px)
+        </button>
+        <button id="btn-4" onclick="showOption(4)" class="tab-btn px-3 py-1.5 rounded-lg text-zinc-400 hover:text-white font-medium text-xs transition-all">
+          4. Dual-Tier Subnav (68px)
+        </button>
+      </div>
+
+      <div id="stats-badge" class="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-bold">
+        Height: 44px • Space Saved: 38%
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- OPTION 1: ULTRA-SLIM FLOATING ISLAND PILL (44px) - RECOMMENDED            -->
+  <!-- ========================================================================= -->
+  <div id="view-1" class="w-full max-w-4xl space-y-6">
+    <div class="stage-card p-6 space-y-6">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div>
+          <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">Option 1 (Recommended)</span>
+          <h2 class="text-lg font-bold text-white mt-0.5">Ultra-Slim Floating Island Pill</h2>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-zinc-300">
+          Height: 44px
+        </span>
+      </div>
+
+      <!-- LIVE SAMPLE 1 IN CONTAINER -->
+      <div class="relative bg-black rounded-2xl border border-white/10 p-6 min-h-[220px] flex flex-col justify-between overflow-hidden shadow-2xl">
+        <!-- Ambient Light -->
+        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-80 h-32 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- The 44px Navbar Pill -->
+        <nav class="relative z-10 w-full max-w-2xl mx-auto h-11 px-4 capsule-box rounded-full flex items-center justify-between border border-white/15">
+          <!-- Logo -->
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-emerald-400 to-cyan-400 flex items-center justify-center text-black font-extrabold text-[11px] shadow-sm">
+              K
+            </div>
+            <span class="text-xs font-bold text-white tracking-tight">Kontyra</span>
+          </div>
+
+          <!-- Clean Links with zero outer box padding -->
+          <div class="hidden sm:flex items-center gap-1 text-xs">
+            <a href="javascript:void(0)" class="px-3 py-1 rounded-full bg-white/10 text-white font-semibold">DevOS</a>
+            <a href="javascript:void(0)" class="px-3 py-1 text-zinc-400 hover:text-white transition-colors">Accounts</a>
+            <a href="javascript:void(0)" class="px-3 py-1 text-zinc-400 hover:text-white transition-colors">Docs</a>
+            <a href="javascript:void(0)" class="px-3 py-1 text-zinc-400 hover:text-white transition-colors">API</a>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-2">
+            <button class="text-xs text-zinc-400 hover:text-white px-2 py-1">Sign In</button>
+            <button class="px-3 py-1 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-bold shadow-sm transition-all">
+              Continue
+            </button>
+          </div>
+        </nav>
+
+        <!-- Mock Content Below -->
+        <div class="relative z-0 mt-8 text-center text-xs text-zinc-400 py-6 border-t border-dashed border-white/10">
+          <p class="font-medium text-white text-sm mb-1">Your App Workspace Content Starts Immediately Below</p>
+          <p class="text-[11px]">Notice the side margins and how the navbar doesn't block the screen edges.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Vertical Room</span>
+          <span class="text-emerald-400 font-bold text-sm">38% Less Height</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Box Clutter</span>
+          <span class="text-white font-bold text-sm">Zero Heavy Boxes</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Visual Feel</span>
+          <span class="text-cyan-400 font-bold text-sm">Apple / Modern Pill</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- OPTION 2: FLUSH MINIMAL HEADER (48px) - LINEAR / VERCEL STYLE            -->
+  <!-- ========================================================================= -->
+  <div id="view-2" class="hidden w-full max-w-4xl space-y-6">
+    <div class="stage-card p-6 space-y-6">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div>
+          <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Option 2</span>
+          <h2 class="text-lg font-bold text-white mt-0.5">Flush Edge-to-Edge Minimal Header</h2>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-zinc-300">
+          Height: 48px
+        </span>
+      </div>
+
+      <!-- LIVE SAMPLE 2 IN CONTAINER -->
+      <div class="bg-black rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+        <!-- Flush 48px Header -->
+        <header class="w-full h-12 bg-[#09090b] border-b border-white/10 px-5 flex items-center justify-between">
+          <!-- Breadcrumb Branding -->
+          <div class="flex items-center gap-2.5">
+            <div class="w-6 h-6 rounded bg-white text-black font-extrabold text-xs flex items-center justify-center">
+              K
+            </div>
+            <span class="text-xs font-bold text-white tracking-tight">KONTYRA</span>
+            <span class="text-zinc-600">/</span>
+            <span class="text-xs text-zinc-300 font-medium">Accounts</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              SAML 2.0
+            </span>
+          </div>
+
+          <!-- Pure Text Links (No boxes) -->
+          <nav class="hidden md:flex items-center gap-6 text-xs text-zinc-400 font-medium">
+            <a href="javascript:void(0)" class="text-white flex items-center gap-1.5 font-bold">
+              <span>Overview</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            </a>
+            <a href="javascript:void(0)" class="hover:text-white transition-colors">Organizations</a>
+            <a href="javascript:void(0)" class="hover:text-white transition-colors">API Keys</a>
+            <a href="javascript:void(0)" class="hover:text-white transition-colors">Sessions</a>
+          </nav>
+
+          <!-- Right Profile -->
+          <div class="flex items-center gap-3">
+            <button class="text-xs text-zinc-400 hover:text-white transition-colors">Feedback</button>
+            <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-black shadow-sm">
+              RB
+            </div>
+          </div>
+        </header>
+
+        <!-- Body -->
+        <div class="p-8 text-center text-xs text-zinc-400">
+          <p class="font-medium text-white text-sm mb-1">Flush 1px hairline boundary with the viewport</p>
+          <p class="text-[11px]">Industrial, linear, developer-friendly. Ideal for full-screen code editors and dashboards.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Boundary Style</span>
+          <span class="text-cyan-400 font-bold text-sm">Full Width 1px Line</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Clutter Factor</span>
+          <span class="text-white font-bold text-sm">Zero Container Boxes</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Best Used For</span>
+          <span class="text-emerald-400 font-bold text-sm">Linear / Vercel style</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- OPTION 3: BENTO APP LAUNCHER (44px) - ZERO CLUTTER POPOVER               -->
+  <!-- ========================================================================= -->
+  <div id="view-3" class="hidden w-full max-w-4xl space-y-6">
+    <div class="stage-card p-6 space-y-6">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div>
+          <span class="text-xs font-mono text-purple-400 uppercase tracking-wider font-semibold">Option 3</span>
+          <h2 class="text-lg font-bold text-white mt-0.5">Bento Grid Quick-Launcher (Zero Clutter)</h2>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-zinc-300">
+          Height: 44px
+        </span>
+      </div>
+
+      <!-- LIVE SAMPLE 3 IN CONTAINER -->
+      <div class="relative bg-black rounded-2xl border border-white/10 p-6 min-h-[300px] flex flex-col justify-between shadow-2xl">
+        <!-- 44px Bar with Bento Trigger -->
+        <header class="w-full max-w-2xl mx-auto h-11 px-4 capsule-box rounded-full flex items-center justify-between border border-white/15 relative z-20">
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded-md bg-cyan-400 text-black font-extrabold text-[10px] flex items-center justify-center">K</div>
+            <span class="text-xs font-bold text-white tracking-tight">Kontyra DevOS</span>
+          </div>
+
+          <!-- Clickable Bento Trigger -->
+          <div class="relative">
+            <button onclick="toggleBento()" class="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-xs text-white flex items-center gap-2 transition-all">
+              <div class="w-3.5 h-3.5 grid grid-cols-2 gap-1">
+                <span class="w-1 h-1 rounded-sm bg-cyan-400"></span>
+                <span class="w-1 h-1 rounded-sm bg-emerald-400"></span>
+                <span class="w-1 h-1 rounded-sm bg-purple-400"></span>
+                <span class="w-1 h-1 rounded-sm bg-pink-400"></span>
+              </div>
+              <span class="text-[11px] font-medium">Ecosystem Apps ▾</span>
+            </button>
+
+            <!-- Popover -->
+            <div id="bento-menu" class="absolute right-0 top-12 w-72 capsule-box rounded-2xl p-3 space-y-2 border border-white/20 shadow-2xl">
+              <div class="text-[10px] font-mono text-zinc-500 uppercase px-1 font-bold">Quick Jump to Kontyra App:</div>
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 font-bold">
+                  DevOS <span class="block text-[10px] font-normal text-zinc-400">Cloud IDE</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-bold">
+                  Accounts <span class="block text-[10px] font-normal text-zinc-400">SAML SSO</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-300 font-bold">
+                  KORA AI <span class="block text-[10px] font-normal text-zinc-400">Models</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] font-bold">
+                  Novelora <span class="block text-[10px] font-normal text-zinc-400">Publishing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="text-center text-xs text-zinc-500 py-6">
+          Click <strong class="text-white">"Ecosystem Apps ▾"</strong> button above to open the bento dropdown.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Horizontal Space</span>
+          <span class="text-purple-400 font-bold text-sm">100% Free / Clean</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">App Switcher</span>
+          <span class="text-white font-bold text-sm">Bento 4-Square Dropdown</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Best For</span>
+          <span class="text-cyan-400 font-bold text-sm">Multi-App Ecosystem</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- OPTION 4: DUAL-TIER SUBNAV HEADER (68px)                                 -->
+  <!-- ========================================================================= -->
+  <div id="view-4" class="hidden w-full max-w-4xl space-y-6">
+    <div class="stage-card p-6 space-y-6">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div>
+          <span class="text-xs font-mono text-amber-400 uppercase tracking-wider font-semibold">Option 4</span>
+          <h2 class="text-lg font-bold text-white mt-0.5">Dual-Tier Subnav Header</h2>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-zinc-300">
+          Height: 68px (Two Slim Tiers)
+        </span>
+      </div>
+
+      <!-- LIVE SAMPLE 4 IN CONTAINER -->
+      <div class="bg-black rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+        <!-- Tier 1: 36px -->
+        <div class="h-9 px-5 bg-[#070709] border-b border-white/[0.06] flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-white tracking-tight">KONTYRA ACCOUNTS</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">ENTERPRISE</span>
+          </div>
+          <div class="text-[11px] font-mono text-zinc-400">Org: acme-corp</div>
+        </div>
+
+        <!-- Tier 2: 32px Flat Subnav Tabs -->
+        <div class="h-9 px-5 bg-[#09090b] border-b border-white/10 flex items-center gap-6 text-xs text-zinc-400">
+          <a href="javascript:void(0)" class="text-white font-semibold border-b-2 border-emerald-400 py-1.5">Universal Profile</a>
+          <a href="javascript:void(0)" class="hover:text-white py-1.5 transition-colors">SAML 2.0 SSO</a>
+          <a href="javascript:void(0)" class="hover:text-white py-1.5 transition-colors">Passkeys</a>
+          <a href="javascript:void(0)" class="hover:text-white py-1.5 transition-colors">Child Apps</a>
+        </div>
+
+        <div class="p-8 text-center text-xs text-zinc-400">
+          <p class="font-medium text-white text-sm mb-1">Two streamlined flat tiers</p>
+          <p class="text-[11px]">Best for enterprise dashboards that need quick navigation between complex settings tabs.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Tier Count</span>
+          <span class="text-amber-400 font-bold text-sm">2 Slim Tiers (36px + 32px)</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Clutter Factor</span>
+          <span class="text-white font-bold text-sm">Flat Underline Tabs</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+          <span class="text-zinc-500 block mb-1">Best For</span>
+          <span class="text-emerald-400 font-bold text-sm">Settings / Admin Consoles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JS CONTROLLER -->
+  <script>
+    function showOption(num) {
+      for (let i = 1; i <= 4; i++) {
+        const view = document.getElementById('view-' + i);
+        const btn = document.getElementById('btn-' + i);
+        if (view) view.classList.add('hidden');
+        if (btn) {
+          btn.className = 'tab-btn px-3 py-1.5 rounded-lg text-zinc-400 hover:text-white font-medium text-xs transition-all';
+        }
+      }
+
+      const activeView = document.getElementById('view-' + num);
+      const activeBtn = document.getElementById('btn-' + num);
+      const badge = document.getElementById('stats-badge');
+
+      if (activeView) activeView.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.className = 'tab-btn px-3 py-1.5 rounded-lg bg-white text-black font-bold text-xs shadow-sm transition-all';
+      }
+
+      if (num === 1) {
+        badge.innerText = 'Height: 44px • Space Saved: 38%';
+        badge.className = 'px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-bold';
+      } else if (num === 2) {
+        badge.innerText = 'Height: 48px • Space Saved: 30%';
+        badge.className = 'px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-bold';
+      } else if (num === 3) {
+        badge.innerText = 'Height: 44px • Zero Clutter Bento';
+        badge.className = 'px-3 py-1 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono font-bold';
+      } else if (num === 4) {
+        badge.innerText = 'Height: 68px • Dual Subnav Rail';
+        badge.className = 'px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-bold';
+      }
+    }
+
+    function toggleBento() {
+      const menu = document.getElementById('bento-menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>

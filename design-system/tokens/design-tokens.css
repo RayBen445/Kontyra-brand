@@ -75,5 +75,6 @@
   --kontyra-radius-2xl: 24px;
   --kontyra-radius-full: 9999px;
 
-  --kontyra-navbar-height: 56px;
+  --kontyra-navbar-height: 48px;
+  --kontyra-navbar-height-mobile: 44px;
 }

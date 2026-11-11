@@ -128,6 +128,7 @@
     "inset": { "value": "inset 0 2px 4px rgba(0, 0, 0, 0.7)" }
   },
   "height": {
-    "navbar": { "value": "56px" }
+    "navbar": { "value": "48px" },
+    "navbarMobile": { "value": "44px" }
   }
 }
