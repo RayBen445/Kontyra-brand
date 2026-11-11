@@ -23,7 +23,8 @@ To preserve domain reputation and avoid phishing suspicion, sender identities ar
 | **System & Status** | `Kontyra Notifications`| `notifications@kontyra.name.ng`| Workspace invites, permission changes, team updates |
 | **Support** | `Kontyra Support` | `support@kontyra.name.ng` | Customer service tickets, inquiry responses |
 | **DevOS** | `DevOS by Kontyra` | `devos@kontyra.name.ng` | Build alerts, environment deployments, execution errors |
-| **Novel Weaver** | `Novel Weaver` | `novelweaver@kontyra.name.ng` | Publication notifications, author updates, review alerts |
+| **Novelora Studio** | `Novelora` | `novelora@kontyra.name.ng` | Manuscript backups, lore export notifications, chapter publishing alerts |
+| **REASTUDIA** | `REASTUDIA` | `hello@reastudia.kontyra.name.ng` | Reader chapter releases, reading milestones, author newsletter |
 
 ---
 

@@ -15,19 +15,19 @@ Kontyra uses **Kontyra Accounts** (`https://accounts.kontyra.name.ng`) as its au
 
 ### Flow A: Firebase Custom Token SSO (SPA / Single Page Applications)
 
-Recommended for Vite/React/Next.js client apps utilizing Firebase Client SDK (e.g., DevOS, Novel Weaver, Mini Apps).
+Recommended for Vite/React/Next.js client apps utilizing Firebase Client SDK (e.g., DevOS, Novelora, REASTUDIA, Mini Apps).
 
 ```mermaid
 sequenceDiagram
     autonumber
     actor User as User
-    participant App as Child Product (e.g. Novel Weaver)
+    participant App as Child Product (e.g. Novelora / REASTUDIA)
     participant SSO as Kontyra Accounts (accounts.kontyra.name.ng)
     participant AuthAPI as Accounts SSO Mint API (/api/sso/mint)
     participant Firebase as Child App Firebase Auth
 
     User->>App: Clicks "Sign in with Kontyra"
-    App->>SSO: Redirect to /auth?client_id=novelweaver&redirect_uri=...
+    App->>SSO: Redirect to /auth?client_id=novelora&redirect_uri=...
     Note over SSO: User logs in or has active session cookie
     SSO->>AuthAPI: POST /api/sso/mint { clientId, uid }
     AuthAPI->>AuthAPI: Sign Firebase Custom Token with child service account

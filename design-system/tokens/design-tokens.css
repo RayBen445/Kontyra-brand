@@ -1,6 +1,6 @@
 /**
  * Kontyra Official CSS Design Tokens
- * Version 2.0.0
+ * Version 2.1.0
  */
 
 :root {
@@ -9,6 +9,7 @@
   --kontyra-bg-surface: #09090b;
   --kontyra-bg-overlay: #18181b;
   --kontyra-bg-glass: rgba(255, 255, 255, 0.02);
+  --kontyra-bg-well: #050508;
 
   /* Typography */
   --kontyra-text-primary: #ffffff;
@@ -20,6 +21,28 @@
   --kontyra-border-subtle: rgba(255, 255, 255, 0.08);
   --kontyra-border-medium: rgba(255, 255, 255, 0.14);
   --kontyra-border-hover: rgba(255, 255, 255, 0.25);
+  --kontyra-border-focus: rgba(255, 255, 255, 0.40);
+
+  /* Box & Container Tokens */
+  --kontyra-box-bg-surface: #09090b;
+  --kontyra-box-bg-hover: #111116;
+  --kontyra-box-bg-well: #050508;
+  --kontyra-box-bg-dialog: #0e0e13;
+  --kontyra-box-border-hairline: 1px solid rgba(255, 255, 255, 0.08);
+  --kontyra-box-border-hover: 1px solid rgba(255, 255, 255, 0.20);
+  --kontyra-box-radius-card: 12px;
+  --kontyra-box-radius-well: 8px;
+  --kontyra-box-radius-dialog: 16px;
+  --kontyra-box-padding-sm: 12px;
+  --kontyra-box-padding-md: 20px;
+  --kontyra-box-padding-lg: 28px;
+
+  /* Elevation & Shadows (with Apple-grade specular highlights) */
+  --kontyra-shadow-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --kontyra-shadow-elevation-2: 0 4px 16px -2px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --kontyra-shadow-elevation-3: 0 12px 32px -8px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --kontyra-shadow-elevation-4: 0 24px 64px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --kontyra-shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.7);
 
   /* Brand Signature Colors */
   --kontyra-brand-cyan: #13D9F2;
@@ -36,11 +59,20 @@
   --kontyra-status-error: #EF4444;
   --kontyra-status-info: #3B82F6;
 
+  /* Literary Publishing Tokens (Novelora & REASTUDIA) */
+  --kontyra-literary-gold: #D4AF37;
+  --kontyra-literary-ivory: #F5E8D0;
+  --kontyra-literary-obsidian: #050505;
+  --kontyra-literary-reading-paper: #E5E5E5;
+  --kontyra-literary-border-hairline: #1F1F1F;
+
   /* Geometry & Layout */
+  --kontyra-radius-none: 0px;
   --kontyra-radius-sm: 4px;
   --kontyra-radius-md: 8px;
   --kontyra-radius-lg: 12px;
   --kontyra-radius-xl: 16px;
+  --kontyra-radius-2xl: 24px;
   --kontyra-radius-full: 9999px;
 
   --kontyra-navbar-height: 56px;

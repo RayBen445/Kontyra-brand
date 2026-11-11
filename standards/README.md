@@ -22,7 +22,8 @@ flowchart TD
 
     subgraph KontyraProducts ["Kontyra Products (Clients)"]
         DevOS["DevOS (devos.kontyra.name.ng)"]
-        NovelWeaver["Novel Weaver (novelweaver.kontyra.name.ng)"]
+        Novelora["Novelora Studio (novelora.kontyra.name.ng)"]
+        REASTUDIA["REASTUDIA (reastudia.kontyra.name.ng)"]
         Console["Kontyra Console (console.kontyra.name.ng)"]
         Blog["Kontyra Blog (blog.kontyra.name.ng)"]
         Support["Kontyra Support (support.kontyra.name.ng)"]

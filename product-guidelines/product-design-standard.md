@@ -68,6 +68,18 @@ Every Kontyra product must feel like part of the same ecosystem without looking 
 - **Domain:** Governance, Policies & Terms
 - **Key Features:** Long-form high-contrast text, legal version badges, table of contents, copy license button.
 
+### Novelora Studio (`novelora.md`)
+- **Domain:** Creative Authoring Suite, Worldbuilding & Lore Studio (For Writers)
+- **Canonical URL:** `novelora.kontyra.name.ng`
+- **Accent:** Author Gold / Amber (`#D4AF37`) & Deep Slate (`#0A0A0A`)
+- **Key Features:** TipTap distraction-free editor, Lore Bible entity graph, chapter arc scheduler, Gemini AI narrative co-pilot, EPUB/PDF export.
+
+### REASTUDIA (`reastudia.md`)
+- **Domain:** Digital Literature Sanctuary & Serialized Contemporary Fiction (For Readers)
+- **Canonical URL:** `reastudia.kontyra.name.ng`
+- **Accent:** Warm Ivory (`#F5E8D0`) & Gold (`#D4AF37`)
+- **Key Features:** WebNovelReader engine, OLED/sepia themes, quote highlights, in-reader Lore Companion (CastView & Dictionary), chapter discussions.
+
 ### Velopay (`velopay.md`)
 - **Domain:** Financial Infrastructure
 - **Accent:** Transaction Slate (`#38BDF8`)

@@ -28,7 +28,7 @@ Every Kontyra web property features a top bar with a fixed height of **56px** (`
    - Links to `https://kontyra.name.ng` or product root.
 2. **Contextual Product Badge**:
    - Separator slash (`/`) in `text-white/20`.
-   - Product label (e.g., `DevOS`, `Novel Weaver`, `Console`, `API`).
+   - Product label (e.g., `DevOS`, `Novelora`, `REASTUDIA`, `Console`, `API`).
    - Font: `font-medium text-sm text-white/90 tracking-tight`.
 3. **Global Search / Command Palette (Optional)**:
    - Centered input or `Cmd + K` trigger button with `bg-white/[0.04]` and `border border-white/[0.08]`.
