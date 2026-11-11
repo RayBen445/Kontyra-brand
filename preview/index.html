@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontyra Ecosystem & Accounts SSO</title>
+  <title>Kontyra Accounts — Desktop Experience & SAML 2.0 Console</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
@@ -47,12 +47,10 @@
     .kontyra-input:focus {
       outline: none;
       border-color: rgba(255, 255, 255, 0.40);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.20), 0 0 16px -2px rgba(19, 217, 242, 0.25);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.20), 0 0 16px -2px rgba(16, 185, 129, 0.25);
     }
 
-    /* ========================================================================= */
-    /* ROTATING CONIC GLOWING PERIMETER BORDER (When boxes are clicked/focused)   */
-    /* ========================================================================= */
+    /* Rotating Conic Glowing Perimeter Border on Click */
     @property --kontyra-angle {
       syntax: '<angle>';
       initial-value: 0deg;
@@ -80,10 +78,9 @@
       background: conic-gradient(
         from var(--kontyra-angle),
         transparent 0%,
-        #13D9F2 20%,
-        #079BFF 40%,
-        #7928CA 60%,
-        #FF0080 80%,
+        #10B981 25%,
+        #13D9F2 50%,
+        #4B00E8 75%,
         transparent 100%
       );
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -95,719 +92,457 @@
     }
 
     .glowing-box-target.is-active-glow {
-      box-shadow: 0 0 30px -4px rgba(19, 217, 242, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 30px -4px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
-    /* Ultra-Glass Frosted Glass Aesthetic */
+    /* Frosted Ultra-Glass Aesthetic */
     .ultra-glass {
-      background: rgba(14, 14, 19, 0.55);
+      background: rgba(14, 14, 19, 0.6);
       backdrop-filter: blur(28px) saturate(190%);
       -webkit-backdrop-filter: blur(28px) saturate(190%);
       border: 1px solid rgba(255, 255, 255, 0.14);
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col bg-black text-white selection:bg-cyan-500/30 selection:text-white">
+<body class="min-h-screen flex flex-col bg-black text-white selection:bg-emerald-500/30 selection:text-white">
 
   <!-- ========================================================================= -->
-  <!-- 1. OFFICIAL 56px KONTYRA NAVBAR WITH HANDCRAFTED LUXURY VECTOR ICON       -->
+  <!-- 1. OFFICIAL 56px KONTYRA DESKTOP TOP BAR                                  -->
   <!-- ========================================================================= -->
   <header class="sticky top-0 z-40 h-14 bg-black/85 backdrop-blur-xl border-b border-white/[0.08]">
-    <div class="max-w-7xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between">
+    <div class="w-full px-4 sm:px-6 flex items-center justify-between">
       
-      <!-- Left: Handcrafted High-End Glowing Kontyra Logo Mark -->
+      <!-- Left: Logo & Division -->
       <div class="flex items-center gap-3">
-        <a href="#" onclick="switchTab('overview')" class="flex items-center gap-2.5 group">
-          
+        <a href="#" class="flex items-center gap-2.5 group">
           <div class="relative w-8 h-8 rounded-lg bg-[#09090b] border border-white/[0.12] p-1.5 flex items-center justify-center transition-transform group-hover:scale-105 shadow-[0_2px_8px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.15)] overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#13D9F2]/20 via-[#7928CA]/20 to-[#FF0080]/20 opacity-40 group-hover:opacity-100 transition-opacity"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#13D9F2]/20 via-[#10B981]/20 to-[#4B00E8]/20 opacity-40 group-hover:opacity-100 transition-opacity"></div>
             
-            <svg viewBox="240 280 550 350" class="w-full h-full relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="240 280 550 350" class="w-full h-full relative z-10" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="navLogoLeftGrad" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                <linearGradient id="deskLogoLeft" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#13D9F2"/>
-                  <stop offset="48%" stop-color="#079BFF"/>
                   <stop offset="100%" stop-color="#0B45E8"/>
                 </linearGradient>
-                <linearGradient id="navLogoMainGrad" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                <linearGradient id="deskLogoMain" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#1747F2"/>
-                  <stop offset="38%" stop-color="#4B00E8"/>
-                  <stop offset="68%" stop-color="#B000D5"/>
+                  <stop offset="50%" stop-color="#4B00E8"/>
                   <stop offset="100%" stop-color="#E60082"/>
                 </linearGradient>
               </defs>
-              <path d="M 392 297 L 391 298 L 384 298 L 369 301 L 344 310 L 322 322 L 306 335 L 301 337 L 291 349 L 280 363 L 271 377 L 263 394 L 259 405 L 254 426 L 252 456 L 254 477 L 258 495 L 265 515 L 274 533 L 281 543 L 293 560 L 311 578 L 332 593 L 352 603 L 379 611 L 395 612 L 412 613 L 422 612 L 437 609 L 457 602 L 471 595 L 494 578 L 510 562 L 517 551 L 504 561 L 483 574 L 468 581 L 446 588 L 426 591 L 409 591 L 393 589 L 374 584 L 361 578 L 338 565 L 327 556 L 310 537 L 301 523 L 291 501 L 286 483 L 284 463 L 284 436 L 287 421 L 293 406 L 302 388 L 313 370 L 332 351 L 341 344 L 356 335 L 367 330 L 392 323 L 406 322 L 422 321 L 438 323 L 454 327 L 467 332 L 482 340 L 495 350 L 511 346 L 506 339 L 491 325 L 476 315 L 458 306 L 443 301 L 422 297 Z" fill="url(#navLogoLeftGrad)"/>
-              <path d="M 440 447 L 461 468 L 555 559 L 580 582 L 596 593 L 609 600 L 624 605 L 641 610 L 659 611 L 679 610 L 705 602 L 722 593 L 732 585 L 744 575 L 760 554 L 767 540 L 772 526 L 775 512 L 776 483 L 772 462 L 766 448 L 761 437 L 750 422 L 742 414 L 730 403 L 719 396 L 698 387 L 679 383 L 656 383 L 631 389 L 607 401 L 591 413 L 560 443 L 542 463 L 558 457 L 594 426 L 605 419 L 617 413 L 639 406 L 675 406 L 691 411 L 704 417 L 713 423 L 720 429 L 733 444 L 739 454 L 746 472 L 747 482 L 747 512 L 740 533 L 730 549 L 716 563 L 698 574 L 684 579 L 648 580 L 631 575 L 614 566 L 605 559 L 572 526 L 488 446 L 503 430 L 581 351 L 617 314 L 568 314 L 502 382 L 458 428 Z" fill="url(#navLogoMainGrad)"/>
+              <path d="M 392 297 L 391 298 L 384 298 L 369 301 L 344 310 L 322 322 L 306 335 L 301 337 L 291 349 L 280 363 L 271 377 L 263 394 L 259 405 L 254 426 L 252 456 L 254 477 L 258 495 L 265 515 L 274 533 L 281 543 L 293 560 L 311 578 L 332 593 L 352 603 L 379 611 L 395 612 L 412 613 L 422 612 L 437 609 L 457 602 L 471 595 L 494 578 L 510 562 L 517 551 L 504 561 L 483 574 L 468 581 L 446 588 L 426 591 L 409 591 L 393 589 L 374 584 L 361 578 L 338 565 L 327 556 L 310 537 L 301 523 L 291 501 L 286 483 L 284 463 L 284 436 L 287 421 L 293 406 L 302 388 L 313 370 L 332 351 L 341 344 L 356 335 L 367 330 L 392 323 L 406 322 L 422 321 L 438 323 L 454 327 L 467 332 L 482 340 L 495 350 L 511 346 L 506 339 L 491 325 L 476 315 L 458 306 L 443 301 L 422 297 Z" fill="url(#deskLogoLeft)"/>
+              <path d="M 440 447 L 461 468 L 555 559 L 580 582 L 596 593 L 609 600 L 624 605 L 641 610 L 659 611 L 679 610 L 705 602 L 722 593 L 732 585 L 744 575 L 760 554 L 767 540 L 772 526 L 775 512 L 776 483 L 772 462 L 766 448 L 761 437 L 750 422 L 742 414 L 730 403 L 719 396 L 698 387 L 679 383 L 656 383 L 631 389 L 607 401 L 591 413 L 560 443 L 542 463 L 558 457 L 594 426 L 605 419 L 617 413 L 639 406 L 675 406 L 691 411 L 704 417 L 713 423 L 720 429 L 733 444 L 739 454 L 746 472 L 747 482 L 747 512 L 740 533 L 730 549 L 716 563 L 698 574 L 684 579 L 648 580 L 631 575 L 614 566 L 605 559 L 572 526 L 488 446 L 503 430 L 581 351 L 617 314 L 568 314 L 502 382 L 458 428 Z" fill="url(#deskLogoMain)"/>
             </svg>
           </div>
-
-          <span class="font-semibold text-white text-sm tracking-tight group-hover:text-white/80 transition-colors">KONTYRA</span>
+          <span class="font-semibold text-white text-sm tracking-tight">KONTYRA</span>
         </a>
-        <span class="hidden sm:inline-flex text-[11px] font-mono text-white/50 border border-white/[0.08] bg-white/[0.04] px-2 py-0.5 rounded-full">
-          Accounts & Systems
-        </span>
+        <div class="h-4 w-px bg-white/10 hidden sm:block"></div>
+        <span class="text-xs text-white/50 font-medium hidden sm:inline">Accounts Desktop Hub</span>
       </div>
 
-      <!-- Center: Screen Mode Switcher -->
-      <nav class="hidden md:flex items-center gap-1 bg-[#09090b] p-1 rounded-lg border border-white/[0.08] text-xs">
-        <button id="btn-overview" onclick="switchTab('overview')" class="px-3 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm">
-          Tokens & Glowing Boxes
-        </button>
-        <button id="btn-sso" onclick="openAuthModal()" class="px-3 py-1 rounded-md text-white/60 hover:text-white transition-all flex items-center gap-1.5">
-          <span>SSO Modal</span>
-          <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300">Ultra-Glass</span>
-        </button>
-        <button id="btn-console" onclick="switchTab('console')" class="px-3 py-1 rounded-md text-white/60 hover:text-white transition-all">
-          API Keys Console
-        </button>
-      </nav>
-
-      <!-- Right: User Avatar + Modern Bento Launcher -->
-      <div class="flex items-center gap-2.5">
-        <div class="hidden sm:flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-xs font-mono text-white/60">accounts.kontyra.name.ng</span>
+      <!-- Center: Global Search Bar -->
+      <div class="hidden lg:flex items-center w-80 relative">
+        <div class="w-full bg-[#09090b] border border-white/[0.08] rounded-lg px-3 py-1.5 flex items-center justify-between text-xs text-white/40">
+          <span>Search settings, SAML domains, logs...</span>
+          <span class="font-mono text-[10px] bg-white/[0.06] border border-white/10 px-1.5 py-0.5 rounded text-white/60">⌘K</span>
         </div>
-        
-        <div class="h-4 w-px bg-white/[0.1] hidden sm:block"></div>
+      </div>
 
-        <!-- Launch Modal Button -->
-        <button onclick="openAuthModal()" class="flex items-center gap-2 pl-2 pr-3 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs text-white/80 hover:text-white transition-colors shadow-sm">
-          <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">
-            H
-          </div>
-          <span class="font-medium">Sign In</span>
+      <!-- Right: Action Buttons & User Menu -->
+      <div class="flex items-center gap-3">
+        <button onclick="openAuthModal('signin')" class="px-3 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.10] text-xs text-white/90 hover:text-white transition-all font-medium">
+          Sign In
+        </button>
+        <button onclick="openAuthModal('register')" class="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all shadow-sm">
+          Create Account
         </button>
 
-        <!-- Bento Launcher Trigger -->
-        <button onclick="toggleMobileMenu()" aria-label="Ecosystem Apps" class="relative p-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/[0.22] text-white/80 hover:text-white transition-all flex items-center justify-center group shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-          <div class="w-4 h-4 grid grid-cols-2 gap-[3px]">
-            <span class="w-[6px] h-[6px] rounded-[1.5px] bg-white/70 group-hover:bg-[#13D9F2] transition-colors shadow-sm"></span>
-            <span class="w-[6px] h-[6px] rounded-[1.5px] bg-white/70 group-hover:bg-[#079BFF] transition-colors shadow-sm"></span>
-            <span class="w-[6px] h-[6px] rounded-[1.5px] bg-white/70 group-hover:bg-[#4B00E8] transition-colors shadow-sm"></span>
-            <span class="w-[6px] h-[6px] rounded-[1.5px] bg-white/70 group-hover:bg-[#E60082] transition-colors shadow-sm"></span>
+        <div class="h-4 w-px bg-white/10"></div>
+
+        <!-- User Profile Pill -->
+        <div class="flex items-center gap-2 pl-2 pr-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs text-white">
+          <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-emerald-400 to-cyan-500 flex items-center justify-center font-bold text-[10px] text-black">
+            RB
           </div>
-          <span class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-cyan-400 border border-black"></span>
-        </button>
+          <span class="font-medium hidden sm:inline">Ray Ben</span>
+        </div>
       </div>
 
     </div>
   </header>
 
-  <!-- Modern Ecosystem Bento Launcher Drawer / Sheet -->
-  <div id="mobile-drawer" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-2xl flex flex-col items-center justify-center p-6">
-    <div class="w-full max-w-lg bg-[#09090b] border border-white/[0.12] rounded-2xl p-6 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-4);">
-      <div class="specular-top"></div>
-      
-      <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-        <div class="flex items-center gap-2">
-          <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
-          <span class="text-xs font-mono uppercase tracking-wider text-white/70">Kontyra Ecosystem Launcher</span>
-        </div>
-        <button onclick="toggleMobileMenu()" class="text-white/40 hover:text-white text-xs font-mono">ESC ✕</button>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-5">
-        <a href="#" onclick="switchTab('overview'); toggleMobileMenu()" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
-          <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs font-bold mb-2">DS</div>
-          <div class="text-xs font-semibold text-white group-hover:text-cyan-400">Design Tokens</div>
-          <div class="text-[11px] text-white/40 mt-0.5">Boxes & glowing beam</div>
-        </a>
-
-        <a href="#" onclick="openAuthModal(); toggleMobileMenu()" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
-          <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold mb-2">ID</div>
-          <div class="text-xs font-semibold text-white group-hover:text-blue-400">Kontyra Accounts</div>
-          <div class="text-[11px] text-white/40 mt-0.5">Transparent SSO modal</div>
-        </a>
-
-        <a href="#" onclick="switchTab('console'); toggleMobileMenu()" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
-          <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-bold mb-2">API</div>
-          <div class="text-xs font-semibold text-white group-hover:text-purple-400">Developer Cloud</div>
-          <div class="text-[11px] text-white/40 mt-0.5">Keys & endpoints</div>
-        </a>
-
-        <a href="https://devos.kontyra.name.ng" target="_blank" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
-          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold mb-2">OS</div>
-          <div class="text-xs font-semibold text-white group-hover:text-emerald-400">Kontyra DevOS</div>
-          <div class="text-[11px] text-white/40 mt-0.5">Cloud IDE workspace</div>
-        </a>
-
-        <a href="https://docs.kontyra.name.ng" target="_blank" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
-          <div class="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center text-xs font-bold mb-2">DOC</div>
-          <div class="text-xs font-semibold text-white group-hover:text-pink-400">Technical Docs</div>
-          <div class="text-[11px] text-white/40 mt-0.5">APIs & SDK guides</div>
-        </a>
-
-        <a href="https://novelora.kontyra.name.ng" target="_blank" class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.15] text-left transition-all group">
-          <div class="w-8 h-8 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center text-xs font-bold mb-2">LIT</div>
-          <div class="text-xs font-semibold text-white group-hover:text-[#D4AF37]">Novelora Studio</div>
-          <div class="text-[11px] text-white/40 mt-0.5">Literary sanctuary</div>
-        </a>
-      </div>
-
-      <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-white/40">
-        <span>accounts.kontyra.name.ng</span>
-        <span>Version 2.1.0</span>
-      </div>
-    </div>
-  </div>
-
   <!-- ========================================================================= -->
-  <!-- 2. MAIN APPLICATION CONTENT                                               -->
+  <!-- 2. DESKTOP WORKSPACE LAYOUT (LEFT SIDEBAR + FLUID MAIN PANE)              -->
   <!-- ========================================================================= -->
-  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8">
-
-    <!-- TAB 1: DESIGN TOKENS & BOX SHOWCASE WITH ROTATING GLOWING BEAMS -->
-    <div id="view-overview" class="space-y-10">
-      
-      <!-- Top Hero Banner with Rotating Perimeter Glow -->
-      <div onclick="toggleBoxGlow(this)" class="glowing-box-target is-active-glow relative bg-[#09090b] border border-white/[0.08] rounded-2xl p-6 sm:p-8 overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-1);">
-        <div class="specular-top"></div>
-        <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-gradient-to-br from-cyan-500/10 via-indigo-500/10 to-pink-500/10 blur-3xl rounded-full pointer-events-none"></div>
-
-        <div class="max-w-2xl relative z-10">
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-cyan-300 mb-3">
-            <span>●</span> Click Any Box to Activate Perimeter Rotating Glow
-          </div>
-          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
-            Kontyra Brand System & Box Standard
-          </h1>
-          <p class="text-sm text-white/60 mt-2 leading-relaxed">
-            Every container in the Kontyra system features hairline definition, specular top highlights, and an active conic light beam that rotates continuously around its border when selected.
-          </p>
-          <div class="flex flex-wrap gap-3 mt-5">
-            <button onclick="event.stopPropagation(); openAuthModal()" class="px-4 py-2 rounded-lg bg-white text-black text-xs font-semibold hover:bg-white/90 transition-colors shadow-sm">
-              Open Ultra-Glass SSO Modal →
-            </button>
-            <button onclick="event.stopPropagation(); switchTab('console')" class="px-4 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-xs font-medium text-white transition-colors">
-              Manage API Keys
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- KPI Stat Boxes (Clickable to activate Rotating Glow) -->
-      <div>
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xs font-mono uppercase tracking-wider text-white/50">Core Metrics / Clickable Glowing Boxes</h2>
-          <span class="text-xs font-mono text-white/40">Conic Beam Rotation: 360deg</span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-5 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-1);">
-            <div class="specular-top"></div>
-            <div class="flex items-center justify-between text-xs text-white/50">
-              <span>Cloud Latency</span>
-              <span class="text-emerald-400 font-mono">-14ms</span>
+  <div class="flex flex-1 w-full max-w-[1920px] mx-auto">
+    
+    <!-- DESKTOP COLLAPSIBLE SIDEBAR (Width: 260px) -->
+    <aside class="w-64 shrink-0 bg-[#070709] border-r border-white/[0.08] p-5 hidden md:flex flex-col justify-between">
+      <div class="space-y-6">
+        
+        <!-- Active App / Workspace Pill -->
+        <div class="bg-[#09090b] border border-white/[0.08] rounded-xl p-3 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
+              ID
             </div>
-            <div class="mt-2 text-2xl font-semibold font-mono tracking-tight text-white">38<span class="text-xs text-white/40 ml-1 font-sans">ms</span></div>
-            <p class="mt-2 text-xs text-white/40">Click to focus box</p>
-          </div>
-
-          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-5 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-1);">
-            <div class="specular-top"></div>
-            <div class="flex items-center justify-between text-xs text-white/50">
-              <span>Active Keys</span>
-              <span class="text-cyan-400 font-mono">LIVE</span>
-            </div>
-            <div class="mt-2 text-2xl font-semibold font-mono tracking-tight text-white">1,420<span class="text-xs text-white/40 ml-1 font-sans">keys</span></div>
-            <p class="mt-2 text-xs text-white/40">Click to focus box</p>
-          </div>
-
-          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-5 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-1);">
-            <div class="specular-top"></div>
-            <div class="flex items-center justify-between text-xs text-white/50">
-              <span>SSO Token Speed</span>
-              <span class="text-purple-400 font-mono">JWT+Custom</span>
-            </div>
-            <div class="mt-2 text-2xl font-semibold font-mono tracking-tight text-white">22<span class="text-xs text-white/40 ml-1 font-sans">ms</span></div>
-            <p class="mt-2 text-xs text-white/40">Click to focus box</p>
-          </div>
-
-          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-5 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-1);">
-            <div class="specular-top"></div>
-            <div class="flex items-center justify-between text-xs text-white/50">
-              <span>KORA Fallback</span>
-              <span class="text-emerald-400 font-mono">0.00%</span>
-            </div>
-            <div class="mt-2 text-2xl font-semibold font-mono tracking-tight text-white">100<span class="text-xs text-white/40 ml-1 font-sans">%</span></div>
-            <p class="mt-2 text-xs text-white/40">Click to focus box</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Ecosystem App Tiles (Elevation 1 -> 2 with Glowing Borders) -->
-      <div>
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xs font-mono uppercase tracking-wider text-white/50">Ecosystem Interactive Tiles / Click to Glow</h2>
-          <span class="text-xs font-mono text-white/40">Hover: translateY(-2px)</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          
-          <!-- DevOS -->
-          <div onclick="toggleBoxGlow(this)" class="glowing-box-target group relative bg-[#09090b] hover:bg-[#111116] border border-white/[0.08] hover:border-white/[0.25] rounded-xl p-5 transition-all duration-200 hover:-translate-y-1 cursor-pointer flex flex-col justify-between"
-               style="box-shadow: var(--kontyra-shadow-elevation-1);">
-            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-cyan-400">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                  </svg>
-                </div>
-                <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">DEVOS</span>
-              </div>
-              <h3 class="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">Kontyra DevOS</h3>
-              <p class="text-xs text-white/60 mt-1.5 leading-relaxed">Cloud developer IDE with autonomous sandboxes, preview ports, and instant container terminals.</p>
-            </div>
-            <div class="mt-5 pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-white/40 group-hover:text-white">
-              <span>devos.kontyra.name.ng</span>
-              <span>→</span>
+              <div class="text-xs font-semibold text-white">Kontyra Accounts</div>
+              <div class="text-[11px] text-emerald-400 font-mono">Enterprise IdP</div>
             </div>
           </div>
-
-          <!-- Accounts SSO -->
-          <div onclick="toggleBoxGlow(this)" class="glowing-box-target group relative bg-[#09090b] hover:bg-[#111116] border border-white/[0.08] hover:border-white/[0.25] rounded-xl p-5 transition-all duration-200 hover:-translate-y-1 cursor-pointer flex flex-col justify-between"
-               style="box-shadow: var(--kontyra-shadow-elevation-1);">
-            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-blue-400">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                  </svg>
-                </div>
-                <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-blue-400/10 text-blue-300 border border-blue-400/20">SSO & ID</span>
-              </div>
-              <h3 class="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors">Kontyra Accounts (IdP)</h3>
-              <p class="text-xs text-white/60 mt-1.5 leading-relaxed">Unified 2-Step Single Sign-On, adaptive passkeys, passwordless magic links, and token minting.</p>
-            </div>
-            <div class="mt-5 pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-white/40 group-hover:text-white">
-              <button onclick="event.stopPropagation(); openAuthModal()" class="text-cyan-400 hover:underline">Open Modal</button>
-              <span>→</span>
-            </div>
-          </div>
-
-          <!-- Novelora -->
-          <div onclick="toggleBoxGlow(this)" class="glowing-box-target group relative bg-[#09090b] hover:bg-[#111116] border border-white/[0.08] hover:border-white/[0.25] rounded-xl p-5 transition-all duration-200 hover:-translate-y-1 cursor-pointer flex flex-col justify-between"
-               style="box-shadow: var(--kontyra-shadow-elevation-1);">
-            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#D4AF37]">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                  </svg>
-                </div>
-                <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30">LITERARY</span>
-              </div>
-              <h3 class="text-sm font-semibold text-white group-hover:text-[#D4AF37] transition-colors">Novelora Publishing</h3>
-              <p class="text-xs text-white/60 mt-1.5 leading-relaxed">Distraction-free manuscript authoring studio with chapter versioning and literary contracts.</p>
-            </div>
-            <div class="mt-5 pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-white/40 group-hover:text-white">
-              <span>novelora.kontyra.name.ng</span>
-              <span>→</span>
-            </div>
-          </div>
-
         </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-1 text-xs">
+          <button id="nav-btn-profile" onclick="switchDesktopSection('profile')" class="w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-white/10 text-white font-medium transition-all">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span>Profile & Security</span>
+          </button>
+
+          <button id="nav-btn-saml" onclick="switchDesktopSection('saml')" class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.04] transition-all">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span>SAML 2.0 & SSO</span>
+          </button>
+
+          <button id="nav-btn-sessions" onclick="switchDesktopSection('sessions')" class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.04] transition-all">
+            <svg class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Active Sessions</span>
+          </button>
+
+          <button id="nav-btn-apps" onclick="switchDesktopSection('apps')" class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.04] transition-all">
+            <svg class="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            <span>Connected Child Apps</span>
+          </button>
+        </nav>
+
       </div>
 
-    </div>
-
-    <!-- TAB 2: DEVELOPER API KEYS & HEADLESS ROUTING CONSOLE -->
-    <div id="view-console" class="hidden space-y-8">
-      
-      <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-white/[0.02] border border-white/[0.08] rounded-xl p-4 flex items-start gap-3.5 text-xs text-white/75 relative overflow-hidden">
-        <div class="specular-top"></div>
-        <div class="w-5 h-5 rounded-md bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 flex items-center justify-center shrink-0 font-bold">
-          ℹ
+      <!-- Bottom Status Pill -->
+      <div class="pt-4 border-t border-white/[0.08] text-xs text-white/40 space-y-2">
+        <div class="flex items-center justify-between font-mono text-[11px]">
+          <span>Security Status</span>
+          <span class="text-emerald-400">SOC2 Type II</span>
         </div>
-        <div>
-          <span class="font-semibold text-white">Public Developer Headless Engine:</span>
-          Direct visits to <code class="font-mono text-cyan-300">api.kontyra.name.ng</code> in web browsers automatically redirect to <code class="font-mono text-cyan-300">accounts.kontyra.name.ng</code>. Use your Bearer API key below to call <code class="font-mono text-white/90">/v1/*</code> endpoints in your applications.
-        </div>
+        <div class="text-[11px]">accounts.kontyra.name.ng</div>
       </div>
+    </aside>
 
-      <div onclick="toggleBoxGlow(this)" class="glowing-box-target is-active-glow bg-[#09090b] border border-white/[0.08] rounded-2xl p-6 sm:p-7 space-y-6" style="box-shadow: var(--kontyra-shadow-elevation-1);">
-        <div class="specular-top"></div>
+    <!-- MAIN DESKTOP CONTENT PANE -->
+    <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
 
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
+      <!-- SECTION 1: PROFILE & SECURITY (DEFAULT DESKTOP VIEW) -->
+      <div id="section-profile" class="space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 class="text-base font-semibold text-white">Production API Keys</h2>
-            <p class="text-xs text-white/50 mt-1">Authenticate server requests and client SDKs across the Kontyra Cloud.</p>
+            <h1 class="text-2xl font-semibold tracking-tight text-white">Universal Profile & Credentials</h1>
+            <p class="text-xs text-white/50 mt-1">Manage single identity, biometric passkeys, and contact email.</p>
           </div>
-          <button onclick="event.stopPropagation(); document.getElementById('demo-modal').classList.remove('hidden')" class="px-3.5 py-2 rounded-lg bg-white text-black text-xs font-semibold hover:bg-white/90 transition-colors flex items-center gap-1.5 self-start sm:self-auto">
-            <span>+</span> Create New Key
+          <div class="flex gap-2">
+            <button onclick="openAuthModal('signin')" class="px-3.5 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-xs font-medium text-white transition-all">
+              Switch Account
+            </button>
+            <button onclick="openAuthModal('register')" class="px-3.5 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all shadow-sm">
+              + New User
+            </button>
+          </div>
+        </div>
+
+        <!-- Identity Profile Card (Clickable with Rotating Glowing Perimeter) -->
+        <div onclick="toggleBoxGlow(this)" class="glowing-box-target is-active-glow bg-[#09090b] border border-white/[0.08] rounded-2xl p-6 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-1);">
+          <div class="specular-top"></div>
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pb-6 border-b border-white/[0.08]">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-400 via-cyan-500 to-indigo-600 flex items-center justify-center font-bold text-xl text-black shadow-lg">
+                RB
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-base font-semibold text-white">Ray Ben</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">VERIFIED</span>
+                </div>
+                <p class="text-xs text-white/50 mt-0.5">developer@kontyra.name.ng • @rayben</p>
+              </div>
+            </div>
+            
+            <button class="px-3 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.08] text-xs text-white/80 transition-all self-start sm:self-auto">
+              Edit Profile
+            </button>
+          </div>
+
+          <!-- Profile Fields Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-xs">
+            <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-3.5" style="box-shadow: var(--kontyra-shadow-inset);">
+              <span class="text-white/40 block">Universal User ID (UID)</span>
+              <span class="font-mono text-white/90 mt-1 block select-all">usr_991823abf4e7</span>
+            </div>
+            <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-3.5" style="box-shadow: var(--kontyra-shadow-inset);">
+              <span class="text-white/40 block">Authentication Tier</span>
+              <span class="text-emerald-400 font-medium mt-1 block">Enterprise Growth</span>
+            </div>
+            <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-3.5" style="box-shadow: var(--kontyra-shadow-inset);">
+              <span class="text-white/40 block">Primary Sign-In Method</span>
+              <span class="text-white/90 mt-1 block">WebAuthn Passkey + Google</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Biometric Passkeys & FIDO2 Vault -->
+        <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-2xl p-6 relative overflow-hidden" style="box-shadow: var(--kontyra-shadow-elevation-1);">
+          <div class="specular-top"></div>
+          <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
+            <div>
+              <h3 class="text-sm font-semibold text-white">FIDO2 Biometric Passkeys</h3>
+              <p class="text-xs text-white/50 mt-0.5">Passwordless sign-in with Windows Hello, Touch ID, or hardware security keys.</p>
+            </div>
+            <button onclick="alert('Demo: Registering new FIDO2 Passkey credential...');" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-all">
+              + Add Passkey
+            </button>
+          </div>
+
+          <div class="mt-4 space-y-3">
+            <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-3.5 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                  🔑
+                </div>
+                <div>
+                  <div class="font-medium text-white">MacBook Pro Touch ID / Windows Hello</div>
+                  <div class="text-[11px] text-white/40 font-mono">Registered Oct 14, 2026 • Last used 2 hours ago</div>
+                </div>
+              </div>
+              <span class="text-emerald-400 font-mono text-[11px]">Primary</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: SAML 2.0 & ENTERPRISE SSO CONFIGURATOR -->
+      <div id="section-saml" class="hidden space-y-6">
+        <div>
+          <h1 class="text-2xl font-semibold tracking-tight text-white">SAML 2.0 Enterprise Single Sign-On</h1>
+          <p class="text-xs text-white/50 mt-1">Configure identity federation for Okta, Azure Active Directory, Google Workspace, and Ping.</p>
+        </div>
+
+        <div onclick="toggleBoxGlow(this)" class="glowing-box-target is-active-glow bg-[#09090b] border border-white/[0.08] rounded-2xl p-6 sm:p-7 space-y-6" style="box-shadow: var(--kontyra-shadow-elevation-1);">
+          <div class="specular-top"></div>
+
+          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <div>
+              <h3 class="text-sm font-semibold text-white">Active SAML 2.0 Identity Provider</h3>
+              <p class="text-xs text-white/50 mt-0.5">Kontyra acts as the Service Provider (SP) or Identity Provider (IdP) for your corporate tenant.</p>
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">CONFIGURED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-4 space-y-1">
+              <span class="text-white/40 font-sans block text-xs">Assertion Consumer Service (ACS) URL</span>
+              <span class="text-white/90 select-all">https://accounts.kontyra.name.ng/saml/acs</span>
+            </div>
+            <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-4 space-y-1">
+              <span class="text-white/40 font-sans block text-xs">Entity ID / Audience URI</span>
+              <span class="text-white/90 select-all">https://accounts.kontyra.name.ng/saml/metadata</span>
+            </div>
+          </div>
+
+          <!-- Configuration Form -->
+          <div class="space-y-4 pt-2">
+            <div>
+              <label class="block text-xs font-medium text-white/70 mb-1">Corporate SAML SSO URL (Sign-In Endpoint)</label>
+              <input type="text" value="https://dev-984120.okta.com/app/kontyra/sso/saml" class="w-full h-10 px-3.5 rounded-lg text-xs kontyra-input font-mono" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-white/70 mb-1">X.509 Public Certificate (PEM format)</label>
+              <textarea rows="3" class="w-full p-3 rounded-lg text-xs kontyra-input font-mono text-white/70">-----BEGIN CERTIFICATE-----&#10;MIIDpDCCAoygAwIBAgIGAY7T8e1RMA0GCSqGSIb3DQEBCwUAMIGSMQswCQYD&#10;-----END CERTIFICATE-----</textarea>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-2">
+              <button onclick="alert('SAML 2.0 configuration saved and test ping sent.');" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all shadow-sm">
+                Save & Verify SAML Connection
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: ACTIVE SESSIONS & REVOCATION -->
+      <div id="section-sessions" class="hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-semibold tracking-tight text-white">Active Sessions & Devices</h1>
+            <p class="text-xs text-white/50 mt-1">Review authenticated sessions and revoke compromised devices immediately.</p>
+          </div>
+          <button onclick="alert('All other sessions revoked successfully.');" class="px-3.5 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-semibold transition-all">
+            Revoke All Other Sessions
           </button>
         </div>
 
-        <div class="space-y-2">
-          <div class="flex items-center justify-between text-xs">
-            <span class="font-medium text-white/80">Primary Production Secret</span>
-            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">Active</span>
-          </div>
-          
-          <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-3.5 flex items-center justify-between text-xs font-mono" style="box-shadow: var(--kontyra-shadow-inset);">
-            <div class="flex items-center gap-3 truncate">
-              <span class="text-cyan-400 font-bold shrink-0">KEY</span>
-              <span class="text-white/90 select-all truncate">kt_live_9a87d612e4f501bc8304928172938472</span>
+        <div class="space-y-3">
+          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-4 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-emerald-400 font-bold">💻</div>
+              <div>
+                <div class="font-medium text-white flex items-center gap-2">
+                  <span>Chrome 131 on macOS (Apple Silicon)</span>
+                  <span class="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 rounded">This Device</span>
+                </div>
+                <div class="text-[11px] text-white/40 font-mono mt-0.5">IP: 102.89.41.22 • Lagos, Nigeria • Active now</div>
+              </div>
             </div>
-            <button onclick="navigator.clipboard.writeText('kt_live_9a87d612e4f501bc8304928172938472'); this.innerText='Copied!'; setTimeout(() => this.innerText='Copy', 1500);" 
-                    class="ml-4 shrink-0 px-3 py-1 rounded bg-white/[0.05] hover:bg-white/10 text-white/70 hover:text-white border border-white/10 transition-colors text-xs font-sans font-medium">
-              Copy
-            </button>
+            <span class="text-emerald-400 font-mono">Current</span>
           </div>
-          <div class="flex items-center justify-between text-[11px] text-white/40 pt-1">
-            <span>Created: Nov 11, 2026 • Scopes: <code class="text-white/60">models.read</code>, <code class="text-white/60">kora.infer</code>, <code class="text-white/60">tasks.write</code></span>
-            <span class="text-rose-400/80 hover:text-rose-400 cursor-pointer">Revoke</span>
+
+          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-4 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-cyan-400 font-bold">📱</div>
+              <div>
+                <div class="font-medium text-white">Safari on iPhone 16 Pro</div>
+                <div class="text-[11px] text-white/40 font-mono mt-0.5">IP: 197.210.55.8 • Last active: 45m ago</div>
+              </div>
+            </div>
+            <button onclick="alert('Session revoked.'); this.closest('.glowing-box-target').remove();" class="text-rose-400 hover:text-rose-300 font-medium">Revoke</button>
           </div>
         </div>
-
-        <div class="space-y-2 pt-2">
-          <span class="text-xs font-medium text-white/80">Integration Sample (cURL & SDK)</span>
-          <div class="bg-[#050508] border border-white/[0.06] rounded-xl p-4 font-mono text-xs text-white/80 space-y-1.5" style="box-shadow: var(--kontyra-shadow-inset);">
-            <div class="text-white/40">// 1. Discover Available AI Models</div>
-            <div><span class="text-purple-400">curl</span> -X GET https://api.kontyra.name.ng/v1/models \</div>
-            <div class="pl-4">-H <span class="text-emerald-300">"Authorization: Bearer kt_live_9a87d612e4f5..."</span></div>
-            <div class="text-white/40 pt-2">// 2. Query Entire Ecosystem Endpoints</div>
-            <div><span class="text-purple-400">curl</span> -X GET https://api.kontyra.name.ng/v1/ecosystem \</div>
-            <div class="pl-4">-H <span class="text-emerald-300">"Authorization: Bearer kt_live_9a87d612e4f5..."</span></div>
-          </div>
-        </div>
-
       </div>
 
-    </div>
+      <!-- SECTION 4: CONNECTED CHILD APPS -->
+      <div id="section-apps" class="hidden space-y-6">
+        <div>
+          <h1 class="text-2xl font-semibold tracking-tight text-white">Authorized Child Applications</h1>
+          <p class="text-xs text-white/50 mt-1">Products consuming your universal identity via Kontyra Accounts SSO.</p>
+        </div>
 
-  </main>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs">OS</div>
+              <div>
+                <div class="text-sm font-semibold text-white">Kontyra DevOS</div>
+                <div class="text-xs text-white/40">Full developer cloud workspace permissions</div>
+              </div>
+            </div>
+            <span class="text-xs text-cyan-400 font-mono">Authorized</span>
+          </div>
+
+          <div onclick="toggleBoxGlow(this)" class="glowing-box-target bg-[#09090b] border border-white/[0.08] rounded-xl p-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center font-bold text-xs">LIT</div>
+              <div>
+                <div class="text-sm font-semibold text-white">Novelora Publishing</div>
+                <div class="text-xs text-white/40">Author credentials & literary contract signer</div>
+              </div>
+            </div>
+            <span class="text-xs text-[#D4AF37] font-mono">Authorized</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
 
   <!-- ========================================================================= -->
-  <!-- 3. AUTHENTICATION SSO MODAL (FROSTED ULTRA-GLASS TRANSPARENCY + EXIT)     -->
+  <!-- 3. AUTHENTICATION & REGISTRATION MODAL (FROSTED ULTRA-GLASS + SAML)       -->
   <!-- ========================================================================= -->
   <div id="auth-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xl flex items-center justify-center p-4">
-    
-    <!-- Background Ambient Colorful Bloom behind the Glass -->
-    <div class="absolute w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/20 via-indigo-600/15 to-pink-500/20 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute w-[500px] h-[500px] bg-gradient-to-tr from-emerald-500/20 via-cyan-600/15 to-indigo-500/20 rounded-full blur-[100px] pointer-events-none"></div>
 
-    <!-- Frosted Transparent Modal Container (Elevation 4) -->
     <div onclick="event.stopPropagation()" class="glowing-box-target is-active-glow ultra-glass w-full max-w-md rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.2)]">
       <div class="specular-top"></div>
 
-      <!-- Top Header Row with Clear EXIT BUTTONS -->
+      <!-- Top Header Row -->
       <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.10]">
-        <div class="flex items-center gap-2">
-          <span id="step-indicator-1" class="w-5 h-5 rounded-full bg-white text-black text-[11px] font-bold flex items-center justify-center">1</span>
-          <div class="w-6 h-0.5 bg-white/20"></div>
-          <span id="step-indicator-2" class="w-5 h-5 rounded-full bg-white/10 text-white/40 text-[11px] font-bold flex items-center justify-center">2</span>
-          <span id="step-label" class="text-xs font-mono text-white/50 ml-2">Step 1 of 2</span>
+        <div class="flex rounded-lg bg-white/[0.05] p-1 border border-white/[0.08] text-xs">
+          <button id="modal-tab-signin" onclick="switchModalAuthMode('signin')" class="px-3 py-1 rounded-md bg-white text-black font-semibold transition-all shadow-sm">
+            Sign In
+          </button>
+          <button id="modal-tab-register" onclick="switchModalAuthMode('register')" class="px-3 py-1 rounded-md text-white/60 hover:text-white font-medium transition-all">
+            Create Account
+          </button>
         </div>
 
-        <!-- Exit Button -->
-        <button onclick="closeAuthModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.06] hover:bg-white/[0.14] border border-white/[0.12] text-xs text-white/70 hover:text-white transition-all group backdrop-blur-md" aria-label="Exit Authentication">
+        <button onclick="closeAuthModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.06] hover:bg-white/[0.14] border border-white/[0.12] text-xs text-white/70 hover:text-white transition-all group backdrop-blur-md">
           <span>Exit</span>
           <span class="text-[13px] leading-none group-hover:rotate-90 transition-transform">✕</span>
         </button>
       </div>
 
-      <!-- SSO Brand Header with Handcrafted Vector Logo -->
       <div class="text-center mb-5">
-        <div class="w-12 h-12 mx-auto rounded-xl bg-black/60 border border-white/15 p-2 flex items-center justify-center mb-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-md">
-          <svg viewBox="240 280 550 350" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 392 297 L 391 298 L 384 298 L 369 301 L 344 310 L 322 322 L 306 335 L 301 337 L 291 349 L 280 363 L 271 377 L 263 394 L 259 405 L 254 426 L 252 456 L 254 477 L 258 495 L 265 515 L 274 533 L 281 543 L 293 560 L 311 578 L 332 593 L 352 603 L 379 611 L 395 612 L 412 613 L 422 612 L 437 609 L 457 602 L 471 595 L 494 578 L 510 562 L 517 551 L 504 561 L 483 574 L 468 581 L 446 588 L 426 591 L 409 591 L 393 589 L 374 584 L 361 578 L 338 565 L 327 556 L 310 537 L 301 523 L 291 501 L 286 483 L 284 463 L 284 436 L 287 421 L 293 406 L 302 388 L 313 370 L 332 351 L 341 344 L 356 335 L 367 330 L 392 323 L 406 322 L 422 321 L 438 323 L 454 327 L 467 332 L 482 340 L 495 350 L 511 346 L 506 339 L 491 325 L 476 315 L 458 306 L 443 301 L 422 297 Z" fill="url(#navLogoLeftGrad)"/>
-            <path d="M 440 447 L 461 468 L 555 559 L 580 582 L 596 593 L 609 600 L 624 605 L 641 610 L 659 611 L 679 610 L 705 602 L 722 593 L 732 585 L 744 575 L 760 554 L 767 540 L 772 526 L 775 512 L 776 483 L 772 462 L 766 448 L 761 437 L 750 422 L 742 414 L 730 403 L 719 396 L 698 387 L 679 383 L 656 383 L 631 389 L 607 401 L 591 413 L 560 443 L 542 463 L 558 457 L 594 426 L 605 419 L 617 413 L 639 406 L 675 406 L 691 411 L 704 417 L 713 423 L 720 429 L 733 444 L 739 454 L 746 472 L 747 482 L 747 512 L 740 533 L 730 549 L 716 563 L 698 574 L 684 579 L 648 580 L 631 575 L 614 566 L 605 559 L 572 526 L 488 446 L 503 430 L 581 351 L 617 314 L 568 314 L 502 382 L 458 428 Z" fill="url(#navLogoMainGrad)"/>
-          </svg>
-        </div>
         <h2 id="sso-title" class="text-base font-semibold text-white">Sign in to Kontyra</h2>
-        <p id="sso-desc" class="text-xs text-white/60 mt-0.5">One universal account across all Kontyra products</p>
+        <p id="sso-desc" class="text-xs text-white/60 mt-0.5">SAML 2.0 & OIDC Universal Hub</p>
       </div>
 
-      <!-- STEP 1: EMAIL IDENTIFIER -->
-      <div id="sso-step-1" class="space-y-4">
-        
-        <div class="space-y-2.5">
-          <button class="w-full h-10 px-4 rounded-lg bg-white/95 hover:bg-white text-black text-xs font-semibold flex items-center justify-center gap-2.5 transition-all shadow-md">
-            <svg class="w-4 h-4" viewBox="0 0 24 24">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-            </svg>
-            Continue with Google
-          </button>
+      <!-- Sign In Content -->
+      <div id="modal-content-signin" class="space-y-4">
+        <button onclick="alert('Redirecting to SAML 2.0 Identity Provider...'); closeAuthModal();" class="w-full h-10 px-4 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+          <span>Single Sign-On with SAML 2.0 (Okta / Azure)</span>
+        </button>
 
-          <button class="w-full h-10 px-4 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.12] text-white text-xs font-medium flex items-center justify-center gap-2.5 transition-all backdrop-blur-md">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-            </svg>
-            Continue with GitHub
-          </button>
-        </div>
-
-        <div class="relative flex items-center justify-center my-4">
-          <div class="w-full border-t border-white/[0.10]"></div>
-          <span class="bg-[#0e0e13]/80 px-2 text-[11px] font-mono uppercase text-white/50 absolute backdrop-blur-sm">or email address</span>
-        </div>
-
-        <form onsubmit="handleStep1Submit(event)" class="space-y-3.5">
+        <form onsubmit="event.preventDefault(); alert('Signed in!'); closeAuthModal();" class="space-y-3.5 pt-2">
           <div>
             <label class="block text-xs font-medium text-white/70 mb-1">Email or Username</label>
-            <input id="input-email" type="email" placeholder="developer@kontyra.name.ng" required
-                   class="w-full h-10 px-3.5 rounded-lg text-xs kontyra-input" />
+            <input type="email" placeholder="developer@kontyra.name.ng" required class="w-full h-10 px-3.5 rounded-lg text-xs kontyra-input" />
           </div>
-
-          <div class="flex gap-2">
-            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.06] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
-              Exit
-            </button>
-            <button type="submit" class="w-2/3 h-10 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-md">
-              <span>Continue</span>
-              <span>→</span>
-            </button>
+          <div>
+            <label class="block text-xs font-medium text-white/70 mb-1">Password</label>
+            <input type="password" placeholder="••••••••••••" required class="w-full h-10 px-3.5 rounded-lg text-xs kontyra-input" />
           </div>
-        </form>
-
-        <div class="mt-4 pt-4 border-t border-white/[0.10] flex items-center justify-between">
-          <div class="flex items-center gap-2 text-xs text-white/60">
-            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/>
-            </svg>
-            <span>Biometric Passkey</span>
-          </div>
-          <button onclick="alert('Demo: Triggering WebAuthn FIDO2 Biometric prompt...');" class="text-xs text-emerald-400 hover:text-emerald-300 font-medium">
-            Touch/Face ID
+          <button type="submit" class="w-full h-10 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold transition-all">
+            Sign In with Kontyra
           </button>
-        </div>
-
+        </form>
       </div>
 
-      <!-- STEP 2: PASSWORD OR MAGIC LINK -->
-      <div id="sso-step-2" class="hidden space-y-4">
-        
-        <div class="bg-black/50 border border-white/[0.10] rounded-xl p-3 flex items-center justify-between backdrop-blur-md">
-          <div class="flex items-center gap-2.5 truncate">
-            <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[10px]">@</div>
-            <span id="display-email" class="text-xs font-mono text-white/90 truncate">developer@kontyra.name.ng</span>
-          </div>
-          <button onclick="goToStep1()" class="text-xs text-cyan-400 hover:text-cyan-300 shrink-0 font-medium ml-3">
-            Change
-          </button>
-        </div>
-
-        <div class="flex rounded-lg bg-white/[0.05] p-1 border border-white/[0.08] text-xs">
-          <button id="auth-tab-pw" onclick="switchAuthMode('password')" class="flex-1 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm">
-            Password
-          </button>
-          <button id="auth-tab-magic" onclick="switchAuthMode('magic')" class="flex-1 py-1 rounded-md text-white/60 hover:text-white transition-all">
-            Magic Link
-          </button>
-        </div>
-
-        <form id="form-password" onsubmit="handleFinalSubmit(event)" class="space-y-3.5">
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="text-xs font-medium text-white/70">Password</label>
-              <a href="#" onclick="alert('Password reset link dispatched to ' + document.getElementById('display-email').innerText)" class="text-[11px] text-cyan-400 hover:underline">Forgot password?</a>
+      <!-- Create Account Content -->
+      <div id="modal-content-register" class="hidden space-y-4">
+        <form onsubmit="event.preventDefault(); alert('Account registered successfully!'); closeAuthModal();" class="space-y-3.5">
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-xs font-medium text-white/70 mb-1">Full Name</label>
+              <input type="text" placeholder="Ray Ben" required class="w-full h-9 px-3 rounded-lg text-xs kontyra-input" />
             </div>
-            <input id="input-password" type="password" placeholder="••••••••••••" required
-                   class="w-full h-10 px-3.5 rounded-lg text-xs kontyra-input" />
-          </div>
-
-          <div class="flex gap-2">
-            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.06] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
-              Exit
-            </button>
-            <button type="submit" class="w-2/3 h-10 rounded-lg bg-white text-black hover:bg-white/90 text-xs font-semibold transition-all shadow-md">
-              Sign In
-            </button>
-          </div>
-        </form>
-
-        <div id="form-magic" class="hidden space-y-3.5">
-          <p class="text-xs text-white/70 leading-relaxed">
-            We'll dispatch a secure, single-use authentication link to your inbox. No password needed.
-          </p>
-          <div class="flex gap-2">
-            <button type="button" onclick="closeAuthModal()" class="w-1/3 h-10 rounded-lg bg-white/[0.06] hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors">
-              Exit
-            </button>
-            <button onclick="alert('Magic link dispatched to ' + document.getElementById('display-email').innerText + '! Check your inbox.');" class="w-2/3 h-10 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all shadow-md">
-              Send Magic Link
-            </button>
-          </div>
-        </div>
-
-        <div class="pt-3 border-t border-white/[0.10] flex items-center justify-between text-xs text-white/50">
-          <span>Have a hardware security key?</span>
-          <button onclick="alert('Demo: Requesting hardware security key...');" class="text-emerald-400 hover:text-emerald-300 font-medium">Use Key</button>
-        </div>
-
-      </div>
-
-      <p class="text-center text-[11px] text-white/40 mt-5">
-        By signing in, you agree to the <a href="https://legal.kontyra.name.ng/terms" class="underline hover:text-white">Terms</a> and <a href="https://legal.kontyra.name.ng/privacy" class="underline hover:text-white">Privacy Policy</a>.
-      </p>
-
-    </div>
-  </div>
-
-  <!-- CREATE API KEY MODAL (ELEVATION 4) -->
-  <div id="demo-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="glowing-box-target is-active-glow ultra-glass w-full max-w-md rounded-2xl p-6 sm:p-7 relative shadow-2xl">
-      <div class="specular-top"></div>
-
-      <div class="flex items-center justify-between border-b border-white/[0.10] pb-4 mb-5">
-        <h3 class="text-sm font-semibold text-white">Generate New API Key</h3>
-        <button onclick="document.getElementById('demo-modal').classList.add('hidden')" class="text-white/40 hover:text-white">✕</button>
-      </div>
-
-      <div class="space-y-4">
-        <div>
-          <label class="block text-xs font-medium text-white/70 mb-1.5">Key Name / Description</label>
-          <input type="text" placeholder="e.g. Next.js App Production" class="w-full h-9 px-3 rounded-lg text-xs kontyra-input" />
-        </div>
-        <div>
-          <label class="block text-xs font-medium text-white/70 mb-1.5">Environment</label>
-          <select class="w-full h-9 px-3 rounded-lg text-xs kontyra-input bg-[#050508]/80">
-            <option>Live Production (kt_live_...)</option>
-            <option>Sandbox / Test (kt_test_...)</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="flex justify-end gap-2.5 mt-6 pt-4 border-t border-white/[0.10]">
-        <button onclick="document.getElementById('demo-modal').classList.add('hidden')" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-white/60 hover:text-white">Cancel</button>
-        <button onclick="alert('Demo: Generated kt_live_7b63f2...'); document.getElementById('demo-modal').classList.add('hidden')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-black hover:bg-white/90">Create Secret</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 4. OFFICIAL 4-TIER KONTYRA ECOSYSTEM FOOTER                               -->
-  <!-- ========================================================================= -->
-  <footer class="border-t border-white/[0.08] bg-black pt-12 pb-8 mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
-      
-      <!-- Top Tier: Brand Statement -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-white/[0.06]">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-lg bg-[#09090b] border border-white/[0.08] p-1.5 flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
-            <svg viewBox="240 280 550 350" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 392 297 L 391 298 L 384 298 L 369 301 L 344 310 L 322 322 L 306 335 L 301 337 L 291 349 L 280 363 L 271 377 L 263 394 L 259 405 L 254 426 L 252 456 L 254 477 L 258 495 L 265 515 L 274 533 L 281 543 L 293 560 L 311 578 L 332 593 L 352 603 L 379 611 L 395 612 L 412 613 L 422 612 L 437 609 L 457 602 L 471 595 L 494 578 L 510 562 L 517 551 L 504 561 L 483 574 L 468 581 L 446 588 L 426 591 L 409 591 L 393 589 L 374 584 L 361 578 L 338 565 L 327 556 L 310 537 L 301 523 L 291 501 L 286 483 L 284 463 L 284 436 L 287 421 L 293 406 L 302 388 L 313 370 L 332 351 L 341 344 L 356 335 L 367 330 L 392 323 L 406 322 L 422 321 L 438 323 L 454 327 L 467 332 L 482 340 L 495 350 L 511 346 L 506 339 L 491 325 L 476 315 L 458 306 L 443 301 L 422 297 Z" fill="url(#navLogoLeftGrad)"/>
-              <path d="M 440 447 L 461 468 L 555 559 L 580 582 L 596 593 L 609 600 L 624 605 L 641 610 L 659 611 L 679 610 L 705 602 L 722 593 L 732 585 L 744 575 L 760 554 L 767 540 L 772 526 L 775 512 L 776 483 L 772 462 L 766 448 L 761 437 L 750 422 L 742 414 L 730 403 L 719 396 L 698 387 L 679 383 L 656 383 L 631 389 L 607 401 L 591 413 L 560 443 L 542 463 L 558 457 L 594 426 L 605 419 L 617 413 L 639 406 L 675 406 L 691 411 L 704 417 L 713 423 L 720 429 L 733 444 L 739 454 L 746 472 L 747 482 L 747 512 L 740 533 L 730 549 L 716 563 L 698 574 L 684 579 L 648 580 L 631 575 L 614 566 L 605 559 L 572 526 L 488 446 L 503 430 L 581 351 L 617 314 L 568 314 L 502 382 L 458 428 Z" fill="url(#navLogoMainGrad)"/>
-            </svg>
+            <div>
+              <label class="block text-xs font-medium text-white/70 mb-1">Username</label>
+              <input type="text" placeholder="rayben" required class="w-full h-9 px-3 rounded-lg text-xs kontyra-input" />
+            </div>
           </div>
           <div>
-            <div class="text-sm font-semibold tracking-tight text-white">KONTYRA</div>
-            <div class="text-xs text-white/40">Building Innovations, Leading Technology.</div>
+            <label class="block text-xs font-medium text-white/70 mb-1">Work Email</label>
+            <input type="email" placeholder="ray@kontyra.name.ng" required class="w-full h-9 px-3 rounded-lg text-xs kontyra-input" />
           </div>
-        </div>
-
-        <div class="flex items-center gap-3 text-xs text-white/50 font-mono">
-          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span>All Global Systems Operational</span>
-        </div>
-      </div>
-
-      <!-- Middle Tier: 4 Comprehensive Columns -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
-        
-        <!-- Column 1: Products -->
-        <div class="space-y-3">
-          <h4 class="font-semibold text-white uppercase tracking-wider text-[11px] font-mono">Products</h4>
-          <ul class="space-y-2 text-white/60">
-            <li><a href="https://devos.kontyra.name.ng" target="_blank" class="hover:text-white transition-colors">DevOS Cloud IDE</a></li>
-            <li><a href="https://accounts.kontyra.name.ng" class="hover:text-white transition-colors">Kontyra Identity & SSO</a></li>
-            <li><a href="https://docs.kontyra.name.ng/kora" target="_blank" class="hover:text-white transition-colors">KORA AI Neural Engine</a></li>
-            <li><a href="https://vux.kontyra.name.ng" target="_blank" class="hover:text-white transition-colors">VUX Events & Tickets</a></li>
-            <li><a href="https://jobs.kontyra.name.ng" target="_blank" class="hover:text-white transition-colors">VyntaJobs Marketplace</a></li>
-            <li><a href="https://novelora.kontyra.name.ng" target="_blank" class="hover:text-white transition-colors">Novelora Publishing</a></li>
-          </ul>
-        </div>
-
-        <!-- Column 2: Resources -->
-        <div class="space-y-3">
-          <h4 class="font-semibold text-white uppercase tracking-wider text-[11px] font-mono">Resources</h4>
-          <ul class="space-y-2 text-white/60">
-            <li><a href="https://docs.kontyra.name.ng" target="_blank" class="hover:text-white transition-colors">Documentation Hub</a></li>
-            <li><a href="https://docs.kontyra.name.ng/api" target="_blank" class="hover:text-white transition-colors">Headless API Reference</a></li>
-            <li><a href="https://blog.kontyra.name.ng" target="_blank" class="hover:text-white transition-colors">Official Blog</a></li>
-            <li><a href="https://brand.kontyra.name.ng" class="hover:text-white transition-colors">Brand System & Tokens</a></li>
-            <li><a href="mailto:support@kontyra.name.ng" class="hover:text-white transition-colors">Developer Support Desk</a></li>
-          </ul>
-        </div>
-
-        <!-- Column 3: Company -->
-        <div class="space-y-3">
-          <h4 class="font-semibold text-white uppercase tracking-wider text-[11px] font-mono">Company</h4>
-          <ul class="space-y-2 text-white/60">
-            <li><a href="https://kontyra.name.ng/about" class="hover:text-white transition-colors">About Kontyra</a></li>
-            <li><a href="https://kontyra.name.ng/ecosystem" class="hover:text-white transition-colors">Our Ecosystem</a></li>
-            <li><a href="https://kontyra.name.ng/careers" class="hover:text-white transition-colors">Careers & Engineering</a></li>
-            <li><a href="https://github.com/RayBen445" target="_blank" class="hover:text-white transition-colors">GitHub Organization</a></li>
-          </ul>
-        </div>
-
-        <!-- Column 4: Legal & Governance -->
-        <div class="space-y-3">
-          <h4 class="font-semibold text-white uppercase tracking-wider text-[11px] font-mono">Legal</h4>
-          <ul class="space-y-2 text-white/60">
-            <li><a href="https://legal.kontyra.name.ng/privacy" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="https://legal.kontyra.name.ng/terms" target="_blank" class="hover:text-white transition-colors">Terms of Service</a></li>
-            <li><a href="https://legal.kontyra.name.ng/cookies" target="_blank" class="hover:text-white transition-colors">Cookie Governance</a></li>
-            <li><a href="https://legal.kontyra.name.ng/security" target="_blank" class="hover:text-white transition-colors">Security & Compliance</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Bottom Tier: Copyright & Baseline -->
-      <div class="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
-        <div>&copy; 2026 Kontyra Inc. All rights reserved. Built for what's next.</div>
-        <div class="flex items-center gap-4">
-          <span class="text-white/60">Pure Black (#000000)</span>
-          <span>•</span>
-          <span class="text-white/60">Hairline Outlines (0.08)</span>
-          <span>•</span>
-          <span class="text-white/60">Apple Specular Highlights</span>
-        </div>
+          <div>
+            <label class="block text-xs font-medium text-white/70 mb-1">Password</label>
+            <input type="password" placeholder="••••••••••••" required minlength="8" class="w-full h-9 px-3 rounded-lg text-xs kontyra-input" />
+          </div>
+          <button type="submit" class="w-full h-10 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all">
+            Create Universal Account
+          </button>
+        </form>
       </div>
 
     </div>
-  </footer>
+  </div>
 
   <!-- ========================================================================= -->
-  <!-- JAVASCRIPT: TAB SWITCHER, GLOW EFFECT & AUTH MODAL LOGIC                  -->
+  <!-- JAVASCRIPT: DESKTOP SIDEBAR SWITCHER & GLOW BEAMS                         -->
   <!-- ========================================================================= -->
   <script>
-    function switchTab(tabId) {
-      document.getElementById('view-overview').classList.add('hidden');
-      document.getElementById('view-console').classList.add('hidden');
-
-      ['btn-overview', 'btn-console'].forEach(id => {
-        const btn = document.getElementById(id);
-        if (btn) {
-          btn.className = 'px-3 py-1 rounded-md text-white/60 hover:text-white transition-all';
-        }
+    function switchDesktopSection(sectionId) {
+      ['profile', 'saml', 'sessions', 'apps'].forEach(id => {
+        const sec = document.getElementById('section-' + id);
+        const btn = document.getElementById('nav-btn-' + id);
+        if (sec) sec.classList.add('hidden');
+        if (btn) btn.className = 'w-full flex items-center gap-3 px-3 py-2 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.04] transition-all';
       });
 
-      document.getElementById('view-' + tabId).classList.remove('hidden');
-
-      const activeBtn = document.getElementById('btn-' + tabId);
-      if (activeBtn) {
-        activeBtn.className = 'px-3 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm';
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const activeSec = document.getElementById('section-' + sectionId);
+      const activeBtn = document.getElementById('nav-btn-' + sectionId);
+      if (activeSec) activeSec.classList.remove('hidden');
+      if (activeBtn) activeBtn.className = 'w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-white/10 text-white font-medium transition-all';
     }
 
-    function toggleMobileMenu() {
-      const drawer = document.getElementById('mobile-drawer');
-      drawer.classList.toggle('hidden');
-    }
-
-    /* Rotating Glowing Beam on Clicked Boxes */
     function toggleBoxGlow(element) {
       document.querySelectorAll('.glowing-box-target').forEach(el => {
         el.classList.remove('is-active-glow');
@@ -815,81 +550,34 @@
       element.classList.add('is-active-glow');
     }
 
-    /* Modal Controls */
-    function openAuthModal() {
+    function openAuthModal(mode) {
       document.getElementById('auth-modal').classList.remove('hidden');
-      goToStep1();
+      switchModalAuthMode(mode || 'signin');
     }
 
     function closeAuthModal() {
       document.getElementById('auth-modal').classList.add('hidden');
     }
 
-    /* 2-Step SSO Authentication Flow Logic */
-    function handleStep1Submit(e) {
-      e.preventDefault();
-      const email = document.getElementById('input-email').value.trim();
-      if (!email) return;
+    function switchModalAuthMode(mode) {
+      const tabSignIn = document.getElementById('modal-tab-signin');
+      const tabRegister = document.getElementById('modal-tab-register');
+      const contentSignIn = document.getElementById('modal-content-signin');
+      const contentRegister = document.getElementById('modal-content-register');
 
-      document.getElementById('display-email').innerText = email;
-
-      document.getElementById('sso-step-1').classList.add('hidden');
-      document.getElementById('sso-step-2').classList.remove('hidden');
-
-      document.getElementById('step-indicator-1').className = 'w-5 h-5 rounded-full bg-emerald-500 text-black text-[11px] font-bold flex items-center justify-center';
-      document.getElementById('step-indicator-1').innerHTML = '✓';
-      document.getElementById('step-indicator-2').className = 'w-5 h-5 rounded-full bg-white text-black text-[11px] font-bold flex items-center justify-center';
-      document.getElementById('step-label').innerText = 'Step 2 of 2';
-
-      document.getElementById('sso-title').innerText = 'Welcome Back';
-      document.getElementById('sso-desc').innerText = 'Enter credentials to authenticate session';
-
-      setTimeout(() => {
-        document.getElementById('input-password').focus();
-      }, 100);
-    }
-
-    function goToStep1() {
-      document.getElementById('sso-step-2').classList.add('hidden');
-      document.getElementById('sso-step-1').classList.remove('hidden');
-
-      document.getElementById('step-indicator-1').className = 'w-5 h-5 rounded-full bg-white text-black text-[11px] font-bold flex items-center justify-center';
-      document.getElementById('step-indicator-1').innerHTML = '1';
-      document.getElementById('step-indicator-2').className = 'w-5 h-5 rounded-full bg-white/10 text-white/40 text-[11px] font-bold flex items-center justify-center';
-      document.getElementById('step-label').innerText = 'Step 1 of 2';
-
-      document.getElementById('sso-title').innerText = 'Sign in to Kontyra';
-      document.getElementById('sso-desc').innerText = 'One universal account across all Kontyra products';
-
-      setTimeout(() => {
-        document.getElementById('input-email').focus();
-      }, 100);
-    }
-
-    function switchAuthMode(mode) {
-      const tabPw = document.getElementById('auth-tab-pw');
-      const tabMagic = document.getElementById('auth-tab-magic');
-      const formPw = document.getElementById('form-password');
-      const formMagic = document.getElementById('form-magic');
-
-      if (mode === 'password') {
-        tabPw.className = 'flex-1 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm';
-        tabMagic.className = 'flex-1 py-1 rounded-md text-white/60 hover:text-white transition-all';
-        formPw.classList.remove('hidden');
-        formMagic.classList.add('hidden');
+      if (mode === 'signin') {
+        tabSignIn.className = 'px-3 py-1 rounded-md bg-white text-black font-semibold transition-all shadow-sm';
+        tabRegister.className = 'px-3 py-1 rounded-md text-white/60 hover:text-white font-medium transition-all';
+        contentSignIn.classList.remove('hidden');
+        contentRegister.classList.add('hidden');
+        document.getElementById('sso-title').innerText = 'Sign in to Kontyra';
       } else {
-        tabMagic.className = 'flex-1 py-1 rounded-md bg-white text-black font-medium transition-all shadow-sm';
-        tabPw.className = 'flex-1 py-1 rounded-md text-white/60 hover:text-white transition-all';
-        formMagic.classList.remove('hidden');
-        formPw.classList.add('hidden');
+        tabRegister.className = 'px-3 py-1 rounded-md bg-white text-black font-semibold transition-all shadow-sm';
+        tabSignIn.className = 'px-3 py-1 rounded-md text-white/60 hover:text-white font-medium transition-all';
+        contentRegister.classList.remove('hidden');
+        contentSignIn.classList.add('hidden');
+        document.getElementById('sso-title').innerText = 'Create Universal Account';
       }
-    }
-
-    function handleFinalSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('display-email').innerText;
-      alert('Authentication Successful! Signed in as ' + email + ' via Kontyra Accounts SSO.');
-      closeAuthModal();
     }
   </script>
 
