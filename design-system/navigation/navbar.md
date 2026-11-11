@@ -42,3 +42,44 @@ When viewport width `< 768px` (or `< 1024px` where appropriate):
   - Full list of current portal destinations with badges and icons.
 - **Section 3: Footer Contact:**
   - Official desk email and direct support line.
+
+
+---
+
+## 4. Modern Editorial & Studio Dual-Navigation (REASTUDIA & Novelora Standard)
+
+For media-rich, literary, and creator products (such as **REASTUDIA** and **Novelora**), the navigation evolves into the **Modern TopBar + Collapsible Desktop Sidebar** architecture to support deep catalog navigation and distraction-free viewing.
+
+### A. Dimensional Specifications
+- **TopBar Height:** `68px` to `76px` desktop (`min-h-[68px] sm:min-h-[76px]`), `60px` mobile.
+- **TopBar Background:** `#050505/95` with `backdrop-blur-md`.
+- **TopBar Border:** `border-b border-[#1F1F1F]` (editorial rule hairline).
+- **Container Width:** `max-w-[1920px] mx-auto w-full px-4 sm:px-6 lg:px-8`.
+- **Sidebar Width:** Exactly `256px` (`w-64`).
+- **Sidebar Background:** `#070707` with `border-r border-[#222222]`.
+- **Sidebar Offset:** Top offset locked to TopBar height (`top-[68px] sm:top-[76px]`).
+
+### B. TopBar Anatomy (Three Strategic Zones)
+
+1. **Zone 1: Sidebar Toggle & Brand Lockup (Left)**
+   - **Collapsible Toggle:** Keyboard & click toggle button (`36px x 36px` / `w-9 h-9`) with `PanelLeftClose` / `PanelLeftOpen` icon (`stroke-[1.75]`), border `#222222`, hover border `#333333`.
+   - **Brand Monogram:** `32px` square logo image or typographic monogram (`w-8 h-8 rounded-sm`).
+   - **Product Wordmark:** Uppercase serif display font (`Cinzel` or serif), tracking `0.16em`, with uppercase subtitle (`tracking-[0.25em] text-[8px] text-[#888888]`).
+
+2. **Zone 2: Contextual Breadcrumb & Ecosystem Bridge (Center)**
+   - **Active Section Pill:** Rounded-full pill (`bg-[#111111] border border-[#222222]`) displaying `/ Section / [Current Route]` with uppercase mono category prefix.
+   - **Pill Navigation Tabs:** Compact segmented control (`bg-[#0D0D0D] border border-[#222222] p-1 rounded-full`). Active tab uses solid high-contrast pill (`bg-white text-black font-semibold shadow-sm`).
+   - **Cross-Ecosystem Bridge Button:** Direct pill linking the reader and author platforms (e.g. *"Read on REASTUDIA"* or *"Author on Novelora"*) with gold book icon and `ExternalLink`.
+
+3. **Zone 3: Role-Aware Account Controls (Right)**
+   - **Admin Studio Badge:** Highlighted in gold (`bg-[#D4AF37] text-black` when active, or dark gold border `border-[#5E4D17]` with gold shield icon) for verified ecosystem administrators.
+   - **User Menu / SSO Pill:** Rounded-lg pill displaying user avatar monogram + truncated pen name/email, with dropdown menu for account settings, codex hub, and sign out.
+   - **Sign In CTA:** High-contrast editorial button (`bg-white text-black font-semibold text-xs rounded-lg uppercase tracking-wider`).
+
+### C. Collapsible Desktop Sidebar Anatomy (Right of Viewport Shift)
+- **Smooth Page Layout Shift:** The `<main>` and `<footer>` containers shift smoothly via `transition-[padding-left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]` (`lg:pl-64` when open, `pl-0` when closed).
+- **Navigation Sections:**
+  - Header with section title (`text-[10px] font-sans font-bold uppercase tracking-[0.22em] text-[#666666]`) and count badge.
+  - Active items highlight in solid white with black text and drop shadow (`bg-white text-black font-semibold shadow-md`).
+  - Account & Studio settings direct navigation links.
+  - Sidebar bottom bar with active user indicator and version tag.
