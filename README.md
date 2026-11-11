@@ -21,6 +21,7 @@ The official central repository for Kontyra brand identity, logo assets, design 
   - CSS Custom Properties: [`design-system/tokens/design-tokens.css`](./design-system/tokens/design-tokens.css)
 - **Shared Navigation Standards:** [`design-system/navigation/navbar.md`](./design-system/navigation/navbar.md)
 - **Product Design & Development Standards:** [`product-guidelines/product-design-standard.md`](./product-guidelines/product-design-standard.md)
+- **Literary Publishing Standards (REASTUDIA & Novelora):** [`product-guidelines/reastudia-novelora-literary-standard.md`](./product-guidelines/reastudia-novelora-literary-standard.md)
 - **Next.js & Tailwind Implementation:** [`implementation/nextjs-guidelines.md`](./implementation/nextjs-guidelines.md)
 
 ---
