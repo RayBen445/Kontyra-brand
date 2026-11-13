@@ -1,13 +1,18 @@
 # KONTYRA Brand & Design System
 
-The official central repository for Kontyra brand identity, logo assets, design tokens, UI standards, and product design guidelines.
+The official central repository for Kontyra brand identity, logo assets, design tokens, UI standards, product design guidelines, and ecosystem infrastructure coordinates.
 
 **Core Principle:** *One brand identity. One shared design language. Distinct products.*
+
+> [!TIP]
+> **AI Coding Agents & Developers:** See the **[Master File & Asset Location Directory](./FILES_DIRECTORY_REGISTRY.md)** for an instant map of where every file, credential, logo, and standard lives across the ecosystem.
 
 ---
 
 ## 1. Quick Navigation
 
+- **Master File Registry:** [`FILES_DIRECTORY_REGISTRY.md`](./FILES_DIRECTORY_REGISTRY.md) *(Where to get each file & asset)*
+- **Cloudflare R2 Media Storage Guide:** [`standards/07-cloudflare-r2-media-storage.md`](./standards/07-cloudflare-r2-media-storage.md) *(Uploads, CDN URLs, App Folder Setup)*
 - **Brand & Logos:** [`brand/logos/`](./brand/logos/README.md)
   - Primary Gradient Logo: [`brand/logos/primary/kontyra-gradient.svg`](./brand/logos/primary/kontyra-gradient.svg)
   - White Icon: [`brand/logos/monochrome/kontyra-white-icon.svg`](./brand/logos/monochrome/kontyra-white-icon.svg)
