@@ -17,6 +17,7 @@
 | **Design Tokens (JSON)** | `design-system/tokens/design-tokens.json` | Colors, borders, shadows, spacing, typography |
 | **Design Tokens (CSS)** | `design-system/tokens/design-tokens.css` | Import directly into your global CSS |
 | **Universal Topbar (56px)** | `design-system/navigation/navbar.md` | Standard layout, mobile drawer, app switcher |
+| **Universal Mobile Navbar** | `implementation/components/nav/` | Drop-in React/Vite/Next.js MobileNavbar component |
 | **Universal Footer** | `design-system/navigation/footer-standard.md` | Ecosystem links, copyright, legal links |
 | **Interactive UI Sandbox** | `preview/index.html` | Open in browser to see all buttons, cards, boxes |
 | **Cloudflare R2 Media Guide**| `standards/07-cloudflare-r2-media-storage.md` | Direct upload, credentials, CDN URL, app folders |
