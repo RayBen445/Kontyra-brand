@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontyra — Official Navigation Standard Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #000000;
+      --card: #09090b;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --accent: #13D9F2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000000;
+      color: #EDEDED;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Glass Effect */
+    .glass-header {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card {
+      background: rgba(12, 12, 16, 0.8);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Smooth Slide Drawer */
+    .drawer-overlay {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .drawer-panel {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Bento Grid Glow */
+    .bento-card {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* Device frame simulator */
+    .device-shadow {
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8 space-y-12">
+
+  <!-- TOP HERO & CONTROLS -->
+  <header class="max-w-6xl mx-auto text-center space-y-4 pt-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono font-medium">
+      <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+      KONTYRA DESIGN SYSTEM &bull; NAVIGATION STANDARD
+    </div>
+
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+      Documented Navbar Architecture
+    </h1>
+
+    <p class="text-sm md:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+      In the <span class="text-white font-mono font-semibold">Kontyra-brand</span> repository, two complementary standards are officially documented:
+      <strong class="text-zinc-200">Desktop 48px Flush Minimal Header</strong> and <strong class="text-zinc-200">Mobile 56px Bento Quick-Launcher Header</strong>.
+    </p>
+
+    <!-- THEME / PRODUCT SWITCHER -->
+    <div class="pt-4 flex flex-wrap justify-center items-center gap-2">
+      <span class="text-xs font-mono text-zinc-500 mr-2 uppercase tracking-wider">Select Product Accent:</span>
+      <button onclick="setProduct('devos')" id="btn-devos" class="px-3 py-1.5 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 text-xs font-semibold flex items-center gap-1.5 transition-all">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span> DevOS
+      </button>
+      <button onclick="setProduct('accounts')" id="btn-accounts" class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 text-zinc-400 text-xs font-semibold flex items-center gap-1.5 hover:text-white transition-all">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Accounts
+      </button>
+      <button onclick="setProduct('reastudia')" id="btn-reastudia" class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 text-zinc-400 text-xs font-semibold flex items-center gap-1.5 hover:text-white transition-all">
+        <span class="w-2 h-2 rounded-full bg-amber-400"></span> REASTUDIA
+      </button>
+      <button onclick="setProduct('kora')" id="btn-kora" class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 text-zinc-400 text-xs font-semibold flex items-center gap-1.5 hover:text-white transition-all">
+        <span class="w-2 h-2 rounded-full bg-purple-400"></span> Kora AI
+      </button>
+      <button onclick="setProduct('vux')" id="btn-vux" class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 text-zinc-400 text-xs font-semibold flex items-center gap-1.5 hover:text-white transition-all">
+        <span class="w-2 h-2 rounded-full bg-orange-400"></span> VUX Events
+      </button>
+    </div>
+  </header>
+
+  <!-- SECTION 1: LIVE DESKTOP STANDARD (48px Flush Minimal) -->
+  <section class="max-w-6xl mx-auto space-y-4">
+    <div class="flex items-center justify-between border-b border-white/10 pb-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 font-semibold uppercase">Standard 1</span>
+          <h2 class="text-lg font-bold text-white">Desktop 48px Flush Minimal Header</h2>
+        </div>
+        <p class="text-xs text-zinc-400 mt-0.5">Documented in <code class="text-zinc-300">design-system/navigation/navbar.md</code> (Height: Exactly 48px, Zero container boxes, negative space)</p>
+      </div>
+      <span class="text-xs font-mono text-zinc-500 hidden sm:inline">h-12 &bull; 48px</span>
+    </div>
+
+    <!-- Live Desktop Bar Container -->
+    <div class="device-shadow rounded-2xl overflow-hidden border border-white/10 bg-[#070709]">
+      <!-- The Real 48px Desktop Bar -->
+      <nav class="h-12 px-4 md:px-6 glass-header flex items-center justify-between sticky top-0 z-40 select-none">
+        
+        <!-- Left: Brand Lockup & Breadcrumb Context -->
+        <div class="flex items-center gap-3">
+          <a href="#" class="flex items-center gap-2 group">
+            <!-- Kontyra Vector Logo -->
+            <svg class="w-6 h-6 transition-transform group-hover:scale-105" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
+              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+              <defs>
+                <linearGradient id="kontyra-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#13D9F2"/>
+                  <stop offset="0.5" stop-color="#4B00E8"/>
+                  <stop offset="1" stop-color="#E60082"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="font-extrabold text-xs text-white tracking-wider uppercase">Kontyra</span>
+          </a>
+
+          <span class="text-white/20 text-xs">/</span>
+
+          <!-- Product Name & Signature Badge -->
+          <div class="flex items-center gap-2">
+            <span id="desktop-app-name" class="text-xs font-bold text-white/95">DevOS Platform</span>
+            <span id="desktop-app-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold">
+              Cloud IDE
+            </span>
+          </div>
+        </div>
+
+        <!-- Center: Pure Typography Navigation Links (Zero Box Containers) -->
+        <div class="hidden lg:flex items-center gap-7">
+          <a href="#" class="text-xs font-semibold text-white flex items-center gap-1.5 transition-colors">
+            <span id="desktop-active-dot" class="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(19,217,242,0.8)]"></span>
+            Workspace
+          </a>
+          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
+            Sandboxes
+          </a>
+          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
+            Containers
+          </a>
+          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
+            Deployments
+          </a>
+          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
+            Terminal
+          </a>
+        </div>
+
+        <!-- Right: Global Actions, Bento Launcher & Account -->
+        <div class="flex items-center gap-3">
+          <!-- Command Palette Trigger (Cmd+K) -->
+          <button class="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-[11px] text-zinc-400 transition-all">
+            <svg class="w-3 h-3 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <span>Search</span>
+            <kbd class="text-[9px] font-mono bg-white/10 px-1.5 py-0.5 rounded text-zinc-300">⌘K</kbd>
+          </button>
+
+          <!-- 9-Dot Bento Ecosystem Launcher Button -->
+          <button onclick="toggleBento()" class="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] flex items-center justify-center transition-all relative group" title="Kontyra Ecosystem Launcher">
+            <div class="w-3.5 h-3.5 grid grid-cols-3 gap-[2px]">
+              <div class="w-1 h-1 rounded-full bg-cyan-400"></div>
+              <div class="w-1 h-1 rounded-full bg-emerald-400"></div>
+              <div class="w-1 h-1 rounded-full bg-purple-400"></div>
+              <div class="w-1 h-1 rounded-full bg-amber-400"></div>
+              <div class="w-1 h-1 rounded-full bg-white"></div>
+              <div class="w-1 h-1 rounded-full bg-orange-400"></div>
+              <div class="w-1 h-1 rounded-full bg-pink-400"></div>
+              <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+              <div class="w-1 h-1 rounded-full bg-zinc-400"></div>
+            </div>
+            <span class="absolute -bottom-7 right-0 text-[10px] font-mono bg-black border border-white/20 text-white px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+              Apps (Bento)
+            </span>
+          </button>
+
+          <!-- User Profile Avatar Pill -->
+          <div class="flex items-center gap-2 pl-1 border-l border-white/10">
+            <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-xs text-white shadow-inner">
+              P
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Simulated Desktop Page Canvas Content -->
+      <div class="p-8 text-center space-y-3 min-h-[160px] flex flex-col justify-center items-center">
+        <span class="text-xs font-mono text-zinc-500">DESKTOP VIEWPORT &bull; PURE 48PX FLUSH BAR</span>
+        <h3 class="text-lg font-bold text-zinc-300">High Information Density &bull; Negative Space First</h3>
+        <p class="text-xs text-zinc-500 max-w-md">No bulky capsules or wrapped pill containers around links. Clean typography with subtle micro-indicators ensures maximum code and canvas vertical space.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: LIVE MOBILE STANDARD (56px Header + Bento Popover + Slide-Over Drawer) -->
+  <section class="max-w-6xl mx-auto space-y-4">
+    <div class="flex items-center justify-between border-b border-white/10 pb-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/20 text-cyan-300 font-semibold uppercase">Standard 2</span>
+          <h2 class="text-lg font-bold text-white">Mobile 56px Header &amp; Interactive Drawer</h2>
+        </div>
+        <p class="text-xs text-zinc-400 mt-0.5">Documented in <code class="text-zinc-300">standards/08-mobile-navbar-standard.md</code> and <code class="text-zinc-300">design-system/navigation/MobileNavbar.tsx</code></p>
+      </div>
+      <span class="text-xs font-mono text-zinc-500">h-14 &bull; 56px &bull; Phone Simulation</span>
+    </div>
+
+    <!-- Phone Simulator Shell -->
+    <div class="max-w-sm mx-auto device-shadow rounded-[32px] overflow-hidden border border-white/15 bg-black relative" style="min-height: 640px;">
+      
+      <!-- Top Mobile Navbar (56px / h-14) -->
+      <nav class="h-14 px-4 glass-header flex items-center justify-between sticky top-0 z-30 select-none">
+        <!-- Left: Product Brand Lockup -->
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-black border border-white/15 p-1 flex items-center justify-center shadow-md">
+            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
+              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad-m)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+              <defs>
+                <linearGradient id="kontyra-grad-m" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#13D9F2"/>
+                  <stop offset="0.5" stop-color="#4B00E8"/>
+                  <stop offset="1" stop-color="#E60082"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span id="mobile-app-name" class="text-xs font-extrabold text-white">DevOS</span>
+              <span id="mobile-app-badge" class="text-[9px] font-mono px-1.5 py-0.2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold">
+                Cloud IDE
+              </span>
+            </div>
+            <div class="text-[10px] text-zinc-400 font-medium">Platform Workspace</div>
+          </div>
+        </div>
+
+        <!-- Right: Bento Launcher & Hamburger Menu Toggle -->
+        <div class="flex items-center gap-2">
+          <!-- 9-Dot Bento Launcher -->
+          <button onclick="toggleBento()" class="w-8 h-8 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center transition-all" title="Kontyra Ecosystem">
+            <div class="w-3.5 h-3.5 grid grid-cols-3 gap-[2px]">
+              <div class="w-1 h-1 rounded-full bg-cyan-400"></div>
+              <div class="w-1 h-1 rounded-full bg-emerald-400"></div>
+              <div class="w-1 h-1 rounded-full bg-purple-400"></div>
+              <div class="w-1 h-1 rounded-full bg-amber-400"></div>
+              <div class="w-1 h-1 rounded-full bg-white"></div>
+              <div class="w-1 h-1 rounded-full bg-orange-400"></div>
+              <div class="w-1 h-1 rounded-full bg-pink-400"></div>
+              <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+              <div class="w-1 h-1 rounded-full bg-zinc-400"></div>
+            </div>
+          </button>
+
+          <!-- Hamburger Drawer Toggle -->
+          <button onclick="toggleDrawer()" class="w-8 h-8 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-white transition-all">
+            <svg id="hamburger-icon" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Simulated Phone Body Content -->
+      <div class="p-6 space-y-4 text-center">
+        <div class="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-2 mt-4">
+          <div class="w-10 h-10 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h4 class="text-sm font-bold text-white">Interactive Mobile Shell</h4>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Click the <strong class="text-white">9-dot icon</strong> in the top right to open the frosted Ecosystem Grid, or click the <strong class="text-white">Hamburger (☰)</strong> to slide out the navigation drawer.
+          </p>
+          <div class="pt-2 flex justify-center gap-2">
+            <button onclick="toggleDrawer()" class="px-3 py-1.5 rounded-xl bg-white text-black text-xs font-bold shadow-md hover:bg-zinc-200 transition-all">
+              Open Menu Drawer
+            </button>
+            <button onclick="toggleBento()" class="px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-bold hover:bg-white/15 transition-all">
+              Open Ecosystem Grid
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE-OVER DRAWER OVERLAY -->
+      <div id="drawer-overlay" class="absolute inset-0 drawer-overlay opacity-0 pointer-events-none z-40" onclick="toggleDrawer()"></div>
+
+      <!-- SLIDE-OVER DRAWER PANEL -->
+      <div id="drawer-panel" class="absolute inset-y-0 right-0 w-80 max-w-[85%] bg-[#08080a] border-l border-white/10 z-50 drawer-panel translate-x-full flex flex-col justify-between shadow-2xl">
+        <!-- Drawer Header -->
+        <div class="p-4 border-b border-white/10 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-lg bg-black border border-white/15 p-0.5 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
+                <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad-d)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+                <defs>
+                  <linearGradient id="kontyra-grad-d" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#13D9F2"/>
+                    <stop offset="0.5" stop-color="#4B00E8"/>
+                    <stop offset="1" stop-color="#E60082"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="text-xs font-extrabold text-white tracking-wide">DevOS Menu</span>
+          </div>
+          <button onclick="toggleDrawer()" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-all">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Categorized Nav Link Groups -->
+        <div class="p-4 space-y-6 overflow-y-auto flex-1">
+          <!-- Group 1 -->
+          <div class="space-y-1.5">
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2">Workspaces</div>
+            <a href="#" class="flex items-center justify-between px-3 py-2 rounded-xl bg-white/[0.04] border border-white/[0.06] text-xs font-semibold text-white relative overflow-hidden group">
+              <div id="drawer-accent-pill" class="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-cyan-400 shadow-[0_0_8px_rgba(19,217,242,0.8)]"></div>
+              <span class="pl-2">Primary Sandbox</span>
+              <span class="text-[10px] font-mono text-zinc-400 bg-white/5 px-1.5 py-0.5 rounded">Active</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <span class="pl-2">Containers &amp; Pods</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <span class="pl-2">Git Deployments</span>
+            </a>
+          </div>
+
+          <!-- Group 2 -->
+          <div class="space-y-1.5">
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2">Ecosystem Hub</div>
+            <a href="https://accounts.kontyra.name.ng" target="_blank" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <span class="pl-2">Accounts &amp; SSO</span>
+              <svg class="w-3.5 h-3.5 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <a href="https://docs.kontyra.name.ng" target="_blank" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <span class="pl-2">Documentation</span>
+              <svg class="w-3.5 h-3.5 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Drawer Bottom User Profile Card -->
+        <div class="p-3 border-t border-white/10 bg-[#060608]">
+          <div class="flex items-center justify-between p-2 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-xs text-white">
+                P
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white">@professor</div>
+                <div class="text-[10px] text-zinc-400">oladoyeheritage445@...</div>
+              </div>
+            </div>
+            <button class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-red-400 transition-colors" title="Sign Out">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BENTO ECOSYSTEM GRID MODAL (Interactive) -->
+  <div id="bento-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div class="w-full max-w-lg glass-card rounded-3xl p-6 border border-white/15 shadow-2xl relative space-y-4 transform scale-95 transition-transform duration-300" id="bento-card-inner">
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded-lg bg-black border border-white/15 p-1 flex items-center justify-center">
+            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
+              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad-b)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+              <defs>
+                <linearGradient id="kontyra-grad-b" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#13D9F2"/>
+                  <stop offset="0.5" stop-color="#4B00E8"/>
+                  <stop offset="1" stop-color="#E60082"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="text-sm font-extrabold text-white">Kontyra Ecosystem</span>
+        </div>
+        <button onclick="toggleBento()" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- 2-Column Bento Grid of official products -->
+      <div class="grid grid-cols-2 gap-3 pt-1">
+        <!-- DevOS -->
+        <a href="https://devos.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1">
+              DevOS <span class="text-[9px] font-mono text-cyan-400 px-1 rounded bg-cyan-500/10">IDE</span>
+            </div>
+            <div class="text-[10px] text-zinc-400 leading-tight mt-0.5">Cloud sandbox &amp; execution</div>
+          </div>
+        </a>
+
+        <!-- Accounts -->
+        <a href="https://accounts.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1">
+              Accounts <span class="text-[9px] font-mono text-emerald-400 px-1 rounded bg-emerald-500/10">SSO</span>
+            </div>
+            <div class="text-[10px] text-zinc-400 leading-tight mt-0.5">Universal Identity &amp; Auth</div>
+          </div>
+        </a>
+
+        <!-- REASTUDIA -->
+        <a href="https://reastudia.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1">
+              REASTUDIA <span class="text-[9px] font-mono text-amber-400 px-1 rounded bg-amber-500/10">Read</span>
+            </div>
+            <div class="text-[10px] text-zinc-400 leading-tight mt-0.5">Literary salon &amp; releases</div>
+          </div>
+        </a>
+
+        <!-- Novelora -->
+        <a href="https://novelora.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-amber-600/10 border border-amber-600/20 text-amber-300 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1">
+              Novelora <span class="text-[9px] font-mono text-amber-300 px-1 rounded bg-amber-600/10">Studio</span>
+            </div>
+            <div class="text-[10px] text-zinc-400 leading-tight mt-0.5">Author manuscript hub</div>
+          </div>
+        </a>
+
+        <!-- Kora AI -->
+        <a href="https://kora.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1">
+              Kora AI <span class="text-[9px] font-mono text-purple-400 px-1 rounded bg-purple-500/10">Neural</span>
+            </div>
+            <div class="text-[10px] text-zinc-400 leading-tight mt-0.5">Deep agent intelligence</div>
+          </div>
+        </a>
+
+        <!-- VUX Events -->
+        <a href="https://vux.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1">
+              VUX Events <span class="text-[9px] font-mono text-orange-400 px-1 rounded bg-orange-500/10">Live</span>
+            </div>
+            <div class="text-[10px] text-zinc-400 leading-tight mt-0.5">Developer conferences</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Bottom link to Documentation -->
+      <div class="pt-2 text-center border-t border-white/5">
+        <a href="https://docs.kontyra.name.ng" target="_blank" class="text-xs font-semibold text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-1">
+          Explore developer documentation &amp; API reference &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PRODUCTS = {
+      devos: {
+        name: 'DevOS Platform',
+        shortName: 'DevOS',
+        badge: 'Cloud IDE',
+        color: '#13D9F2',
+        badgeClass: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-300',
+        dotClass: 'bg-cyan-400 shadow-[0_0_8px_rgba(19,217,242,0.8)]'
+      },
+      accounts: {
+        name: 'Kontyra Accounts',
+        shortName: 'Accounts',
+        badge: 'Universal SSO',
+        color: '#10B981',
+        badgeClass: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300',
+        dotClass: 'bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]'
+      },
+      reastudia: {
+        name: 'REASTUDIA',
+        shortName: 'REASTUDIA',
+        badge: 'Literary Salon',
+        color: '#D4AF37',
+        badgeClass: 'border-amber-500/30 bg-amber-500/10 text-amber-300',
+        dotClass: 'bg-amber-400 shadow-[0_0_8px_rgba(212,175,55,0.8)]'
+      },
+      kora: {
+        name: 'Kora AI Engine',
+        shortName: 'Kora AI',
+        badge: 'Neural Agent',
+        color: '#A855F7',
+        badgeClass: 'border-purple-500/30 bg-purple-500/10 text-purple-300',
+        dotClass: 'bg-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.8)]'
+      },
+      vux: {
+        name: 'VUX Events',
+        shortName: 'VUX',
+        badge: 'Conferences',
+        color: '#F97316',
+        badgeClass: 'border-orange-500/30 bg-orange-500/10 text-orange-300',
+        dotClass: 'bg-orange-400 shadow-[0_0_8px_rgba(249,115,22,0.8)]'
+      }
+    };
+
+    function setProduct(key) {
+      const p = PRODUCTS[key];
+      if (!p) return;
+
+      // Update button highlights
+      ['devos', 'accounts', 'reastudia', 'kora', 'vux'].forEach(k => {
+        const btn = document.getElementById(`btn-${k}`);
+        if (k === key) {
+          btn.className = `px-3 py-1.5 rounded-xl border border-${p.color} bg-white/10 text-white text-xs font-semibold flex items-center gap-1.5 transition-all`;
+        } else {
+          btn.className = `px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 text-zinc-400 text-xs font-semibold flex items-center gap-1.5 hover:text-white transition-all`;
+        }
+      });
+
+      // Update Desktop Bar
+      document.getElementById('desktop-app-name').innerText = p.name;
+      const dBadge = document.getElementById('desktop-app-badge');
+      dBadge.innerText = p.badge;
+      dBadge.className = `text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.badgeClass} font-semibold`;
+      document.getElementById('desktop-active-dot').className = `w-1.5 h-1.5 rounded-full ${p.dotClass}`;
+
+      // Update Mobile Bar
+      document.getElementById('mobile-app-name').innerText = p.shortName;
+      const mBadge = document.getElementById('mobile-app-badge');
+      mBadge.innerText = p.badge;
+      mBadge.className = `text-[9px] font-mono px-1.5 py-0.2 rounded-full border ${p.badgeClass} font-semibold`;
+
+      // Update Drawer accent pill
+      document.getElementById('drawer-accent-pill').className = `absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full ${p.dotClass}`;
+    }
+
+    let drawerOpen = false;
+    function toggleDrawer() {
+      drawerOpen = !drawerOpen;
+      const overlay = document.getElementById('drawer-overlay');
+      const panel = document.getElementById('drawer-panel');
+
+      if (drawerOpen) {
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100', 'pointer-events-auto');
+        panel.classList.remove('translate-x-full');
+        panel.classList.add('translate-x-0');
+      } else {
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+        overlay.classList.remove('opacity-100', 'pointer-events-auto');
+        panel.classList.add('translate-x-full');
+        panel.classList.remove('translate-x-0');
+      }
+    }
+
+    let bentoOpen = false;
+    function toggleBento() {
+      bentoOpen = !bentoOpen;
+      const modal = document.getElementById('bento-modal');
+      const card = document.getElementById('bento-card-inner');
+
+      if (bentoOpen) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100', 'pointer-events-auto');
+        card.classList.remove('scale-95');
+        card.classList.add('scale-100');
+      } else {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100', 'pointer-events-auto');
+        card.classList.add('scale-95');
+        card.classList.remove('scale-100');
+      }
+    }
+
+    // Close bento on clicking outside
+    document.getElementById('bento-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'bento-modal') {
+        toggleBento();
+      }
+    });
+  </script>
+</body>
+</html>
