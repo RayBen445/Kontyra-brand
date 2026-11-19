@@ -46,6 +46,12 @@ When viewport width `< 768px` (or `< 1024px` where appropriate):
 - **Right: 4-Square Bento Launcher Button (`㗊`):**
   - Trigger: `w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] flex items-center justify-center`.
   - Micro-grid: `w-3.5 h-3.5 grid grid-cols-2 gap-[3px]` with app brand colors (`#13D9F2`, `#10B981`, `#4B00E8`, `#E60082`).
+### Menu Trigger Governance: No Triple Hamburgers
+Generic 3-line horizontal hamburger icons (`☰`) are strictly prohibited in the Kontyra design language. Instead, mobile headers deploy **Kontyra Proprietary Triggers**:
+1. **Asymmetric Pulse Dash (Primary)**: Two precision offset bars (20px top, 13px lower) anchored by a glowing live product optic dot (`w-1.5 h-1.5 rounded-full bg-accent`), morphing seamlessly into an `✕` on drawer open.
+2. **Bento Matrix (Secondary)**: 4-square or 9-square micro matrix with ecosystem hues.
+3. **Action Capsule**: A low-profile pill trigger `[ ● Menu ]` with live status indicator.
+
 - **Bento Popover / Drawer:**
   - Tapping opens a sleek frosted-glass popover card (`backdrop-blur-2xl bg-black/95 border border-white/10 rounded-2xl p-4`).
   - Displays all 6+ ecosystem destinations in a compact 2-column tile grid:

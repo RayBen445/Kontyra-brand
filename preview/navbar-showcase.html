@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontyra — Official Navigation Standard Showcase</title>
+  <title>Kontyra — Vercel-Style Bottom Sheet Navigation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -43,59 +43,115 @@
     }
 
     .glass-card {
-      background: rgba(12, 12, 16, 0.8);
+      background: rgba(12, 12, 16, 0.85);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* Smooth Slide Drawer */
-    .drawer-overlay {
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Vercel-style Bottom Sheet Transition */
+    .bottom-sheet-overlay {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .drawer-panel {
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    .bottom-sheet-panel {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
     }
 
-    /* Bento Grid Glow */
+    /* Custom Trigger: Asymmetric Pulse Dash */
+    .trigger-pulse-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 5px;
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+    }
+    .trigger-pulse-bar .bar-top {
+      width: 20px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trigger-pulse-bar .bar-mid {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trigger-pulse-bar .dot-accent {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trigger-pulse-bar .bar-mid-line {
+      width: 13px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* When active (open) */
+    .trigger-pulse-bar.active .bar-top {
+      transform: translateY(3.5px) rotate(45deg);
+      width: 18px;
+    }
+    .trigger-pulse-bar.active .dot-accent {
+      opacity: 0;
+      transform: scale(0);
+    }
+    .trigger-pulse-bar.active .bar-mid-line {
+      transform: translateY(-3.5px) rotate(-45deg);
+      width: 18px;
+      background: #ffffff;
+    }
+
+    /* Bento Hover */
     .bento-card {
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .bento-card:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.25);
       transform: translateY(-1px);
     }
 
-    /* Device frame simulator */
     .device-shadow {
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
     }
   </style>
 </head>
-<body class="p-4 md:p-8 space-y-12">
+<body class="p-4 md:p-8 space-y-10">
 
-  <!-- TOP HERO & CONTROLS -->
-  <header class="max-w-6xl mx-auto text-center space-y-4 pt-6">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono font-medium">
-      <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-      KONTYRA DESIGN SYSTEM &bull; NAVIGATION STANDARD
+  <!-- TOP HERO & MANDATE -->
+  <header class="max-w-4xl mx-auto text-center space-y-4 pt-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-medium">
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+      VERCEL-STYLE BOTTOM-UP DRAWER &bull; ZERO TRIPLE HAMBURGERS
     </div>
 
     <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
-      Documented Navbar Architecture
+      Opens From Below
     </h1>
 
     <p class="text-sm md:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-      In the <span class="text-white font-mono font-semibold">Kontyra-brand</span> repository, two complementary standards are officially documented:
-      <strong class="text-zinc-200">Desktop 48px Flush Minimal Header</strong> and <strong class="text-zinc-200">Mobile 56px Bento Quick-Launcher Header</strong>.
+      Inspired by Vercel's latest mobile dashboard navigation: the menu doesn't slide from the side.
+      Instead, tapping the custom trigger smoothly <strong class="text-white">summons a tactile, thumb-friendly sheet rising up from the bottom</strong>.
     </p>
 
-    <!-- THEME / PRODUCT SWITCHER -->
-    <div class="pt-4 flex flex-wrap justify-center items-center gap-2">
-      <span class="text-xs font-mono text-zinc-500 mr-2 uppercase tracking-wider">Select Product Accent:</span>
+    <!-- PRODUCT THEME SWITCHER -->
+    <div class="pt-2 flex flex-wrap justify-center items-center gap-2">
+      <span class="text-xs font-mono text-zinc-500 mr-2 uppercase tracking-wider">Product Theme:</span>
       <button onclick="setProduct('devos')" id="btn-devos" class="px-3 py-1.5 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 text-xs font-semibold flex items-center gap-1.5 transition-all">
         <span class="w-2 h-2 rounded-full bg-cyan-400"></span> DevOS
       </button>
@@ -114,148 +170,22 @@
     </div>
   </header>
 
-  <!-- SECTION 1: LIVE DESKTOP STANDARD (48px Flush Minimal) -->
-  <section class="max-w-6xl mx-auto space-y-4">
-    <div class="flex items-center justify-between border-b border-white/10 pb-3">
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 font-semibold uppercase">Standard 1</span>
-          <h2 class="text-lg font-bold text-white">Desktop 48px Flush Minimal Header</h2>
-        </div>
-        <p class="text-xs text-zinc-400 mt-0.5">Documented in <code class="text-zinc-300">design-system/navigation/navbar.md</code> (Height: Exactly 48px, Zero container boxes, negative space)</p>
-      </div>
-      <span class="text-xs font-mono text-zinc-500 hidden sm:inline">h-12 &bull; 48px</span>
-    </div>
-
-    <!-- Live Desktop Bar Container -->
-    <div class="device-shadow rounded-2xl overflow-hidden border border-white/10 bg-[#070709]">
-      <!-- The Real 48px Desktop Bar -->
-      <nav class="h-12 px-4 md:px-6 glass-header flex items-center justify-between sticky top-0 z-40 select-none">
-        
-        <!-- Left: Brand Lockup & Breadcrumb Context -->
-        <div class="flex items-center gap-3">
-          <a href="#" class="flex items-center gap-2 group">
-            <!-- Kontyra Vector Logo -->
-            <svg class="w-6 h-6 transition-transform group-hover:scale-105" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
-              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
-              <defs>
-                <linearGradient id="kontyra-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#13D9F2"/>
-                  <stop offset="0.5" stop-color="#4B00E8"/>
-                  <stop offset="1" stop-color="#E60082"/>
-                </linearGradient>
-              </defs>
-            </svg>
-            <span class="font-extrabold text-xs text-white tracking-wider uppercase">Kontyra</span>
-          </a>
-
-          <span class="text-white/20 text-xs">/</span>
-
-          <!-- Product Name & Signature Badge -->
-          <div class="flex items-center gap-2">
-            <span id="desktop-app-name" class="text-xs font-bold text-white/95">DevOS Platform</span>
-            <span id="desktop-app-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold">
-              Cloud IDE
-            </span>
-          </div>
-        </div>
-
-        <!-- Center: Pure Typography Navigation Links (Zero Box Containers) -->
-        <div class="hidden lg:flex items-center gap-7">
-          <a href="#" class="text-xs font-semibold text-white flex items-center gap-1.5 transition-colors">
-            <span id="desktop-active-dot" class="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(19,217,242,0.8)]"></span>
-            Workspace
-          </a>
-          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
-            Sandboxes
-          </a>
-          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
-            Containers
-          </a>
-          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
-            Deployments
-          </a>
-          <a href="#" class="text-xs font-medium text-white/60 hover:text-white transition-colors duration-150">
-            Terminal
-          </a>
-        </div>
-
-        <!-- Right: Global Actions, Bento Launcher & Account -->
-        <div class="flex items-center gap-3">
-          <!-- Command Palette Trigger (Cmd+K) -->
-          <button class="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-[11px] text-zinc-400 transition-all">
-            <svg class="w-3 h-3 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span>Search</span>
-            <kbd class="text-[9px] font-mono bg-white/10 px-1.5 py-0.5 rounded text-zinc-300">⌘K</kbd>
-          </button>
-
-          <!-- 9-Dot Bento Ecosystem Launcher Button -->
-          <button onclick="toggleBento()" class="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] flex items-center justify-center transition-all relative group" title="Kontyra Ecosystem Launcher">
-            <div class="w-3.5 h-3.5 grid grid-cols-3 gap-[2px]">
-              <div class="w-1 h-1 rounded-full bg-cyan-400"></div>
-              <div class="w-1 h-1 rounded-full bg-emerald-400"></div>
-              <div class="w-1 h-1 rounded-full bg-purple-400"></div>
-              <div class="w-1 h-1 rounded-full bg-amber-400"></div>
-              <div class="w-1 h-1 rounded-full bg-white"></div>
-              <div class="w-1 h-1 rounded-full bg-orange-400"></div>
-              <div class="w-1 h-1 rounded-full bg-pink-400"></div>
-              <div class="w-1 h-1 rounded-full bg-blue-400"></div>
-              <div class="w-1 h-1 rounded-full bg-zinc-400"></div>
-            </div>
-            <span class="absolute -bottom-7 right-0 text-[10px] font-mono bg-black border border-white/20 text-white px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-              Apps (Bento)
-            </span>
-          </button>
-
-          <!-- User Profile Avatar Pill -->
-          <div class="flex items-center gap-2 pl-1 border-l border-white/10">
-            <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-xs text-white shadow-inner">
-              P
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Simulated Desktop Page Canvas Content -->
-      <div class="p-8 text-center space-y-3 min-h-[160px] flex flex-col justify-center items-center">
-        <span class="text-xs font-mono text-zinc-500">DESKTOP VIEWPORT &bull; PURE 48PX FLUSH BAR</span>
-        <h3 class="text-lg font-bold text-zinc-300">High Information Density &bull; Negative Space First</h3>
-        <p class="text-xs text-zinc-500 max-w-md">No bulky capsules or wrapped pill containers around links. Clean typography with subtle micro-indicators ensures maximum code and canvas vertical space.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 2: LIVE MOBILE STANDARD (56px Header + Bento Popover + Slide-Over Drawer) -->
-  <section class="max-w-6xl mx-auto space-y-4">
-    <div class="flex items-center justify-between border-b border-white/10 pb-3">
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/20 text-cyan-300 font-semibold uppercase">Standard 2</span>
-          <h2 class="text-lg font-bold text-white">Mobile 56px Header &amp; Interactive Drawer</h2>
-        </div>
-        <p class="text-xs text-zinc-400 mt-0.5">Documented in <code class="text-zinc-300">standards/08-mobile-navbar-standard.md</code> and <code class="text-zinc-300">design-system/navigation/MobileNavbar.tsx</code></p>
-      </div>
-      <span class="text-xs font-mono text-zinc-500">h-14 &bull; 56px &bull; Phone Simulation</span>
-    </div>
-
+  <!-- LIVE SIMULATED PHONE VIEWPORT -->
+  <section class="max-w-md mx-auto space-y-4">
     <!-- Phone Simulator Shell -->
-    <div class="max-w-sm mx-auto device-shadow rounded-[32px] overflow-hidden border border-white/15 bg-black relative" style="min-height: 640px;">
+    <div class="device-shadow rounded-[40px] overflow-hidden border border-white/15 bg-black relative" style="height: 680px;">
       
-      <!-- Top Mobile Navbar (56px / h-14) -->
+      <!-- Top Mobile Navbar (56px) -->
       <nav class="h-14 px-4 glass-header flex items-center justify-between sticky top-0 z-30 select-none">
         <!-- Left: Product Brand Lockup -->
         <div class="flex items-center gap-2.5">
           <div class="w-8 h-8 rounded-xl bg-black border border-white/15 p-1 flex items-center justify-center shadow-md">
             <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
               <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
-              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad-m)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-sheet-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle id="logo-optic-dot" cx="50" cy="50" r="8" fill="#13D9F2"/>
               <defs>
-                <linearGradient id="kontyra-grad-m" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                <linearGradient id="kontyra-sheet-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
                   <stop stop-color="#13D9F2"/>
                   <stop offset="0.5" stop-color="#4B00E8"/>
                   <stop offset="1" stop-color="#E60082"/>
@@ -265,8 +195,8 @@
           </div>
           <div>
             <div class="flex items-center gap-1.5">
-              <span id="mobile-app-name" class="text-xs font-extrabold text-white">DevOS</span>
-              <span id="mobile-app-badge" class="text-[9px] font-mono px-1.5 py-0.2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold">
+              <span id="phone-app-name" class="text-xs font-extrabold text-white">DevOS</span>
+              <span id="phone-app-badge" class="text-[9px] font-mono px-1.5 py-0.2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold">
                 Cloud IDE
               </span>
             </div>
@@ -274,10 +204,10 @@
           </div>
         </div>
 
-        <!-- Right: Bento Launcher & Hamburger Menu Toggle -->
+        <!-- Right: 9-Dot Bento Launcher + Bespoke Kontyra Trigger -->
         <div class="flex items-center gap-2">
           <!-- 9-Dot Bento Launcher -->
-          <button onclick="toggleBento()" class="w-8 h-8 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center transition-all" title="Kontyra Ecosystem">
+          <button onclick="toggleBento()" class="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] flex items-center justify-center transition-all" title="Ecosystem Bento">
             <div class="w-3.5 h-3.5 grid grid-cols-3 gap-[2px]">
               <div class="w-1 h-1 rounded-full bg-cyan-400"></div>
               <div class="w-1 h-1 rounded-full bg-emerald-400"></div>
@@ -291,53 +221,77 @@
             </div>
           </button>
 
-          <!-- Hamburger Drawer Toggle -->
-          <button onclick="toggleDrawer()" class="w-8 h-8 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-white transition-all">
-            <svg id="hamburger-icon" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <!-- The Custom Asymmetric Trigger (Zero ☰) -->
+          <button onclick="toggleBottomSheet()" id="phone-menu-button" class="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] flex items-center justify-center transition-all active:scale-95" title="Open Navigation Sheet">
+            <div id="trigger-pulse-bar" class="trigger-pulse-bar">
+              <span class="bar-top"></span>
+              <div class="bar-mid">
+                <span class="dot-accent"></span>
+                <span class="bar-mid-line"></span>
+              </div>
+            </div>
           </button>
         </div>
       </nav>
 
-      <!-- Simulated Phone Body Content -->
+      <!-- Simulated Phone Screen Body Content -->
       <div class="p-6 space-y-4 text-center">
-        <div class="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 space-y-2 mt-4">
-          <div class="w-10 h-10 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        <div class="p-6 rounded-3xl bg-zinc-950/80 border border-white/10 space-y-3 mt-6">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto">
+            <svg class="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
             </svg>
           </div>
-          <h4 class="text-sm font-bold text-white">Interactive Mobile Shell</h4>
+          <h4 class="text-sm font-bold text-white">Vercel Bottom-Up Navigation</h4>
           <p class="text-xs text-zinc-400 leading-relaxed">
-            Click the <strong class="text-white">9-dot icon</strong> in the top right to open the frosted Ecosystem Grid, or click the <strong class="text-white">Hamburger (☰)</strong> to slide out the navigation drawer.
+            Click the <strong class="text-white">top right trigger</strong> or tap the button below. Watch the sheet rise up smoothly from the bottom of the screen.
           </p>
-          <div class="pt-2 flex justify-center gap-2">
-            <button onclick="toggleDrawer()" class="px-3 py-1.5 rounded-xl bg-white text-black text-xs font-bold shadow-md hover:bg-zinc-200 transition-all">
-              Open Menu Drawer
+          <div class="pt-2">
+            <button onclick="toggleBottomSheet()" class="w-full py-3 px-4 rounded-2xl bg-white text-black font-extrabold text-xs shadow-xl hover:bg-zinc-200 transition-all active:scale-98 flex items-center justify-center gap-2">
+              <span>Open Bottom Sheet</span>
+              <span class="text-[10px] font-mono bg-black/10 px-1.5 py-0.5 rounded">&uarr; Below</span>
             </button>
-            <button onclick="toggleBento()" class="px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-bold hover:bg-white/15 transition-all">
-              Open Ecosystem Grid
-            </button>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-left text-xs space-y-1.5">
+          <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Features of Bottom Sheet:</div>
+          <div class="text-zinc-300 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            100% natural mobile thumb reach zone
+          </div>
+          <div class="text-zinc-300 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            Tactile drag handle bar at top
+          </div>
+          <div class="text-zinc-300 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            Zero generic 3-line hamburger icons
           </div>
         </div>
       </div>
 
-      <!-- SLIDE-OVER DRAWER OVERLAY -->
-      <div id="drawer-overlay" class="absolute inset-0 drawer-overlay opacity-0 pointer-events-none z-40" onclick="toggleDrawer()"></div>
+      <!-- BOTTOM SHEET OVERLAY (Backdrop Dimming) -->
+      <div id="bottom-sheet-overlay" class="absolute inset-0 bottom-sheet-overlay opacity-0 pointer-events-none z-40" onclick="toggleBottomSheet()"></div>
 
-      <!-- SLIDE-OVER DRAWER PANEL -->
-      <div id="drawer-panel" class="absolute inset-y-0 right-0 w-80 max-w-[85%] bg-[#08080a] border-l border-white/10 z-50 drawer-panel translate-x-full flex flex-col justify-between shadow-2xl">
-        <!-- Drawer Header -->
-        <div class="p-4 border-b border-white/10 flex items-center justify-between">
-          <div class="flex items-center gap-2">
+      <!-- VERCEL-STYLE BOTTOM SHEET DRAWER (Slides up from below) -->
+      <div id="bottom-sheet-panel" class="absolute inset-x-0 bottom-0 bg-[#08080b]/95 backdrop-blur-2xl border-t border-white/15 rounded-t-[32px] z-50 bottom-sheet-panel translate-y-full flex flex-col justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.95)] overflow-hidden" style="max-height: 85%;">
+        
+        <!-- Tactile Drag Handle Bar (Signature Vercel / iOS Touchpoint) -->
+        <div class="pt-3 pb-1 cursor-pointer flex justify-center" onclick="toggleBottomSheet()">
+          <div class="w-10 h-1 rounded-full bg-white/25 hover:bg-white/40 transition-colors"></div>
+        </div>
+
+        <!-- Sheet Header -->
+        <div class="px-5 py-3 border-b border-white/10 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
             <div class="w-6 h-6 rounded-lg bg-black border border-white/15 p-0.5 flex items-center justify-center">
               <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
                 <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
-                <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad-d)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M28 72L50 28L72 72" stroke="url(#kontyra-sheet-header-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
                 <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
                 <defs>
-                  <linearGradient id="kontyra-grad-d" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                  <linearGradient id="kontyra-sheet-header-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
                     <stop stop-color="#13D9F2"/>
                     <stop offset="0.5" stop-color="#4B00E8"/>
                     <stop offset="1" stop-color="#E60082"/>
@@ -345,65 +299,80 @@
                 </defs>
               </svg>
             </div>
-            <span class="text-xs font-extrabold text-white tracking-wide">DevOS Menu</span>
+            <span id="sheet-title" class="text-xs font-extrabold text-white tracking-wide">DevOS Workspace</span>
           </div>
-          <button onclick="toggleDrawer()" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-all">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+
+          <!-- Close pill -->
+          <button onclick="toggleBottomSheet()" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-semibold text-zinc-400 hover:text-white transition-all flex items-center gap-1">
+            <span>Dismiss</span>
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
         </div>
 
-        <!-- Categorized Nav Link Groups -->
-        <div class="p-4 space-y-6 overflow-y-auto flex-1">
-          <!-- Group 1 -->
+        <!-- Scrollable Navigation Content -->
+        <div class="p-5 space-y-5 overflow-y-auto max-h-[400px]">
+          <!-- Quick Search Pill in Sheet -->
+          <div class="relative">
+            <input type="text" placeholder="Jump to command or file..." class="w-full py-2.5 pl-9 pr-3 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500/50" />
+            <svg class="w-4 h-4 text-zinc-500 absolute left-3 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+
+          <!-- Group 1: Workspace Navigation -->
           <div class="space-y-1.5">
-            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2">Workspaces</div>
-            <a href="#" class="flex items-center justify-between px-3 py-2 rounded-xl bg-white/[0.04] border border-white/[0.06] text-xs font-semibold text-white relative overflow-hidden group">
-              <div id="drawer-accent-pill" class="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-cyan-400 shadow-[0_0_8px_rgba(19,217,242,0.8)]"></div>
-              <span class="pl-2">Primary Sandbox</span>
-              <span class="text-[10px] font-mono text-zinc-400 bg-white/5 px-1.5 py-0.5 rounded">Active</span>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2">Navigation Links</div>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-xs font-semibold text-white relative overflow-hidden group">
+              <div id="sheet-accent-pill" class="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-cyan-400 shadow-[0_0_8px_rgba(19,217,242,0.8)]"></div>
+              <span class="pl-2">Primary Workspace</span>
+              <span class="text-[10px] font-mono text-zinc-400 bg-white/5 px-2 py-0.5 rounded-full">Active</span>
             </a>
-            <a href="#" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
-              <span class="pl-2">Containers &amp; Pods</span>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <span class="pl-2">Sandboxes &amp; Pods</span>
             </a>
-            <a href="#" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
-              <span class="pl-2">Git Deployments</span>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <span class="pl-2">Deployments &amp; CI/CD</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <span class="pl-2">Terminal Shell</span>
             </a>
           </div>
 
-          <!-- Group 2 -->
-          <div class="space-y-1.5">
-            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2">Ecosystem Hub</div>
-            <a href="https://accounts.kontyra.name.ng" target="_blank" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
-              <span class="pl-2">Accounts &amp; SSO</span>
-              <svg class="w-3.5 h-3.5 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-            <a href="https://docs.kontyra.name.ng" target="_blank" class="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white/[0.03] text-xs font-medium text-zinc-400 hover:text-white transition-colors">
-              <span class="pl-2">Documentation</span>
-              <svg class="w-3.5 h-3.5 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
+          <!-- Group 2: Quick Ecosystem Tiles -->
+          <div class="space-y-2">
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider px-2">Ecosystem Quick-Jump</div>
+            <div class="grid grid-cols-2 gap-2">
+              <a href="https://accounts.kontyra.name.ng" target="_blank" class="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/20 flex items-center gap-2 text-xs text-zinc-300 hover:text-white transition-all">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span class="font-bold">Accounts SSO</span>
+              </a>
+              <a href="https://docs.kontyra.name.ng" target="_blank" class="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/20 flex items-center gap-2 text-xs text-zinc-300 hover:text-white transition-all">
+                <span class="w-2 h-2 rounded-full bg-zinc-400"></span>
+                <span class="font-bold">Docs &amp; APIs</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Drawer Bottom User Profile Card -->
-        <div class="p-3 border-t border-white/10 bg-[#060608]">
-          <div class="flex items-center justify-between p-2 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+        <!-- Sheet Bottom User Card -->
+        <div class="p-3 border-t border-white/10 bg-[#050507]">
+          <div class="flex items-center justify-between p-2.5 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
             <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-xs text-white">
+              <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-xs text-white shadow-inner">
                 P
               </div>
               <div>
-                <div class="text-xs font-bold text-white">@professor</div>
-                <div class="text-[10px] text-zinc-400">oladoyeheritage445@...</div>
+                <div class="text-xs font-bold text-white flex items-center gap-1.5">
+                  Heritage Oladoye
+                  <span class="text-[9px] font-mono text-cyan-400 bg-cyan-500/10 px-1 rounded">Pro</span>
+                </div>
+                <div class="text-[10px] text-zinc-500 font-mono">oladoyeheritage445@...</div>
               </div>
             </div>
-            <button class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-red-400 transition-colors" title="Sign Out">
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-red-400 transition-colors" title="Sign Out">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
             </button>
@@ -414,19 +383,18 @@
     </div>
   </section>
 
-  <!-- BENTO ECOSYSTEM GRID MODAL (Interactive) -->
+  <!-- BENTO ECOSYSTEM GRID MODAL -->
   <div id="bento-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
     <div class="w-full max-w-lg glass-card rounded-3xl p-6 border border-white/15 shadow-2xl relative space-y-4 transform scale-95 transition-transform duration-300" id="bento-card-inner">
-      <!-- Header -->
       <div class="flex items-center justify-between pb-3 border-b border-white/10">
         <div class="flex items-center gap-2">
           <div class="w-6 h-6 rounded-lg bg-black border border-white/15 p-1 flex items-center justify-center">
             <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
               <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
-              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-grad-b)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-sheet-bento-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
               <defs>
-                <linearGradient id="kontyra-grad-b" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                <linearGradient id="kontyra-sheet-bento-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
                   <stop stop-color="#13D9F2"/>
                   <stop offset="0.5" stop-color="#4B00E8"/>
                   <stop offset="1" stop-color="#E60082"/>
@@ -443,9 +411,7 @@
         </button>
       </div>
 
-      <!-- 2-Column Bento Grid of official products -->
       <div class="grid grid-cols-2 gap-3 pt-1">
-        <!-- DevOS -->
         <a href="https://devos.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
           <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -460,7 +426,6 @@
           </div>
         </a>
 
-        <!-- Accounts -->
         <a href="https://accounts.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
           <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -475,7 +440,6 @@
           </div>
         </a>
 
-        <!-- REASTUDIA -->
         <a href="https://reastudia.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
           <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -490,7 +454,6 @@
           </div>
         </a>
 
-        <!-- Novelora -->
         <a href="https://novelora.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
           <div class="w-9 h-9 rounded-xl bg-amber-600/10 border border-amber-600/20 text-amber-300 flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -505,7 +468,6 @@
           </div>
         </a>
 
-        <!-- Kora AI -->
         <a href="https://kora.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
           <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -520,7 +482,6 @@
           </div>
         </a>
 
-        <!-- VUX Events -->
         <a href="https://vux.kontyra.name.ng" target="_blank" class="bento-card p-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex items-start gap-3">
           <div class="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -536,7 +497,6 @@
         </a>
       </div>
 
-      <!-- Bottom link to Documentation -->
       <div class="pt-2 text-center border-t border-white/5">
         <a href="https://docs.kontyra.name.ng" target="_blank" class="text-xs font-semibold text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-1">
           Explore developer documentation &amp; API reference &rarr;
@@ -589,11 +549,15 @@
       }
     };
 
+    let bottomSheetOpen = false;
+    let bentoOpen = false;
+
     function setProduct(key) {
       const p = PRODUCTS[key];
       if (!p) return;
 
-      // Update button highlights
+      document.documentElement.style.setProperty('--accent', p.color);
+
       ['devos', 'accounts', 'reastudia', 'kora', 'vux'].forEach(k => {
         const btn = document.getElementById(`btn-${k}`);
         if (k === key) {
@@ -603,43 +567,36 @@
         }
       });
 
-      // Update Desktop Bar
-      document.getElementById('desktop-app-name').innerText = p.name;
-      const dBadge = document.getElementById('desktop-app-badge');
-      dBadge.innerText = p.badge;
-      dBadge.className = `text-[10px] font-mono px-2 py-0.5 rounded-full border ${p.badgeClass} font-semibold`;
-      document.getElementById('desktop-active-dot').className = `w-1.5 h-1.5 rounded-full ${p.dotClass}`;
-
-      // Update Mobile Bar
-      document.getElementById('mobile-app-name').innerText = p.shortName;
-      const mBadge = document.getElementById('mobile-app-badge');
-      mBadge.innerText = p.badge;
-      mBadge.className = `text-[9px] font-mono px-1.5 py-0.2 rounded-full border ${p.badgeClass} font-semibold`;
-
-      // Update Drawer accent pill
-      document.getElementById('drawer-accent-pill').className = `absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full ${p.dotClass}`;
+      document.getElementById('phone-app-name').innerText = p.shortName;
+      const pBadge = document.getElementById('phone-app-badge');
+      pBadge.innerText = p.badge;
+      pBadge.className = `text-[9px] font-mono px-1.5 py-0.2 rounded-full border ${p.badgeClass} font-semibold`;
+      document.getElementById('sheet-title').innerText = `${p.shortName} Workspace`;
+      document.getElementById('sheet-accent-pill').className = `absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full ${p.dotClass}`;
+      document.getElementById('logo-optic-dot').setAttribute('fill', p.color);
     }
 
-    let drawerOpen = false;
-    function toggleDrawer() {
-      drawerOpen = !drawerOpen;
-      const overlay = document.getElementById('drawer-overlay');
-      const panel = document.getElementById('drawer-panel');
+    function toggleBottomSheet() {
+      bottomSheetOpen = !bottomSheetOpen;
+      const overlay = document.getElementById('bottom-sheet-overlay');
+      const panel = document.getElementById('bottom-sheet-panel');
+      const trigger = document.getElementById('trigger-pulse-bar');
 
-      if (drawerOpen) {
+      if (bottomSheetOpen) {
         overlay.classList.remove('opacity-0', 'pointer-events-none');
         overlay.classList.add('opacity-100', 'pointer-events-auto');
-        panel.classList.remove('translate-x-full');
-        panel.classList.add('translate-x-0');
+        panel.classList.remove('translate-y-full');
+        panel.classList.add('translate-y-0');
+        trigger.classList.add('active');
       } else {
         overlay.classList.add('opacity-0', 'pointer-events-none');
         overlay.classList.remove('opacity-100', 'pointer-events-auto');
-        panel.classList.add('translate-x-full');
-        panel.classList.remove('translate-x-0');
+        panel.classList.add('translate-y-full');
+        panel.classList.remove('translate-y-0');
+        trigger.classList.remove('active');
       }
     }
 
-    let bentoOpen = false;
     function toggleBento() {
       bentoOpen = !bentoOpen;
       const modal = document.getElementById('bento-modal');
@@ -658,11 +615,8 @@
       }
     }
 
-    // Close bento on clicking outside
     document.getElementById('bento-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'bento-modal') {
-        toggleBento();
-      }
+      if (e.target.id === 'bento-modal') toggleBento();
     });
   </script>
 </body>

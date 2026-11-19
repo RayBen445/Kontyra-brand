@@ -12,6 +12,7 @@ This document establishes the mandatory visual, dimensional, and behavioral spec
 | **Desktop Bar Height** | `64px` | `h-16` | Standard top application bar |
 | **Drawer Max Width** | `352px` | `w-84 max-w-[88vw]` | Right-anchored slide-over on viewports `< 768px` |
 | **Background Color** | Pure Black (`#000000` / `#070707`) | `bg-black/85 backdrop-blur-xl` | High contrast, deep OLED blacks |
+| **Menu Trigger Rule** | **Zero Triple Hamburgers (No generic ☰)** | Custom Kontyra Trigger | Asymmetric Pulse Dash / Bento Matrix / Prism Delta |
 | **Border Boundary** | Hairline 1px | `border-b border-white/[0.08]` | Subdued boundaries without heavy cards |
 | **Ecosystem Launcher** | 9-Dot Bento (`LayoutGrid`) | `w-4 h-4 text-zinc-300` | Mandatory in top bar across all Kontyra apps |
 
@@ -24,10 +25,14 @@ This document establishes the mandatory visual, dimensional, and behavioral spec
    - **Right**:
      - Action Slot (optional: search, credits, notifications).
      - **9-Dot Ecosystem Launcher (`LayoutGrid`)**: Opens the 8-app frosted bento popover grid.
-     - **Hamburger Toggle (`Menu` / `X`)**: Triggers the slide-over drawer with spring transition.
+     - **Bespoke Kontyra Menu Trigger (STRICTLY NO 3-LINE HAMBURGERS)**:
+       - Uses Kontyra's signature **Asymmetric Pulse Dash** (a sleek 20px top bar, glowing live accent dot, and 13px lower line) that smoothly morphs into an `✕` upon opening, or the **Bento Matrix / Kontyra Prism**.
+       - Generic horizontal 3-bar hamburger icons (`☰`) are strictly forbidden across Kontyra products.
 
-2. **Mobile Slide-Over Drawer**:
-   - **Header**: Brand mark + App Name + Close button (`X`).
+2. **Mobile Bottom Sheet Drawer (Vercel-Style: Opens from Below)**:
+   - **Transition Origin**: Slides smoothly upward from the bottom viewport boundary (`translate-y-full` &rarr; `translate-y-0`) instead of sliding from the side.
+   - **Tactile Drag Handle**: Centered tactile pill (`w-10 h-1 rounded-full bg-white/25 hover:bg-white/40`) at the top edge of the sheet for thumb gesture feedback.
+   - **Header**: Brand mark + App Name + Dismiss pill button.
    - **Categorized Link Groups**: Grouped with monospace uppercase headers (`text-[10px] font-mono text-zinc-500 uppercase tracking-wider`).
    - **Active State Indicator**: Left border pill (`w-1 h-5 rounded-r-full`) matching the application's signature accent color with a subtle glow, accompanied by active white typography.
    - **Bottom User Card**:
