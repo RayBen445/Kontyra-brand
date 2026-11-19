@@ -120,3 +120,21 @@ VITE_FIREBASE_AUTH_DOMAIN="caramel-vim-470321-v6.firebaseapp.com"
 - **Ecosystem App Switcher:** 9-Dot Bento (`LayoutGrid`) linking across all 8 Kontyra web products.
 - **Heights:** 56px (`h-14`) on mobile, 64px (`h-16`) on desktop.
 
+---
+
+## 7. Product Implementation Instructions & Security Directives
+
+Actionable checklists and implementation directives for product engineering teams:
+
+| Domain / Product | Implementation Instruction Path | Target Responsibility |
+| :--- | :--- | :--- |
+| **Enterprise Cybersecurity** | [`security/cybersecurity-implementation-instruction.md`](./security/cybersecurity-implementation-instruction.md) | OWASP ASVS L2, zero-trust server validation, session revocation |
+| **Kontyra Console** | [`product-guidelines/console-implementation-instruction.md`](./product-guidelines/console-implementation-instruction.md) | RBAC, API keys, quota meters, immutable audit trails |
+| **VUX Events** | [`product-guidelines/vux-implementation-instruction.md`](./product-guidelines/vux-implementation-instruction.md) | Dynamic QR ticketing, gate scanner, Resend transactional dispatch |
+| **DevOS Platform** | [`product-guidelines/devos-implementation-instruction.md`](./product-guidelines/devos-implementation-instruction.md) | Stability lockdown, provider-independent AI gateway, Qwen |
+| **Kontyra Identity** | [`product-guidelines/identity-implementation-instruction.md`](./product-guidelines/identity-implementation-instruction.md) | Central SSO, WebAuthn replay defense, dual-key Resend |
+| **VyntaJobs** | [`product-guidelines/vyntajobs-implementation-instruction.md`](./product-guidelines/vyntajobs-implementation-instruction.md) | Escrow milestones, talent marketplace, SSO gateway |
+| **Kora AI** | [`product-guidelines/kora-ai-implementation-instruction.md`](./product-guidelines/kora-ai-implementation-instruction.md) | Internal model family, zero public consumer API boundary |
+| **Hearth (Sunset)** | [`product-guidelines/hearth-sunset-instruction.md`](./product-guidelines/hearth-sunset-instruction.md) | Deprecation, HTTP 410 redirects, bento switcher cleanup |
+
+
