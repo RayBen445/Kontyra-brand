@@ -80,9 +80,11 @@ Whenever an interactive box or card is selected or focused, wrap or animate a sm
 ## 3. Navigation Bar Architecture (Height: Exactly 56px)
 
 1. **Sticky Top:** `h-14` (`56px`), `bg-black/85 backdrop-blur-xl border-b border-white/[0.08]`.
-2. **Left Logo:** Use the official Kontyra gradient SVG vector mark (not bare text).
-3. **No 3-Line Hamburger:** Mobile menu and ecosystem drawer MUST use the **Modern Bento App Grid Icon** (`2x2` rounded micro-squares with app accent hover).
-4. **App Launcher Sheet:** Clicking the bento icon opens the 6-app ecosystem sheet (DevOS, Accounts, API, Docs, Novelora, VUX).
+2. **Left Logo:** Use the official Kontyra gradient SVG vector mark (`viewBox="240 285 545 340"` from `kontyra-gradient.svg`).
+3. **STRICTLY NO 3-Line Hamburger (☰):** Generic horizontal 3-line hamburger buttons are forbidden. Mobile headers deploy **Kontyra Proprietary Triggers**:
+   - **Asymmetric Pulse Dash (Primary):** Sleek 20px top bar + 10px lower dash with live accent optic dot (`animate-pulse`), smoothly morphing to `✕`.
+   - **Bento Launcher:** `LayoutGrid` 9-dot / 4-dot ecosystem launcher.
+4. **Vercel-Style Bottom Sheet Drawer:** Mobile navigation slides up from below (`translate-y-full` &rarr; `translate-y-0`) with a centered tactile drag handle pill (`w-10 h-1 rounded-full bg-white/20`).
 
 ---
 
@@ -98,7 +100,21 @@ Whenever an interactive box or card is selected or focused, wrap or animate a sm
 
 ---
 
-## 5. Official Ecosystem Footer (4 Tiers)
+## 5. Official Loading State Standard (Kontyra Vector Logo)
+
+> [!IMPORTANT]
+> **NEVER USE GENERIC SPINNERS, ARBITRARY CHEVRONS, OR CIRCLES.**
+> All loading events across Kontyra products must embody the authentic dual-loop infinity vector geometry (`kontyra-gradient.svg`).
+
+### 4 Approved Archetypes:
+1. **Neural Pulse (Core Boot / Splash):** Twin-loop logo breathing (`scale(0.97)` to `scale(1.04)`) with volumetric dual-neon Cyan & Magenta atmospheric glow, flanked by dual concentric orbiting photon rings.
+2. **Laser Contour Trace (Execution & Terminal):** High-intensity laser beam traveling directly along the genuine SVG paths of the Kontyra twin loops using synchronized `stroke-dasharray` and `stroke-dashoffset` (`#13D9F2` on left loop, `#E60082` on main loop).
+3. **Chromatic Aura Sweep (Security / SSO):** 360-degree rotating conic gradient halo (`#13D9F2` &rarr; `#4B00E8` &rarr; `#E60082`) surrounding a frosted glass tile with specular logo glint.
+4. **Kinetic Micro-Loader (In-Button & Inline Badges):** 20px compact authentic logo with breathing glow for buttons ("Authenticating...", "Minting Token...").
+
+---
+
+## 6. Official Ecosystem Footer (4 Tiers)
 
 Every web application (unless in an embedded full-screen IDE code editor) must anchor with the standard 4-column footer:
 - **Products:** DevOS, Kontyra Identity, KORA AI, VUX Events, VyntaJobs, Novelora.

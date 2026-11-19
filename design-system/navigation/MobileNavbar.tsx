@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Menu,
-  X,
   LayoutGrid,
   ChevronRight,
   ExternalLink,
@@ -15,6 +13,7 @@ import {
   Zap,
   Activity,
   Building2,
+  X,
 } from 'lucide-react';
 
 export interface EcosystemApp {
@@ -145,10 +144,49 @@ export interface MobileNavbarProps {
   onNavigate?: (href: string) => void;
 }
 
+/**
+ * Authentic Dual-Loop Kontyra Brand Mark Vector
+ */
+export const KontyraLogoVector: React.FC<{ className?: string; idPrefix?: string }> = ({
+  className = 'w-5 h-5',
+  idPrefix = 'k-mob',
+}) => (
+  <svg
+    viewBox="240 285 545 340"
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id={`${idPrefix}-left`} x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#13D9F2" />
+        <stop offset="48%" stopColor="#079BFF" />
+        <stop offset="100%" stopColor="#0B45E8" />
+      </linearGradient>
+      <linearGradient id={`${idPrefix}-main`} x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#1747F2" />
+        <stop offset="38%" stopColor="#4B00E8" />
+        <stop offset="68%" stopColor="#B000D5" />
+        <stop offset="100%" stopColor="#E60082" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M 392.00 297.00 L 391.00 298.00 C 378.02 301.60 365.17 305.62 352.48 310.37 C 327.91 319.49 304.70 332.06 283.47 348.06 C 274.63 354.76 266.39 362.24 259.03 370.52 C 250.77 379.80 244.60 390.69 241.67 402.77 C 238.74 414.73 240.23 427.67 246.51 438.45 C 251.34 446.81 258.82 453.86 267.31 458.74 C 278.48 465.17 291.04 468.22 303.62 469.75 C 322.25 472.07 341.09 471.21 359.62 468.60 C 383.15 465.34 406.49 458.37 428.69 448.97 C 445.62 441.77 461.94 433.00 477.53 423.01 C 491.50 414.07 505.02 404.41 517.92 393.99 C 524.28 388.89 530.40 383.47 536.42 377.94 L 538.00 376.51 L 539.00 377.49 C 543.83 382.49 548.89 387.27 554.02 391.95 C 555.45 393.25 556.75 394.70 558.20 395.97 C 564.12 401.21 570.18 406.31 576.49 411.13 C 585.55 418.06 595.03 424.47 604.81 430.34 C 619.68 439.29 635.43 446.73 651.81 452.61 C 668.51 458.62 685.92 462.67 703.61 464.49 C 720.67 466.26 738.16 465.17 754.91 461.27 C 765.17 458.89 775.47 454.89 784.05 448.45 C 790.62 443.51 796.22 436.90 799.41 429.23 C 802.73 421.17 803.54 411.96 801.37 403.56 C 799.04 394.52 793.63 386.35 786.85 379.83 C 777.62 371.02 766.75 363.95 755.44 358.33 C 739.06 350.15 721.43 344.75 703.50 341.67 C 685.91 338.64 667.92 338.25 650.21 340.59 C 631.78 343.00 613.62 347.88 596.24 354.75 C 584.05 359.54 572.23 365.48 560.85 372.27 C 554.21 376.24 547.74 380.52 541.42 385.03 C 540.35 385.79 539.73 385.93 538.74 384.97 C 532.48 379.03 525.86 373.49 519.00 368.21 C 506.77 358.74 493.79 350.28 480.24 342.92 C 463.38 333.72 445.45 326.23 426.90 320.67 C 415.42 317.24 403.80 314.48 392.00 312.65 L 392.00 297.00 Z"
+      fill={`url(#${idPrefix}-left)`}
+      fillRule="evenodd"
+    />
+    <path
+      d="M 440.00 447.00 L 461.00 468.00 C 476.99 484.01 493.67 499.27 511.00 513.79 C 527.79 527.85 545.46 540.78 563.85 552.48 C 587.89 567.80 613.25 580.89 640.17 590.73 C 659.88 597.94 680.45 603.20 701.27 605.99 C 719.98 608.52 739.06 608.59 757.73 605.85 C 770.83 603.93 783.89 599.99 795.73 593.67 C 805.91 588.22 815.11 580.47 821.36 570.61 C 826.96 561.73 829.74 551.18 829.49 540.66 C 829.23 529.75 825.81 519.00 819.78 509.84 C 812.59 498.98 802.93 489.92 792.04 482.78 C 777.63 473.34 761.76 466.08 745.22 461.04 C 730.08 456.41 714.39 453.64 698.61 452.88 C 682.26 452.09 665.91 453.61 649.79 457.26 C 632.74 461.12 616.27 467.58 600.56 475.87 C 586.29 483.42 572.76 492.45 560.10 502.77 C 553.48 508.15 547.05 513.80 540.85 519.67 L 538.00 522.37 L 536.00 520.48 C 527.75 512.72 519.09 505.41 510.07 498.68 C 499.76 491.01 488.94 484.09 477.72 477.92 C 465.34 471.12 452.62 465.04 439.53 459.77 L 440.00 447.00 Z"
+      fill={`url(#${idPrefix}-main)`}
+      fillRule="evenodd"
+    />
+  </svg>
+);
+
 export const MobileNavbar: React.FC<MobileNavbarProps> = ({
   appName,
   appBadge,
-  logoUrl = '/logo.svg',
+  logoUrl,
   accentColor = '#10B981',
   navGroups,
   actionsSlot,
@@ -200,7 +238,11 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
         {/* Brand Lockup */}
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden shrink-0">
-            <img src={logoUrl} alt={appName} className="w-5 h-5 object-contain" />
+            {logoUrl ? (
+              <img src={logoUrl} alt={appName} className="w-5 h-5 object-contain" />
+            ) : (
+              <KontyraLogoVector className="w-6 h-6" idPrefix="nav-hdr" />
+            )}
           </div>
           <div className="flex items-center gap-1.5">
             <span className="font-extrabold text-sm tracking-tight text-white">{appName}</span>
@@ -220,7 +262,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
         </div>
 
         {/* Action Controls & Launcher */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           {actionsSlot}
 
           {/* 9-Dot Ecosystem Launcher */}
@@ -267,7 +309,9 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
                         className="flex flex-col justify-between p-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 transition-all"
                       >
                         <div className="flex items-center justify-between mb-1">
-                          <div className={`w-6 h-6 rounded-lg bg-gradient-to-br ${app.color} flex items-center justify-center text-white shrink-0`}>
+                          <div
+                            className={`w-6 h-6 rounded-lg bg-gradient-to-br ${app.color} flex items-center justify-center text-white shrink-0`}
+                          >
                             <Icon className="w-3 h-3" />
                           </div>
                           <span className="text-[7px] font-mono uppercase px-1 py-0.5 rounded bg-white/5 text-zinc-400">
@@ -283,42 +327,70 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
             )}
           </div>
 
-          {/* Menu Drawer Toggle */}
+          {/* Bespoke Kontyra Asymmetric Pulse Dash Menu Trigger (ZERO Generic ☰ Hamburgers) */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-white bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 active:scale-95 transition-all"
+            className="w-9 h-9 flex flex-col items-center justify-center gap-1.5 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 active:scale-95 transition-all focus:outline-none"
             aria-label="Toggle Navigation Drawer"
           >
-            {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            {isOpen ? (
+              <X className="w-4 h-4 text-white" />
+            ) : (
+              <div className="flex flex-col items-start gap-1 w-5">
+                {/* 20px Top Dash */}
+                <span className="w-5 h-[2px] bg-white rounded-full transition-all" />
+                {/* Asymmetric Mid Line with live accent optic dot */}
+                <div className="flex items-center gap-1">
+                  <span
+                    className="w-1.5 h-1.5 rounded-full animate-pulse shrink-0"
+                    style={{
+                      backgroundColor: accentColor,
+                      boxShadow: `0 0 6px ${accentColor}`,
+                    }}
+                  />
+                  <span className="w-2.5 h-[2px] bg-white/70 rounded-full" />
+                </div>
+              </div>
+            )}
           </button>
         </div>
       </header>
 
-      {/* Slide-Over Drawer Navigation (< 768px) */}
+      {/* Vercel-Style Bottom Sheet Drawer (< 768px: Opens from Below) */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 z-50 flex justify-end">
+        <div className="md:hidden fixed inset-0 z-50 flex flex-col justify-end">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Drawer Panel */}
-          <aside className="relative w-84 max-w-[88vw] h-full flex flex-col justify-between bg-zinc-950 border-l border-white/10 p-5 shadow-2xl z-10 overflow-y-auto">
+          {/* Bottom Sheet Drawer Panel */}
+          <div className="relative w-full max-h-[85vh] flex flex-col justify-between bg-zinc-950/98 border-t border-white/15 rounded-t-3xl p-5 shadow-2xl z-10 overflow-y-auto animate-in slide-in-from-bottom duration-300">
+            {/* Centered Tactile Drag Handle Pill */}
+            <div className="w-10 h-1 rounded-full bg-white/20 hover:bg-white/40 mx-auto mb-4 shrink-0 transition-colors cursor-grab" />
+
             <div className="space-y-6">
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
-                    <img src={logoUrl} alt={appName} className="w-4 h-4 object-contain" />
+                  <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+                    {logoUrl ? (
+                      <img src={logoUrl} alt={appName} className="w-5 h-5 object-contain" />
+                    ) : (
+                      <KontyraLogoVector className="w-6 h-6" idPrefix="sheet-hdr" />
+                    )}
                   </div>
-                  <span className="font-extrabold text-sm tracking-tight text-white">{appName}</span>
+                  <div>
+                    <span className="font-extrabold text-sm tracking-tight text-white block">{appName}</span>
+                    <span className="text-[10px] font-mono text-zinc-400">Kontyra Unified Navigation</span>
+                  </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 rounded-lg bg-white/5 text-zinc-400 hover:text-white border border-white/10"
+                  className="p-1.5 rounded-xl bg-white/5 text-zinc-400 hover:text-white border border-white/10"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -331,7 +403,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
                     <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-500 px-2">
                       {group.title}
                     </p>
-                    <div className="space-y-0.5">
+                    <div className="space-y-1">
                       {group.items.map((item) => {
                         const Icon = item.icon;
                         const isCurrent = item.isActive;
@@ -439,10 +511,11 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
                 )}
               </div>
             </div>
-          </aside>
+          </div>
         </div>
       )}
     </>
   );
 };
+
 export default MobileNavbar;

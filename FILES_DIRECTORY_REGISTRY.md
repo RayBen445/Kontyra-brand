@@ -18,8 +18,11 @@
 | **Design Tokens (CSS)** | `design-system/tokens/design-tokens.css` | Import directly into your global CSS |
 | **Universal Topbar (56px)** | `design-system/navigation/navbar.md` | Standard layout, mobile drawer, app switcher |
 | **Universal Mobile Navbar** | `implementation/components/nav/` | Drop-in React/Vite/Next.js MobileNavbar component |
+| **Mobile Navbar Standard** | `standards/08-mobile-navbar-standard.md` | Vercel-style bottom sheet, Asymmetric Pulse Dash |
+| **Logo Loading States** | `design-system/components/loading-states.md` | Authentic dual-loop vector loaders, Laser Contour Trace |
 | **Universal Footer** | `design-system/navigation/footer-standard.md` | Ecosystem links, copyright, legal links |
 | **Interactive UI Sandbox** | `preview/index.html` | Open in browser to see all buttons, cards, boxes |
+| **Navbar & Loaders Showcase** | `preview/navbar-showcase.html` | Live phone simulator, bottom-up drawer, 4 loading archetypes |
 | **Cloudflare R2 Media Guide**| `standards/07-cloudflare-r2-media-storage.md` | Direct upload, credentials, CDN URL, app folders |
 | **SSO & Auth Integration** | `standards/01-identity-and-sso.md` | Kontyra SSO login, OAuth PKCE, token exchange |
 | **Email & Resend Config** | `standards/03-email-and-notifications.md` | Resend API keys, sending domains, HTML template |
