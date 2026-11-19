@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontyra — Vercel-Style Bottom Sheet &amp; Logo Loading States</title>
+  <title>Kontyra — Official Logo Loading States &amp; Vercel-Style Bottom Sheet</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -100,71 +100,67 @@
       border-radius: 2px;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    /* When active (open) */
     .trigger-pulse-bar.active .bar-top {
       transform: translateY(3.5px) rotate(45deg);
       width: 18px;
+    }
+    .trigger-pulse-bar.active .bar-mid {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+    .trigger-pulse-bar.active .bar-mid-line {
+      width: 18px;
+      background: #ffffff;
     }
     .trigger-pulse-bar.active .dot-accent {
       opacity: 0;
       transform: scale(0);
     }
-    .trigger-pulse-bar.active .bar-mid-line {
-      transform: translateY(-3.5px) rotate(-45deg);
-      width: 18px;
-      background: #ffffff;
-    }
 
-    /* ========================================================= */
-    /* KONTYRA LOGO LOADING STATE ANIMATIONS                      */
-    /* ========================================================= */
+    /* ========================================================================= */
+    /* KEYFRAME ANIMATIONS FOR THE GENUINE KONTYRA LOGO LOADERS                  */
+    /* ========================================================================= */
 
-    /* 1. Neural Orbit Spinners */
-    @keyframes orbitClockwise {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes orbitCounterClockwise {
-      0% { transform: rotate(360deg); }
-      100% { transform: rotate(0deg); }
-    }
-    @keyframes logoPulseGlow {
+    /* 1. Breathing Logo Pulse with Ambient Neon Aura */
+    @keyframes kontyraGlowPulse {
       0%, 100% {
-        transform: scale(0.96);
-        filter: drop-shadow(0 0 16px rgba(19, 217, 242, 0.3)) drop-shadow(0 0 25px rgba(230, 0, 130, 0.2));
+        transform: scale(0.97);
+        filter: drop-shadow(0 0 16px rgba(19, 217, 242, 0.35)) drop-shadow(0 0 32px rgba(230, 0, 130, 0.25));
       }
       50% {
         transform: scale(1.04);
-        filter: drop-shadow(0 0 28px rgba(19, 217, 242, 0.7)) drop-shadow(0 0 45px rgba(230, 0, 130, 0.5));
+        filter: drop-shadow(0 0 28px rgba(19, 217, 242, 0.7)) drop-shadow(0 0 52px rgba(230, 0, 130, 0.55));
       }
     }
-    @keyframes opticRingTrace {
-      0% { stroke-dashoffset: 400; }
-      50% { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: -400; }
+    .animate-kontyra-pulse {
+      animation: kontyraGlowPulse 2.4s ease-in-out infinite;
     }
 
+    /* Orbital Twin Energy Particles */
+    @keyframes orbitClockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes orbitCounterClockwise {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
     .animate-orbit-cw {
       animation: orbitClockwise 2.8s linear infinite;
     }
     .animate-orbit-ccw {
       animation: orbitCounterClockwise 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
-    .animate-logo-pulse {
-      animation: logoPulseGlow 2.2s ease-in-out infinite;
-    }
 
-    /* 2. Laser Path Trace Animation */
-    @keyframes laserDashOffset {
+    /* 2. Laser Path Trace Animation along actual Kontyra Logo contours */
+    @keyframes laserKontyraStroke {
       0% {
-        stroke-dashoffset: 1200;
+        stroke-dashoffset: 1400;
         opacity: 0.2;
       }
-      30% {
+      25% {
         opacity: 1;
       }
-      70% {
+      75% {
         opacity: 1;
       }
       100% {
@@ -172,10 +168,16 @@
         opacity: 0.3;
       }
     }
-    .laser-stroke {
-      stroke-dasharray: 600;
-      stroke-dashoffset: 1200;
-      animation: laserDashOffset 3s ease-in-out infinite alternate;
+    .kontyra-laser-left {
+      stroke-dasharray: 500 900;
+      stroke-dashoffset: 1400;
+      animation: laserKontyraStroke 2.6s ease-in-out infinite alternate;
+    }
+    .kontyra-laser-main {
+      stroke-dasharray: 600 1000;
+      stroke-dashoffset: 1600;
+      animation: laserKontyraStroke 2.6s ease-in-out infinite alternate;
+      animation-delay: 0.3s;
     }
 
     /* 3. Conic Rotating Sweep */
@@ -191,8 +193,8 @@
       position: absolute;
       inset: -2px;
       border-radius: inherit;
-      background: conic-gradient(from 0deg, #13D9F2, #4B00E8, #E60082, transparent 65%, #13D9F2);
-      animation: conicSpin 2s linear infinite;
+      background: conic-gradient(from 0deg, #13D9F2, #4B00E8, #E60082, transparent 60%, #13D9F2);
+      animation: conicSpin 2.2s linear infinite;
       z-index: 0;
     }
     .conic-sweep-inner {
@@ -202,7 +204,7 @@
       z-index: 1;
     }
 
-    /* 4. Skeleton Shimmer Wave */
+    /* 4. Skeleton Shimmer Wave using Kontyra gradient colors */
     @keyframes skeletonKontyraWave {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(200%); }
@@ -215,8 +217,32 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(19, 217, 242, 0.08), rgba(230, 0, 130, 0.12), transparent);
+      background: linear-gradient(90deg, transparent, rgba(19, 217, 242, 0.12), rgba(230, 0, 130, 0.16), transparent);
       animation: skeletonKontyraWave 1.8s infinite;
+    }
+
+    /* Specular Glint Across Logo */
+    @keyframes logoSpecularSweep {
+      0% { transform: translateX(-120%) rotate(25deg); opacity: 0; }
+      40% { opacity: 0.6; }
+      60% { opacity: 0.6; }
+      100% { transform: translateX(200%) rotate(25deg); opacity: 0; }
+    }
+    .specular-glint {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .specular-glint::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 0;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      animation: logoSpecularSweep 3s ease-in-out infinite;
     }
 
     .device-shadow {
@@ -230,15 +256,15 @@
   <header class="max-w-4xl mx-auto text-center space-y-4 pt-6">
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-medium">
       <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-      VERCEL-STYLE BOTTOM SHEET &bull; KONTYRA LOGO LOADING SUITE
+      GENUINE KONTYRA LOGO LOADING SUITE &bull; VERCEL-STYLE BOTTOM SHEET
     </div>
 
     <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
-      Design System &bull; Navigation &amp; Logo Loaders
+      Kontyra Brand System Showcase
     </h1>
 
     <p class="text-sm md:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-      Two complete specifications: <strong class="text-white">1. Vercel-style mobile drawer rising from below</strong> (without triple hamburgers), and <strong class="text-white">2. Proprietary Kontyra Logo Loading States</strong> for full-page boots, sandboxes, and inline buttons.
+      Crafted with the <strong class="text-white">authentic Kontyra dual-loop vector geometry</strong> (Cyan to Blue &amp; Violet to Magenta). Includes our <strong class="text-white">Vercel-style bottom-up mobile drawer</strong> (strictly zero triple-hamburgers).
     </p>
 
     <!-- PRODUCT THEME SWITCHER -->
@@ -269,10 +295,10 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-4 gap-2">
       <div>
         <div class="flex items-center gap-2">
-          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/20 text-purple-300 font-semibold uppercase">Specification A</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/20 text-cyan-300 font-semibold uppercase">Specification A</span>
           <h2 class="text-xl font-bold text-white">Official Kontyra Logo Loading Suite</h2>
         </div>
-        <p class="text-xs text-zinc-400 mt-1">Four kinetic states crafted specifically around the Kontyra orbital vector mark</p>
+        <p class="text-xs text-zinc-400 mt-1">Four kinetic states built directly on the genuine Kontyra infinity vector geometry</p>
       </div>
       <button onclick="triggerFullscreenLoader()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold text-xs shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2">
         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -283,125 +309,133 @@
       </button>
     </div>
 
-    <!-- 4 Cards Grid of Loaders -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- 4 LOADER CARDS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <!-- Loader 1: Neural Orbit Loader (Primary Brand State) -->
+      <!-- Loader 1: Kontyra Twin-Loop Neural Pulse -->
       <div class="p-6 rounded-3xl bg-[#07070a] border border-white/10 flex flex-col items-center justify-between space-y-6 relative overflow-hidden group hover:border-cyan-500/30 transition-all">
         <div class="w-full flex items-center justify-between">
-          <span class="text-[10px] font-mono text-cyan-400 uppercase font-bold tracking-wider">1. Neural Orbit</span>
-          <span class="text-[9px] font-mono text-zinc-500 bg-white/5 px-1.5 py-0.5 rounded">Page Boot</span>
+          <span class="text-[10px] font-mono text-cyan-400 uppercase font-bold tracking-wider">1. Neural Pulse</span>
+          <span class="text-[9px] font-mono text-zinc-500 bg-white/5 px-1.5 py-0.5 rounded">Core Boot</span>
         </div>
 
-        <!-- Animated Stage -->
-        <div class="w-32 h-32 relative flex items-center justify-center my-2">
-          <!-- Ambient Glow Disc -->
-          <div class="absolute inset-0 rounded-full bg-cyan-500/15 blur-2xl pointer-events-none animate-pulse"></div>
+        <!-- Animated Stage: Real Kontyra Logo + Atmospheric Glow + Orbiting Photons -->
+        <div class="w-36 h-36 relative flex items-center justify-center my-2">
+          <!-- Ambient Neon Aura -->
+          <div class="absolute inset-2 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-600/10 to-pink-500/20 blur-2xl pointer-events-none"></div>
 
-          <!-- Outer Particle Ring 1 (Cyan CW) -->
+          <!-- Outer Particle Ring 1 (Cyan Clockwise) -->
           <svg class="absolute inset-0 w-full h-full animate-orbit-cw pointer-events-none" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="44" stroke="rgba(19, 217, 242, 0.15)" stroke-width="1.5" stroke-dasharray="6 12" fill="none" />
-            <circle cx="50" cy="6" r="3.5" fill="#13D9F2" filter="drop-shadow(0 0 6px #13D9F2)" />
-            <circle cx="50" cy="94" r="2.5" fill="#13D9F2" />
+            <circle cx="50" cy="50" r="45" stroke="rgba(19, 217, 242, 0.2)" stroke-width="1.2" stroke-dasharray="6 14" fill="none" />
+            <circle cx="50" cy="5" r="3.5" fill="#13D9F2" filter="drop-shadow(0 0 6px #13D9F2)" />
+            <circle cx="50" cy="95" r="2" fill="#079BFF" />
           </svg>
 
-          <!-- Counter-rotating Ring 2 (Magenta CCW) -->
-          <svg class="absolute inset-2 w-28 h-28 animate-orbit-ccw pointer-events-none" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="40" stroke="rgba(230, 0, 130, 0.2)" stroke-width="2" stroke-dasharray="20 40 10 30" fill="none" />
+          <!-- Counter-rotating Ring 2 (Magenta Counter-Clockwise) -->
+          <svg class="absolute inset-2 w-32 h-32 animate-orbit-ccw pointer-events-none" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" stroke="rgba(230, 0, 130, 0.2)" stroke-width="1.5" stroke-dasharray="16 34" fill="none" />
             <circle cx="90" cy="50" r="3.5" fill="#E60082" filter="drop-shadow(0 0 8px #E60082)" />
           </svg>
 
-          <!-- Core Kontyra Logo with Breathing Glow -->
-          <div class="w-14 h-14 relative z-10 animate-logo-pulse flex items-center justify-center">
-            <!-- Kontyra Vector Shape -->
-            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="44" stroke="white" stroke-width="5" stroke-opacity="0.2"/>
-              <path d="M28 72L50 28L72 72" stroke="url(#k-neural-grad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+          <!-- The Real Kontyra Logo with Breathing Glow -->
+          <div class="w-20 h-14 relative z-10 animate-kontyra-pulse flex items-center justify-center">
+            <svg viewBox="240 285 545 340" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="k-neural-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#13D9F2"/>
-                  <stop offset="0.5" stop-color="#4B00E8"/>
+                <linearGradient id="k-l1-leftGrad" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#13D9F2"/>
+                  <stop offset="0.48" stop-color="#079BFF"/>
+                  <stop offset="1" stop-color="#0B45E8"/>
+                </linearGradient>
+                <linearGradient id="k-l1-mainGrad" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#1747F2"/>
+                  <stop offset="0.38" stop-color="#4B00E8"/>
+                  <stop offset="0.68" stop-color="#B000D5"/>
                   <stop offset="1" stop-color="#E60082"/>
                 </linearGradient>
               </defs>
+              <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z M 301.00 337.00 L 302.00 336.00 L 303.00 337.00 L 302.00 338.00 Z" fill="url(#k-l1-leftGrad)" fill-rule="evenodd"/>
+              <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z M 765.00 445.00 L 766.00 444.00 L 767.00 446.00 L 766.00 447.00 Z M 706.00 420.00 L 707.00 419.00 L 708.00 420.00 L 707.00 421.00 Z" fill="url(#k-l1-mainGrad)" fill-rule="evenodd"/>
             </svg>
           </div>
         </div>
 
         <div class="text-center space-y-1">
           <div class="text-xs font-extrabold text-white">Initializing Engine...</div>
-          <p class="text-[11px] text-zinc-500">Concentric particle orbits revolving around glowing glyph.</p>
+          <p class="text-[11px] text-zinc-500">Genuine Kontyra logo breathing with twin orbital particles.</p>
         </div>
       </div>
 
-      <!-- Loader 2: Laser Path Tracer (Geometric Contour Draw) -->
+      <!-- Loader 2: Kontyra Infinite Laser Tracer -->
       <div class="p-6 rounded-3xl bg-[#07070a] border border-white/10 flex flex-col items-center justify-between space-y-6 relative overflow-hidden group hover:border-purple-500/30 transition-all">
         <div class="w-full flex items-center justify-between">
-          <span class="text-[10px] font-mono text-purple-400 uppercase font-bold tracking-wider">2. Laser Tracer</span>
+          <span class="text-[10px] font-mono text-purple-400 uppercase font-bold tracking-wider">2. Laser Contour Trace</span>
           <span class="text-[9px] font-mono text-zinc-500 bg-white/5 px-1.5 py-0.5 rounded">Execution</span>
         </div>
 
-        <!-- Animated Stage -->
-        <div class="w-32 h-32 relative flex items-center justify-center my-2">
-          <!-- Outer subtle hexagon boundary -->
+        <!-- Animated Stage: Vector stroke laser tracing exact Kontyra contours -->
+        <div class="w-36 h-36 relative flex items-center justify-center my-2">
+          <!-- Subtle frame -->
           <div class="absolute inset-1 rounded-2xl border border-white/5 bg-black/40"></div>
 
-          <!-- Vector path with animated stroke-dashoffset laser -->
-          <svg class="w-20 h-20 relative z-10" viewBox="0 0 100 100" fill="none">
-            <!-- Ghost background path -->
-            <path d="M28 72L50 28L72 72" stroke="rgba(255, 255, 255, 0.08)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="50" cy="50" r="44" stroke="rgba(255, 255, 255, 0.08)" stroke-width="4"/>
+          <!-- Laser SVG Contour -->
+          <div class="w-24 h-16 relative z-10 flex items-center justify-center">
+            <svg viewBox="240 285 545 340" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="laser-left" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#13D9F2"/>
+                  <stop offset="1" stop-color="#079BFF"/>
+                </linearGradient>
+                <linearGradient id="laser-main" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#1747F2"/>
+                  <stop offset="0.5" stop-color="#B000D5"/>
+                  <stop offset="1" stop-color="#E60082"/>
+                </linearGradient>
+              </defs>
+              <!-- Faint Ghost Path of the real Kontyra logo -->
+              <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" stroke="rgba(255, 255, 255, 0.08)" stroke-width="6" fill="rgba(255,255,255,0.02)"/>
+              <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" stroke="rgba(255, 255, 255, 0.08)" stroke-width="6" fill="rgba(255,255,255,0.02)"/>
 
-            <!-- Laser moving contour 1: Outer Loop -->
-            <circle cx="50" cy="50" r="44" stroke="url(#laser-grad-1)" stroke-width="4.5" class="laser-stroke" stroke-linecap="round"/>
-
-            <!-- Laser moving contour 2: Delta Mark -->
-            <path d="M28 72L50 28L72 72" stroke="url(#laser-grad-2)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" class="laser-stroke" style="animation-duration: 2.2s;"/>
-
-            <circle cx="50" cy="50" r="7" fill="#13D9F2" class="animate-pulse" filter="drop-shadow(0 0 10px #13D9F2)"/>
-
-            <defs>
-              <linearGradient id="laser-grad-1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#13D9F2"/>
-                <stop offset="1" stop-color="#4B00E8"/>
-              </linearGradient>
-              <linearGradient id="laser-grad-2" x1="100" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#E60082"/>
-                <stop offset="1" stop-color="#13D9F2"/>
-              </linearGradient>
-            </defs>
-          </svg>
+              <!-- Active Animated Laser Strokes -->
+              <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" stroke="url(#laser-left)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" class="kontyra-laser-left"/>
+              <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" stroke="url(#laser-main)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" class="kontyra-laser-main"/>
+            </svg>
+          </div>
         </div>
 
         <div class="text-center space-y-1">
-          <div class="text-xs font-extrabold text-white">Tracing Sandbox Paths...</div>
-          <p class="text-[11px] text-zinc-500">SVG stroke offset draws the exact Kontyra logo vector contour.</p>
+          <div class="text-xs font-extrabold text-white">Tracing Vector Paths...</div>
+          <p class="text-[11px] text-zinc-500">Live SVG stroke laser tracing actual Kontyra infinity loops.</p>
         </div>
       </div>
 
-      <!-- Loader 3: Conic Iris Sweep (Vercel / Apple Minimalist) -->
+      <!-- Loader 3: Chromatic Aura Sweep & Specular Glint -->
       <div class="p-6 rounded-3xl bg-[#07070a] border border-white/10 flex flex-col items-center justify-between space-y-6 relative overflow-hidden group hover:border-emerald-500/30 transition-all">
         <div class="w-full flex items-center justify-between">
-          <span class="text-[10px] font-mono text-emerald-400 uppercase font-bold tracking-wider">3. Conic Iris Sweep</span>
-          <span class="text-[9px] font-mono text-zinc-500 bg-white/5 px-1.5 py-0.5 rounded">Authentication</span>
+          <span class="text-[10px] font-mono text-emerald-400 uppercase font-bold tracking-wider">3. Chromatic Sweep</span>
+          <span class="text-[9px] font-mono text-zinc-500 bg-white/5 px-1.5 py-0.5 rounded">Security &amp; Auth</span>
         </div>
 
-        <!-- Animated Stage -->
-        <div class="w-32 h-32 relative flex items-center justify-center my-2">
+        <!-- Animated Stage: Rotating chromatic conic halo around authentic Kontyra logo with specular glint -->
+        <div class="w-36 h-36 relative flex items-center justify-center my-2">
           <!-- Conic Iris Rotating Box -->
-          <div class="conic-sweep-border w-20 h-20 rounded-2xl flex items-center justify-center p-[2px] shadow-2xl">
-            <div class="conic-sweep-inner w-full h-full rounded-2xl flex items-center justify-center p-3">
-              <!-- Static Kontyra Glyph inside sweeping halo -->
-              <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-                <path d="M28 72L50 28L72 72" stroke="url(#k-conic-grad)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="50" cy="50" r="8" fill="#10B981"/>
+          <div class="conic-sweep-border w-24 h-24 rounded-2xl flex items-center justify-center p-[2px] shadow-2xl">
+            <div class="conic-sweep-inner w-full h-full rounded-2xl flex items-center justify-center p-3 relative overflow-hidden">
+              <div class="specular-glint"></div>
+              <!-- Real Kontyra Logo inside tile -->
+              <svg viewBox="240 285 545 340" class="w-full h-full relative z-10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <linearGradient id="k-conic-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#10B981"/>
+                  <linearGradient id="k-l3-leftGrad" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#10B981"/>
                     <stop offset="1" stop-color="#13D9F2"/>
                   </linearGradient>
+                  <linearGradient id="k-l3-mainGrad" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#13D9F2"/>
+                    <stop offset="0.5" stop-color="#6366F1"/>
+                    <stop offset="1" stop-color="#EC4899"/>
+                  </linearGradient>
                 </defs>
+                <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" fill="url(#k-l3-leftGrad)" fill-rule="evenodd"/>
+                <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" fill="url(#k-l3-mainGrad)" fill-rule="evenodd"/>
               </svg>
             </div>
           </div>
@@ -409,7 +443,7 @@
 
         <div class="text-center space-y-1">
           <div class="text-xs font-extrabold text-white">Verifying SSO Token...</div>
-          <p class="text-[11px] text-zinc-500">Continuous 360-degree rotating gradient iris around logo box.</p>
+          <p class="text-[11px] text-zinc-500">Continuous 360&deg; rotating chromatic iris and specular glint.</p>
         </div>
       </div>
 
@@ -420,15 +454,26 @@
           <span class="text-[9px] font-mono text-zinc-500 bg-white/5 px-1.5 py-0.5 rounded">In-Button / Card</span>
         </div>
 
-        <!-- Animated Stage: Interactive Action Button with Spinner -->
+        <!-- Animated Stage: Interactive Action Button with Kontyra Micro-Spinner -->
         <div class="w-full space-y-3 my-1">
-          <button class="w-full py-2.5 px-3 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center gap-2 text-xs font-bold text-white shadow-md">
-            <!-- Micro Kontyra Glyph Spin -->
-            <svg class="w-4 h-4 animate-spin" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="44" stroke="rgba(255, 255, 255, 0.2)" stroke-width="8" stroke-dasharray="180" stroke-linecap="round"/>
-              <circle cx="50" cy="50" r="44" stroke="#13D9F2" stroke-width="8" stroke-dasharray="90" stroke-linecap="round"/>
-              <circle cx="50" cy="50" r="10" fill="#E60082"/>
-            </svg>
+          <button class="w-full py-2.5 px-3 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center gap-2 text-xs font-bold text-white shadow-md hover:bg-white/15 transition-all">
+            <!-- Micro Kontyra Logo Spinner -->
+            <div class="w-5 h-4 relative animate-pulse flex items-center justify-center">
+              <svg viewBox="240 285 545 340" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="k-btn-left" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#13D9F2"/>
+                    <stop offset="1" stop-color="#079BFF"/>
+                  </linearGradient>
+                  <linearGradient id="k-btn-main" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#1747F2"/>
+                    <stop offset="1" stop-color="#E60082"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" fill="url(#k-btn-left)" fill-rule="evenodd"/>
+                <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" fill="url(#k-btn-main)" fill-rule="evenodd"/>
+              </svg>
+            </div>
             <span>Authorizing DevOS...</span>
           </button>
 
@@ -462,20 +507,25 @@
       
       <!-- Top Mobile Navbar (56px) -->
       <nav class="h-14 px-4 glass-header flex items-center justify-between sticky top-0 z-30 select-none">
-        <!-- Left: Product Brand Lockup -->
+        <!-- Left: Product Brand Lockup with Real Kontyra Logo -->
         <div class="flex items-center gap-2.5">
           <div class="w-8 h-8 rounded-xl bg-black border border-white/15 p-1 flex items-center justify-center shadow-md">
-            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
-              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-sheet-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle id="logo-optic-dot" cx="50" cy="50" r="8" fill="#13D9F2"/>
+            <svg viewBox="240 285 545 340" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="kontyra-sheet-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#13D9F2"/>
-                  <stop offset="0.5" stop-color="#4B00E8"/>
+                <linearGradient id="phone-nav-left" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#13D9F2"/>
+                  <stop offset="0.48" stop-color="#079BFF"/>
+                  <stop offset="1" stop-color="#0B45E8"/>
+                </linearGradient>
+                <linearGradient id="phone-nav-main" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#1747F2"/>
+                  <stop offset="0.38" stop-color="#4B00E8"/>
+                  <stop offset="0.68" stop-color="#B000D5"/>
                   <stop offset="1" stop-color="#E60082"/>
                 </linearGradient>
               </defs>
+              <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" fill="url(#phone-nav-left)" fill-rule="evenodd"/>
+              <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" fill="url(#phone-nav-main)" fill-rule="evenodd"/>
             </svg>
           </div>
           <div>
@@ -559,44 +609,42 @@
       <!-- BOTTOM SHEET OVERLAY (Backdrop Dimming) -->
       <div id="bottom-sheet-overlay" class="absolute inset-0 bottom-sheet-overlay opacity-0 pointer-events-none z-40" onclick="toggleBottomSheet()"></div>
 
-      <!-- VERCEL-STYLE BOTTOM SHEET DRAWER (Slides up from below) -->
-      <div id="bottom-sheet-panel" class="absolute inset-x-0 bottom-0 bg-[#08080b]/95 backdrop-blur-2xl border-t border-white/15 rounded-t-[32px] z-50 bottom-sheet-panel translate-y-full flex flex-col justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.95)] overflow-hidden" style="max-height: 85%;">
-        
-        <!-- Tactile Drag Handle Bar (Signature Vercel / iOS Touchpoint) -->
-        <div class="pt-3 pb-1 cursor-pointer flex justify-center" onclick="toggleBottomSheet()">
-          <div class="w-10 h-1 rounded-full bg-white/25 hover:bg-white/40 transition-colors"></div>
+      <!-- BOTTOM SHEET PANEL (Sliding Up From Bottom) -->
+      <div id="bottom-sheet-panel" class="absolute inset-x-0 bottom-0 bottom-sheet-panel translate-y-full z-50 rounded-t-[32px] bg-[#09090c] border-t border-white/15 shadow-2xl overflow-hidden flex flex-col">
+        <!-- Tactile Drag Handle Pill -->
+        <div class="w-full flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing" onclick="toggleBottomSheet()">
+          <div class="w-10 h-1.5 rounded-full bg-white/20 hover:bg-white/40 transition-colors"></div>
         </div>
 
-        <!-- Sheet Header -->
+        <!-- Sheet Header with Real Kontyra Logo -->
         <div class="px-5 py-3 border-b border-white/10 flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
+          <div class="flex items-center gap-2">
             <div class="w-6 h-6 rounded-lg bg-black border border-white/15 p-0.5 flex items-center justify-center">
-              <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-                <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
-                <path d="M28 72L50 28L72 72" stroke="url(#kontyra-sheet-header-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+              <svg viewBox="240 285 545 340" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <linearGradient id="kontyra-sheet-header-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#13D9F2"/>
-                    <stop offset="0.5" stop-color="#4B00E8"/>
+                  <linearGradient id="sheet-hdr-left" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#13D9F2"/>
+                    <stop offset="1" stop-color="#0B45E8"/>
+                  </linearGradient>
+                  <linearGradient id="sheet-hdr-main" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#1747F2"/>
                     <stop offset="1" stop-color="#E60082"/>
                   </linearGradient>
                 </defs>
+                <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" fill="url(#sheet-hdr-left)" fill-rule="evenodd"/>
+                <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" fill="url(#sheet-hdr-main)" fill-rule="evenodd"/>
               </svg>
             </div>
-            <span id="sheet-title" class="text-xs font-extrabold text-white tracking-wide">DevOS Workspace</span>
+            <span id="sheet-title" class="text-xs font-bold text-white">DevOS Workspace</span>
           </div>
-
-          <!-- Close pill -->
-          <button onclick="toggleBottomSheet()" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-semibold text-zinc-400 hover:text-white transition-all flex items-center gap-1">
-            <span>Dismiss</span>
-            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <button onclick="toggleBottomSheet()" class="w-6 h-6 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        <!-- Scrollable Navigation Content -->
+        <!-- Sheet Body Links -->
         <div class="p-5 space-y-5 overflow-y-auto max-h-[400px]">
           <!-- Quick Search Pill in Sheet -->
           <div class="relative">
@@ -679,36 +727,41 @@
     </button>
 
     <div class="flex flex-col items-center text-center space-y-8 max-w-sm">
-      <!-- Big Neural Orbit Glyph -->
-      <div class="w-44 h-44 relative flex items-center justify-center">
-        <!-- Radial glow backdrops -->
-        <div class="absolute -inset-4 rounded-full bg-gradient-to-tr from-cyan-500/20 via-purple-600/20 to-pink-500/20 blur-3xl pointer-events-none animate-pulse"></div>
+      <!-- Big Neural Orbit Glyph with Real Kontyra Logo -->
+      <div class="w-52 h-52 relative flex items-center justify-center">
+        <!-- Volumetric radial glow backdrop -->
+        <div class="absolute -inset-4 rounded-full bg-gradient-to-tr from-cyan-500/25 via-blue-600/20 to-pink-500/25 blur-3xl pointer-events-none animate-pulse"></div>
 
         <!-- Concentric Ring 1 -->
         <svg class="absolute inset-0 w-full h-full animate-orbit-cw pointer-events-none" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="46" stroke="rgba(19, 217, 242, 0.25)" stroke-width="1" stroke-dasharray="8 12" fill="none"/>
-          <circle cx="50" cy="4" r="4" fill="#13D9F2" filter="drop-shadow(0 0 10px #13D9F2)"/>
+          <circle cx="50" cy="50" r="47" stroke="rgba(19, 217, 242, 0.25)" stroke-width="1.2" stroke-dasharray="8 14" fill="none"/>
+          <circle cx="50" cy="3" r="4" fill="#13D9F2" filter="drop-shadow(0 0 10px #13D9F2)"/>
         </svg>
 
         <!-- Concentric Ring 2 -->
-        <svg class="absolute inset-2 w-40 h-40 animate-orbit-ccw pointer-events-none" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="42" stroke="rgba(230, 0, 130, 0.3)" stroke-width="1.5" stroke-dasharray="25 45" fill="none"/>
-          <circle cx="92" cy="50" r="4" fill="#E60082" filter="drop-shadow(0 0 10px #E60082)"/>
+        <svg class="absolute inset-2 w-48 h-48 animate-orbit-ccw pointer-events-none" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="43" stroke="rgba(230, 0, 130, 0.3)" stroke-width="1.5" stroke-dasharray="25 45" fill="none"/>
+          <circle cx="93" cy="50" r="4" fill="#E60082" filter="drop-shadow(0 0 10px #E60082)"/>
         </svg>
 
-        <!-- Central Kontyra Logo -->
-        <div class="w-20 h-20 relative z-10 animate-logo-pulse flex items-center justify-center">
-          <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="50" r="44" stroke="white" stroke-width="4" stroke-opacity="0.3"/>
-            <path d="M28 72L50 28L72 72" stroke="url(#k-full-grad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="50" cy="50" r="8" fill="#13D9F2"/>
+        <!-- Central Genuine Kontyra Logo -->
+        <div class="w-28 h-20 relative z-10 animate-kontyra-pulse flex items-center justify-center">
+          <svg viewBox="240 285 545 340" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="k-full-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#13D9F2"/>
-                <stop offset="0.5" stop-color="#4B00E8"/>
+              <linearGradient id="k-fs-left" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#13D9F2"/>
+                <stop offset="0.48" stop-color="#079BFF"/>
+                <stop offset="1" stop-color="#0B45E8"/>
+              </linearGradient>
+              <linearGradient id="k-fs-main" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#1747F2"/>
+                <stop offset="0.38" stop-color="#4B00E8"/>
+                <stop offset="0.68" stop-color="#B000D5"/>
                 <stop offset="1" stop-color="#E60082"/>
               </linearGradient>
             </defs>
+            <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" fill="url(#k-fs-left)" fill-rule="evenodd"/>
+            <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" fill="url(#k-fs-main)" fill-rule="evenodd"/>
           </svg>
         </div>
       </div>
@@ -732,17 +785,19 @@
       <div class="flex items-center justify-between pb-3 border-b border-white/10">
         <div class="flex items-center gap-2">
           <div class="w-6 h-6 rounded-lg bg-black border border-white/15 p-1 flex items-center justify-center">
-            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" stroke-opacity="0.2"/>
-              <path d="M28 72L50 28L72 72" stroke="url(#kontyra-sheet-bento-grad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="50" cy="8" fill="#13D9F2"/>
+            <svg viewBox="240 285 545 340" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="kontyra-sheet-bento-grad" x1="28" y1="28" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#13D9F2"/>
-                  <stop offset="0.5" stop-color="#4B00E8"/>
+                <linearGradient id="bento-top-left" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#13D9F2"/>
+                  <stop offset="1" stop-color="#0B45E8"/>
+                </linearGradient>
+                <linearGradient id="bento-top-main" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#1747F2"/>
                   <stop offset="1" stop-color="#E60082"/>
                 </linearGradient>
               </defs>
+              <path d="M 392.00 297.00 L 391.00 298.00 L 384.00 298.00 L 369.00 301.00 L 344.00 310.00 L 322.00 322.00 L 306.00 335.00 L 301.00 337.00 L 302.00 338.00 L 291.00 349.00 L 280.00 363.00 L 271.00 377.00 L 263.00 394.00 L 259.00 405.00 L 254.00 426.00 L 252.00 456.00 L 253.00 457.00 L 254.00 477.00 L 258.00 495.00 L 261.00 503.00 L 260.00 505.00 L 261.00 504.00 L 262.00 505.00 L 265.00 515.00 L 274.00 533.00 L 281.00 543.00 L 280.00 545.00 L 281.00 544.00 L 283.00 546.00 L 282.00 548.00 L 283.00 547.00 L 285.00 549.00 L 284.00 551.00 L 283.00 550.00 L 284.00 551.00 L 285.00 550.00 L 293.00 560.00 L 311.00 578.00 L 332.00 593.00 L 352.00 603.00 L 379.00 611.00 L 395.00 612.00 L 396.00 613.00 L 412.00 613.00 L 413.00 612.00 L 422.00 612.00 L 437.00 609.00 L 457.00 602.00 L 471.00 595.00 L 494.00 578.00 L 510.00 562.00 L 517.00 551.00 L 504.00 561.00 L 483.00 574.00 L 468.00 581.00 L 446.00 588.00 L 436.00 589.00 L 435.00 590.00 L 427.00 590.00 L 426.00 591.00 L 409.00 591.00 L 407.00 589.00 L 406.00 590.00 L 393.00 589.00 L 374.00 584.00 L 361.00 578.00 L 364.00 576.00 L 362.00 577.00 L 361.00 576.00 L 362.00 577.00 L 359.00 578.00 L 338.00 565.00 L 327.00 556.00 L 310.00 537.00 L 301.00 523.00 L 291.00 501.00 L 286.00 483.00 L 284.00 463.00 L 283.00 462.00 L 284.00 436.00 L 287.00 421.00 L 290.00 414.00 L 290.00 411.00 L 293.00 406.00 L 294.00 407.00 L 293.00 404.00 L 295.00 399.00 L 302.00 388.00 L 303.00 384.00 L 313.00 370.00 L 332.00 351.00 L 341.00 344.00 L 356.00 335.00 L 359.00 334.00 L 362.00 335.00 L 360.00 334.00 L 367.00 330.00 L 392.00 323.00 L 406.00 322.00 L 407.00 321.00 L 422.00 321.00 L 423.00 322.00 L 438.00 323.00 L 454.00 327.00 L 467.00 332.00 L 482.00 340.00 L 495.00 350.00 L 494.00 351.00 L 496.00 350.00 L 497.00 352.00 L 503.00 356.00 L 511.00 346.00 L 506.00 339.00 L 491.00 325.00 L 476.00 315.00 L 458.00 306.00 L 443.00 301.00 L 422.00 297.00 Z" fill="url(#bento-top-left)" fill-rule="evenodd"/>
+              <path d="M 440.00 447.00 L 461.00 468.00 L 460.00 469.00 L 461.00 468.00 L 555.00 559.00 L 580.00 582.00 L 587.00 587.00 L 586.00 588.00 L 588.00 587.00 L 596.00 593.00 L 609.00 600.00 L 608.00 601.00 L 610.00 600.00 L 621.00 605.00 L 619.00 606.00 L 624.00 605.00 L 641.00 610.00 L 659.00 611.00 L 660.00 612.00 L 661.00 611.00 L 679.00 610.00 L 705.00 602.00 L 722.00 593.00 L 732.00 585.00 L 735.00 587.00 L 733.00 585.00 L 744.00 575.00 L 760.00 554.00 L 767.00 540.00 L 772.00 526.00 L 772.00 522.00 L 775.00 512.00 L 775.00 504.00 L 776.00 503.00 L 776.00 483.00 L 774.00 475.00 L 774.00 470.00 L 775.00 469.00 L 774.00 470.00 L 773.00 469.00 L 772.00 462.00 L 766.00 448.00 L 767.00 444.00 L 765.00 445.00 L 761.00 437.00 L 750.00 422.00 L 751.00 421.00 L 750.00 422.00 L 742.00 414.00 L 743.00 412.00 L 742.00 414.00 L 730.00 403.00 L 719.00 396.00 L 698.00 387.00 L 679.00 383.00 L 656.00 383.00 L 631.00 389.00 L 624.00 393.00 L 621.00 392.00 L 622.00 393.00 L 607.00 401.00 L 591.00 413.00 L 560.00 443.00 L 542.00 463.00 L 543.00 466.00 L 546.00 468.00 L 558.00 457.00 L 559.00 458.00 L 558.00 457.00 L 565.00 450.00 L 594.00 426.00 L 605.00 419.00 L 607.00 420.00 L 606.00 419.00 L 617.00 413.00 L 639.00 406.00 L 645.00 406.00 L 646.00 405.00 L 675.00 406.00 L 691.00 411.00 L 692.00 412.00 L 690.00 413.00 L 691.00 415.00 L 692.00 415.00 L 690.00 414.00 L 692.00 412.00 L 694.00 412.00 L 697.00 414.00 L 696.00 415.00 L 698.00 414.00 L 704.00 417.00 L 707.00 421.00 L 706.00 422.00 L 708.00 420.00 L 713.00 423.00 L 717.00 427.00 L 716.00 428.00 L 717.00 427.00 L 720.00 429.00 L 733.00 444.00 L 732.00 445.00 L 736.00 448.00 L 739.00 454.00 L 738.00 456.00 L 739.00 455.00 L 742.00 460.00 L 746.00 472.00 L 747.00 482.00 L 748.00 483.00 L 747.00 512.00 L 740.00 533.00 L 730.00 549.00 L 725.00 554.00 L 724.00 552.00 L 725.00 554.00 L 716.00 563.00 L 698.00 574.00 L 684.00 579.00 L 674.00 580.00 L 673.00 581.00 L 648.00 580.00 L 631.00 575.00 L 614.00 566.00 L 605.00 559.00 L 572.00 526.00 L 488.00 446.00 L 494.00 440.00 L 495.00 441.00 L 494.00 440.00 L 503.00 430.00 L 505.00 431.00 L 504.00 429.00 L 581.00 351.00 L 582.00 352.00 L 581.00 351.00 L 587.00 344.00 L 617.00 314.00 L 568.00 314.00 L 502.00 382.00 L 501.00 381.00 L 502.00 382.00 L 499.00 386.00 L 458.00 428.00 L 457.00 427.00 L 458.00 428.00 L 457.00 430.00 Z" fill="url(#bento-top-main)" fill-rule="evenodd"/>
             </svg>
           </div>
           <span class="text-sm font-extrabold text-white">Kontyra Ecosystem</span>
@@ -913,10 +968,9 @@
       document.getElementById('phone-app-name').innerText = p.shortName;
       const pBadge = document.getElementById('phone-app-badge');
       pBadge.innerText = p.badge;
-      pBadge.className = `text-[9px] font-mono px-1.5 py-0.2 rounded-full border ${p.badgeClass} font-semibold`;
+      pBadge.className = `text-[9px] font-mono px-1.5 py-0.2 rounded-full border ${pBadge.className} font-semibold`;
       document.getElementById('sheet-title').innerText = `${p.shortName} Workspace`;
       document.getElementById('sheet-accent-pill').className = `absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full ${p.dotClass}`;
-      document.getElementById('logo-optic-dot').setAttribute('fill', p.color);
     }
 
     function toggleBottomSheet() {
@@ -980,7 +1034,7 @@
         if (progress === 30) {
           text.innerText = 'Minting OAuth 2.0 PKCE Session • Step 2/3';
         } else if (progress === 70) {
-          text.innerText = 'Syncing Workspace Pods • Step 3/3';
+          text.innerText = 'Attaching DevOS Developer Sandbox • Step 3/3';
         } else if (progress >= 100) {
           clearInterval(bootInterval);
           text.innerText = 'Workspace Ready! Launching...';
