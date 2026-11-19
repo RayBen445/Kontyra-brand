@@ -12,10 +12,12 @@ Every Kontyra product must feel like part of the same ecosystem without looking 
 ## 2. Shared Ecosystem Foundations (Mandatory for all Products)
 
 1. **Logo Mark:** Official vector SVG mark (`/kontyra-icon.svg`) placed at the left of the navbar.
-2. **Navigation Height & Placement:** Fixed or sticky top bar at precisely `56px` (`h-14`) with `border-b border-white/[0.08]` and background blur (`backdrop-blur-xl bg-black/80`).
-3. **Typography Standard:** Native Apple/BlinkMacSystemFont system stack with SF Mono for code and technical badges.
-4. **Surface Language:** Deep black root (`#000000`), glass card containers (`bg-white/[0.02] border border-white/[0.08]`), and crisp interactive borders.
-5. **Ecosystem Cross-Links:** Standard ecosystem switcher in mobile drawer and footer linking:
+2. **Product Logo Loading State Standard:** Every product **MUST use its own dedicated product logo** (e.g. DevOS uses DevOS logo, REASTUDIA uses REASTUDIA book mark, Novelora uses Novelora quill mark) for all in-app loading states, animated with the Kontyra kinetic archetypes (Laser Contour Trace, Neural Pulse, Chromatic Conic Halo, or Micro-loader). Generic spinners (`Loader2`) are strictly prohibited.
+3. **Navigation Height & Placement:** Fixed or sticky top bar at precisely `56px` (`h-14`) with `border-b border-white/[0.08]` and background blur (`backdrop-blur-xl bg-black/80`).
+4. **No Triple Hamburger:** All mobile navigation headers must use the Asymmetric Pulse Dash trigger and open a Vercel-style bottom-sheet drawer (`translate-y-full` to `translate-y-0`).
+5. **Typography Standard:** Native Apple/BlinkMacSystemFont system stack with SF Mono for code and technical badges.
+6. **Surface Language:** Deep black root (`#000000`), glass card containers (`bg-white/[0.02] border border-white/[0.08]`), and crisp interactive borders.
+7. **Ecosystem Cross-Links:** Standard ecosystem switcher in mobile drawer and footer linking:
    - `Docs` (`docs.kontyra.name.ng`)
    - `Blog` (`blog.kontyra.name.ng`)
    - `Legal` (`legal.kontyra.name.ng`)

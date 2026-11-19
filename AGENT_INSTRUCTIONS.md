@@ -100,17 +100,25 @@ Whenever an interactive box or card is selected or focused, wrap or animate a sm
 
 ---
 
-## 5. Official Loading State Standard (Kontyra Vector Logo)
+## 5. Official Loading State Standard (Product-Specific Logo Rule)
 
 > [!IMPORTANT]
-> **NEVER USE GENERIC SPINNERS, ARBITRARY CHEVRONS, OR CIRCLES.**
-> All loading events across Kontyra products must embody the authentic dual-loop infinity vector geometry (`kontyra-gradient.svg`).
+> **EACH PRODUCT MUST USE ITS OWN LOGO FOR ITS LOADING STATES.**
+> Never use generic spinning circles (`animate-spin border-t-white`) or generic shapes.
+> - **Product Autonomy:** When inside an individual product (DevOS, REASTUDIA, Novelora, VUX Events, Kora AI, Kontyra Accounts), all internal loading states (route changes, container build, terminal execution, chapter load, button submissions) **MUST use that specific product's official logo mark and brand accent colors**.
+>   - **DevOS:** Uses DevOS Slash/Terminal mark with Cyan `#13D9F2` laser contour tracing.
+>   - **REASTUDIA:** Uses REASTUDIA Book mark with Sovereign Gold `#D4AF37` pulse.
+>   - **Novelora:** Uses Novelora Quill/Studio mark with Literary Gold `#D4AF37` laser trace.
+>   - **VUX Events:** Uses VUX Bolt/Ticket mark with Neon Pink `#E60082` sweep.
+>   - **Kora AI:** Uses Kora Neural Orb mark with Deep Violet `#4B00E8`.
+>   - **Kontyra Accounts:** Uses Kontyra Identity/Shield mark with Trust Emerald `#10B981`.
+> - **Cross-App Handshakes:** The parent **Kontyra dual-loop logo** is reserved for cross-ecosystem SSO authorizations, gateway handoffs, and platform root boots.
 
-### 4 Approved Archetypes:
-1. **Neural Pulse (Core Boot / Splash):** Twin-loop logo breathing (`scale(0.97)` to `scale(1.04)`) with volumetric dual-neon Cyan & Magenta atmospheric glow, flanked by dual concentric orbiting photon rings.
-2. **Laser Contour Trace (Execution & Terminal):** High-intensity laser beam traveling directly along the genuine SVG paths of the Kontyra twin loops using synchronized `stroke-dasharray` and `stroke-dashoffset` (`#13D9F2` on left loop, `#E60082` on main loop).
-3. **Chromatic Aura Sweep (Security / SSO):** 360-degree rotating conic gradient halo (`#13D9F2` &rarr; `#4B00E8` &rarr; `#E60082`) surrounding a frosted glass tile with specular logo glint.
-4. **Kinetic Micro-Loader (In-Button & Inline Badges):** 20px compact authentic logo with breathing glow for buttons ("Authenticating...", "Minting Token...").
+### 4 Approved Kinetic Archetypes:
+1. **Neural Pulse (Core Boot / Splash):** Product logo breathing (`scale(0.97)` to `scale(1.04)`) with volumetric dual-neon atmospheric glow, flanked by dual concentric orbiting photon rings.
+2. **Laser Contour Trace (Execution & Terminal):** High-intensity laser beam traveling directly along the genuine SVG paths of the product's logo using synchronized `stroke-dasharray` and `stroke-dashoffset`.
+3. **Chromatic Aura Sweep (Security & Authentication):** 360-degree rotating conic gradient halo tuned to the product's accent spectrum surrounding a frosted glass tile.
+4. **Kinetic Micro-Loader (In-Button & Inline Badges):** 18–20px compact product emblem with subtle breathing glow for action buttons ("Compiling...", "Authenticating...", "Minting...").
 
 ---
 

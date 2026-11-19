@@ -1,81 +1,117 @@
-# Kontyra Logo Loading State Standard
+# Kontyra Loading State & Product Logo Standard
 
-This document establishes the official visual, kinetic, and implementation standard for all loading states across Kontyra products (DevOS, Kontyra Accounts, REASTUDIA, Novelora, Kora AI, and VUX Events).
-
----
-
-## 1. Design Rationale & Principles
-
-Generic spinning circles (`animate-spin border-t-white`) or generic triangles/chevrons lack brand identity and convey an unpolished user experience. 
-
-All loading events in Kontyra must reinforce the **authentic dual-loop infinity vector mark of Kontyra**:
-- **Twin-Loop Ribbon Geometry:**
-  - **Left Loop (`leftGrad`):** Linear gradient from Cyan (`#13D9F2`) &rarr; Electric Sky (`#079BFF`) &rarr; Deep Blue (`#0B45E8`).
-  - **Main / Right Loop (`mainGrad`):** Linear gradient from Royal Blue (`#1747F2`) &rarr; Deep Violet (`#4B00E8`) &rarr; Magenta (`#B000D5`) &rarr; Neon Pink (`#E60082`).
-- **OLED Surface:** Placed on pure black (`#000000` or `#07070a`) backdrop surfaces with soft volumetric neon ambient glows.
-- **Zero Generic Placeholders:** Never use arbitrary chevrons, circles, or generic loading spinners.
+This document establishes the official visual, kinetic, and architectural standard for all loading states across the entire Kontyra ecosystem.
 
 ---
 
-## 2. Four Loading Archetypes
+## 1. Golden Law: Products Must Use Their Own Logo for In-App Loading
 
-### Archetype 1: Kontyra Twin-Loop Neural Pulse (Core Boot)
-- **Use Case:** Initial application boots, full-page screen redirects, SSO handshakes, DevOS container workspace spin-up.
-- **Visuals:**
-  - **Center:** The genuine Kontyra logo emblem gently breathing (`scale(0.97)` to `scale(1.04)`) with volumetric dual-neon atmospheric glow (`drop-shadow(0 0 28px rgba(19, 217, 242, 0.7)) drop-shadow(0 0 52px rgba(230, 0, 130, 0.55))`).
-  - **Orbit 1:** Concentric cyan photon particle ring revolving clockwise at `2.8s linear infinite`.
-  - **Orbit 2:** Concentric magenta photon particle ring revolving counter-clockwise at `3.6s cubic-bezier(0.4, 0, 0.2, 1)`.
+> [!IMPORTANT]
+> **EACH PRODUCT MUST USE ITS OWN LOGO FOR ITS LOADING STATES.**
+> Individual Kontyra products (DevOS, REASTUDIA, Novelora, VUX Events, Kora AI, VyntaJobs, and Kontyra Accounts) must **never use generic spinning circles (`animate-spin border-t-white`) or generic shapes**. 
+> Furthermore, in-app loading states must feature the **product's own official logo mark** rather than defaulting to the parent Kontyra logo, preserving brand recognition and product identity.
 
-### Archetype 2: Kontyra Infinite Laser Tracer (Execution & Build)
-- **Use Case:** Terminal compiling, sandbox build steps, manuscript exports, AI reasoning generation.
+### Scope Matrix: When to Use Product Logo vs. Kontyra Parent Logo
+
+| Context / Event | Logo to Display | Kinetic Archetype | Notes |
+| :--- | :--- | :--- | :--- |
+| **Product In-App Boot / Splash** | **Individual Product Logo** | Neural Pulse or Laser Contour Trace | Uses the product's own vector mark with its dedicated brand accent glow |
+| **Product Route Transitions** | **Individual Product Logo** | Laser Contour Trace or Kinetic Micro-loader | Crisp, brand-grounded transition |
+| **Product In-Button Actions** | **Individual Product Logo** | Kinetic Micro-loader | 18–20px compact pulsing product emblem |
+| **Product Content / Data Fetching** | **Individual Product Logo** | Chromatic Aura Sweep or Skeleton Shimmer | Product-themed shimmer pass |
+| **Cross-Product SSO & Handshake** | **Kontyra Parent Dual-Loop Logo** | Chromatic Aura Sweep or Neural Pulse | Cross-ecosystem identity & token minting |
+| **Central Kontyra OS Boot** | **Kontyra Parent Dual-Loop Logo** | Neural Pulse & Laser Contour Trace | Platform root initialization |
+
+### Product Logo & Accent Mapping for Loading States:
+
+| Product | Product Logo Vector / Icon | Signature Accent | Laser / Glow Beam Colors |
+| :--- | :--- | :--- | :--- |
+| **DevOS Platform** | DevOS Slash / Terminal Mark (`/icons/devos_icon.svg`) | Electric Cyan (`#13D9F2`) | Cyan (`#13D9F2`) &rarr; Electric Sky (`#079BFF`) |
+| **Kontyra Accounts** | Kontyra Security Shield / ID Mark (`/logo.svg`) | Trust Emerald (`#10B981`) | Emerald (`#10B981`) &rarr; Cyan (`#13D9F2`) |
+| **REASTUDIA** | REASTUDIA Open Book / Monogram (`/icons/reastudia_icon.png`) | Sovereign Gold (`#D4AF37`) | Warm Gold (`#D4AF37`) &rarr; Warm Ivory (`#F5E8D0`) |
+| **Novelora Studio** | Novelora Quill / Lore Mark (`/icons/novelora_icon.webp`) | Literary Gold (`#D4AF37`) | Gold (`#D4AF37`) &rarr; Amber (`#F59E0B`) |
+| **Kora AI** | Kora Neural Sparkle / Orb Mark | Deep Violet (`#4B00E8`) | Violet (`#4B00E8`) &rarr; Magenta (`#B000D5`) |
+| **VUX Events** | VUX Bolt / Access Ticket Mark (`/icons/vux_icon.svg`) | Neon Pink / Magenta (`#E60082`) | Magenta (`#E60082`) &rarr; Ticket Coral (`#F43F5E`) |
+| **VyntaJobs** | Vynta Escrow Hexagon Mark (`/icons/vyntajobs_icon.svg`) | Marketplace Indigo (`#1747F2`) | Indigo (`#1747F2`) &rarr; Cyan (`#13D9F2`) |
+
+---
+
+## 2. The Four Official Loading Archetypes
+
+Every product adapts these 4 kinetic archetypes to its **own SVG geometry** and **dedicated accent colors**:
+
+### Archetype 1: Neural Pulse (Product Core Boot)
+- **Use Case:** Initial application boot, workspace launch, full-page screen redirects.
 - **Visuals:**
-  - The actual Kontyra logo curves drawn in real-time by a laser beam traveling through its twin loops!
+  - **Center:** The product's official logo mark gently breathing (`scale(0.97)` to `scale(1.04)`) with volumetric dual-neon atmospheric glow using the product's primary and secondary accents.
+  - **Orbit 1:** Concentric photon particle ring revolving clockwise at `2.8s linear infinite`.
+  - **Orbit 2:** Concentric photon particle ring revolving counter-clockwise at `3.6s cubic-bezier(0.4, 0, 0.2, 1)`.
+
+### Archetype 2: Laser Contour Trace (Execution & Terminal Compilation)
+- **Use Case:** Code compilation in DevOS, sandbox container build, manuscript export in Novelora, neural reasoning in Kora AI.
+- **Visuals:**
+  - A high-intensity laser beam travels directly along the vector contours (`stroke-dasharray` and `stroke-dashoffset`) of the product's own SVG mark!
   - Underneath: Faint ghost vector paths (`stroke="rgba(255, 255, 255, 0.08)" stroke-width="6"`).
-  - Animated SVG stroke:
-    - Left loop: Laser stroke with `#13D9F2` &rarr; `#079BFF` traveling continuously through the loop via `stroke-dasharray` and `stroke-dashoffset`.
-    - Main loop: Laser stroke with `#1747F2` &rarr; `#E60082` traveling in synchronization.
+  - Synchronized laser stroke highlighted by an SVG Gaussian blur glow filter (`stdDeviation="3.5"`).
 
-### Archetype 3: Kontyra Chromatic Aura Sweep (Security & Authentication)
-- **Use Case:** Biometric Passkey scans, SAML 2.0 verification, token minting cards.
+### Archetype 3: Chromatic Aura Sweep (Security, Handshakes & Cards)
+- **Use Case:** Passkey authentication, token exchange, credential validation cards.
 - **Visuals:**
-  - A 360-degree high-frequency rotating chromatic conic gradient halo (`conic-gradient(from 0deg, #13D9F2, #4B00E8, #E60082, transparent 60%, #13D9F2)`).
-  - Encircles an inner frosted glass tile containing the authentic Kontyra emblem with a specular light glint sweeping across its surface.
+  - A 360-degree high-frequency rotating chromatic conic gradient halo (`conic-gradient`) tuned to the product's accent spectrum.
+  - Encircles an inner frosted glass tile containing the product emblem with a specular light glint sweeping across its surface.
 
-### Archetype 4: Kontyra Kinetic Micro-Loader (In-Button & Inline Badges)
-- **Use Case:** Form submission buttons ("Authenticating...", "Minting Token..."), list skeleton shimmers.
+### Archetype 4: Kinetic Micro-Loader (In-Button & Inline Badges)
+- **Use Case:** Form submission buttons ("Building Container...", "Minting Key...", "Publishing Chapter..."), list skeleton shimmers.
 - **Visuals:**
-  - **In-Button:** 20px compact authentic Kontyra logo with subtle kinetic breathing pulse and status copy.
-  - **Skeleton Shimmer:** Smooth 90-degree gradient wave passing over cards at `1.8s infinite` using brand cyan-magenta highlights (`rgba(19, 217, 242, 0.12)` to `rgba(230, 0, 130, 0.16)`) rather than dull grey.
+  - **In-Button:** 18–20px compact product emblem with subtle kinetic breathing pulse and status label.
+  - **Skeleton Shimmer:** Smooth 90-degree gradient wave passing over cards at `1.8s infinite` using product-accented tinted highlights rather than lifeless flat grey.
 
 ---
 
-## 3. Official Vector Reference
+## 3. Parent Kontyra Logo Reference (Cross-App SSO & OS Boots)
+
+For platform-level handshakes and cross-ecosystem routing:
 
 ```html
 <svg viewBox="240 285 545 340" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="leftGrad" x1="250" y1="300" x2="520" y2="610" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#13D9F2"/>
-      <stop offset="0.48" stop-color="#079BFF"/>
-      <stop offset="1" stop-color="#0B45E8"/>
+      <stop offset="0%" stop-color="#13D9F2"/>
+      <stop offset="48%" stop-color="#079BFF"/>
+      <stop offset="100%" stop-color="#0B45E8"/>
     </linearGradient>
     <linearGradient id="mainGrad" x1="440" y1="320" x2="780" y2="610" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#1747F2"/>
-      <stop offset="0.38" stop-color="#4B00E8"/>
-      <stop offset="0.68" stop-color="#B000D5"/>
-      <stop offset="1" stop-color="#E60082"/>
+      <stop offset="0%" stop-color="#1747F2"/>
+      <stop offset="38%" stop-color="#4B00E8"/>
+      <stop offset="68%" stop-color="#B000D5"/>
+      <stop offset="100%" stop-color="#E60082"/>
     </linearGradient>
   </defs>
   <!-- Left Loop -->
-  <path d="M 392.00 297.00 L 391.00 298.00 ... Z" fill="url(#leftGrad)" fill-rule="evenodd"/>
+  <path d="M 392.00 297.00 L 391.00 298.00 C ... Z" fill="url(#leftGrad)" fill-rule="evenodd"/>
   <!-- Main / Right Loop -->
-  <path d="M 440.00 447.00 L 461.00 468.00 ... Z" fill="url(#mainGrad)" fill-rule="evenodd"/>
+  <path d="M 440.00 447.00 L 461.00 468.00 C ... Z" fill="url(#mainGrad)" fill-rule="evenodd"/>
 </svg>
 ```
 
 ---
 
-## 4. Interactive Reference & Preview
+## 4. Implementation Guidelines for Developers
 
-Test all 4 loaders live and simulate a full application boot sequence in:
-`preview/navbar-showcase.html` or `Kontyra Accounts/index.html`
+When implementing a loading state in any Kontyra repository:
+1. **Never import `Loader2` from lucide-react** as a standalone raw spinner.
+2. Check the product you are building:
+   - If in **DevOS**, import/render the DevOS logo contour or pulse.
+   - If in **REASTUDIA**, import/render the REASTUDIA book mark.
+   - If in **Novelora**, import/render the Novelora quill mark.
+   - If in **Kontyra Accounts** (in-app dashboard), use the Kontyra Accounts shield/mark.
+   - If in **SSO handoff (`/auth`)**, use the dual Kontyra & Target-App bridge visualization.
+3. Apply the appropriate kinetic archetype (Neural Pulse, Laser Trace, Chromatic Sweep, or Micro-loader).
+
+---
+
+## 5. Interactive Reference & Preview
+
+Test all 4 loaders live and simulate full product and platform loading sequences in:
+- `Kontyra-brand`: `preview/navbar-showcase.html`
+- `Kontyra Accounts`: `index.html`
