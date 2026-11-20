@@ -1,0 +1,56 @@
+{
+  "name": "@rayben445/kontyra-ui",
+  "version": "1.0.0",
+  "description": "Official private design system and UI components for the Kontyra Developer Ecosystem.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./tokens.css": "./design-system/tokens/design-tokens.css",
+    "./tokens.json": "./design-system/tokens/design-tokens.json"
+  },
+  "files": [
+    "dist",
+    "design-system/tokens"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RayBen445/Kontyra-brand.git"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format cjs,esm",
+    "dev": "tsup src/index.ts --dts --format cjs,esm --watch"
+  },
+  "keywords": [
+    "kontyra",
+    "design-system",
+    "ui",
+    "components"
+  ],
+  "author": "Kontyra",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^1.18.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
